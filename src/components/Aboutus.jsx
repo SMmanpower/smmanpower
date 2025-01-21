@@ -15,11 +15,11 @@ function Aboutus() {
         <main className="w-full flex justify-center items-center text-4xl px-2.5 gap-2.5">
             <aside className="mission w-1/2 p-2.5">
                 <h2 className="aldrich-regular text-center text-primary">Our Mission</h2>
-                <p className="inter text-lg text-justify">To bridge the gap between exceptional talent and thriving businesses by providing customized manpower solutions that drive success and create lasting value.</p>
+                <p className="inter text-lg text-justify p-2.5">To bridge the gap between exceptional talent and thriving businesses by providing customized manpower solutions that drive success and create lasting value.</p>
             </aside>
             <aside className="vission w-1/2 p-2.5">
                 <h2 className="aldrich-regular text-center text-primary text-4xl">Our Vision</h2>
-                <p className="inter text-lg text-justify">To become the most trusted and preferred manpower agency, recognized for our commitment to quality, innovation, and the growth of both organizations and individuals.</p>
+                <p className="inter text-lg text-justify p-2.5">To become the most trusted and preferred manpower agency, recognized for our commitment to quality, innovation, and the growth of both organizations and individuals.</p>
             </aside>
         </main>
     </section>
