@@ -1,28 +1,40 @@
-import React from 'react'
+import React, { useState } from 'react'
 import whatsapp from '../assets/WhatsApp.png'
 import facebook from '../assets/Facebook.png'
 import instagram from '../assets/Instagram.png'
 import x from '../assets/X.png'
+import icon from '../assets/Circled_Right.png'
+import close from '../assets/Close.png'
 function Footer() {
+        const [isPopupOpen,setIsPopupOpen] = useState(false);
+    
+        const togglePopup =()=>{
+            setIsPopupOpen(!isPopupOpen);
+        }
   return (
     <>
-    <section className="w-full bg-footer h-400 py-5">
-        <h2 className="agbalumo-regular text-5xl text-left">
+    <section className="w-full bg-footer pt-4 xl:h-400 xl:py-5">
+        <button onClick={togglePopup} className="agbalumo-regular text-3xl text-center xl:text-5xl xl:text-left">
             SM Manpower
-        </h2>
-        <footer className="flex justify-center items-center px-10 py-5 gap-5">
-            <div className="box w-1/3 border-r-4 border-black">
-                <p className="aldrich-regular text-3xl text-left w-200 m-auto">Email</p>
-                <li className='w-200 m-auto list-none'>
-                    <a href="" className="inter text-2xl w-200 m-auto">desflyer.tech@gmail.com</a>
+        </button>
+        
+        <footer className="xl:flex justify-center items-center p-2 xl:px-10 xl:py-5 gap-5">
+            <div className="box xl:w-1/3 xl:border-r-4 border-black">
+                <p className="aldrich-regular text-2xl xl:text-3xl text-left w-60 xl:w-200 m-auto">Email</p>
+                <li className='w-60 xl:w-200 m-auto list-none'>
+                    <a href="" className="inter text-lg xl:text-2xl w-200 m-auto">desflyer.tech@gmail.com</a>
                 </li>
-                <p className="aldrich-regular text-3xl text-left w-200 m-auto">Phone No</p>
-                <li className="w-200 m-auto list-none">
-                    <a href="" className="inter text-2xl text-left w-200 m-auto">+91 9092579460</a>
+                <p className="aldrich-regular text-2xl xl:text-3xl text-left w-60 xl:w-200 m-auto">Phone No</p>
+                <li className="w-60 xl:w-200 m-auto list-none">
+                    <a href="" className="inter text-lg xl:text-2xl text-left xl:w-200 m-auto">+91 9092579460</a>
                 </li>
-                <p className="aldrich-regular text-3xl text-left w-200 m-auto">Adderss</p>
+                <p className="aldrich-regular text-2xl xl:text-3xl text-left w-60 xl:w-200 m-auto">Adderss</p>
+                <p className="inter w-60 xl:w-200 m-auto text-lg text-left">
+                    ATR Complex Pudukkottai Main 
+                    Road,Pudukkottai-613301 
+                </p>
             </div>
-            <div className="box w-1/3 border-r-4 border-black">
+            <div className="box hidden xl:block xl:w-1/3 border-r-4 border-black">
                 <li className='list-none py-2 text-left w-200 m-auto'>
                     <a href="" className="aldrich-regular text-4xl text-center">Home</a>
                 </li>
@@ -39,11 +51,11 @@ function Footer() {
                     <a href="" className="aldrich-regular text-4xl text-center">Contact us</a>
                 </li>
             </div>
-            <div className="box w-1/3 h-200 m-auto">
-                <p className="aldrich-regular text-3xl text-center">
+            <div className="box xl:w-1/3 xl:h-200 m-auto">
+                <p className="aldrich-regular text-2xl xl:text-3xl text-center">
                     Follow as on social media
                 </p>
-                <div className="flex justify-center items-center gap-2.5 my-5">
+                <div className="flex justify-center items-center gap-2.5 xl:my-5">
                     <img src={whatsapp} alt="" className="h-12" />
                     <img src={instagram} alt="" className="h-12" />
                     <img src={facebook} alt="" className="h-12" />
@@ -56,7 +68,32 @@ function Footer() {
                     Designed by DesFlyer
                 </a>
             </li>
+       
     </section>
+    {isPopupOpen && (
+            <section className="w-600 h-fit fixed xl:p-10 bg-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-3/4 border-2 rounded-3xl border-primary ">
+                <h2 className="aldrich-regular text-center text-primary text-3xl">
+                    Welcome admin
+                        <button onClick={togglePopup} className='w-12 h-12 float-end top-2.5'>
+                            <img src={close} alt="" />
+                        </button>
+                </h2>
+                <form action="" className="m-auto my-2.5">
+                    <div className="box text-left">
+                        <p className="text-sm xl:text-2xl aldrich-regular">Enter your name</p>
+                        <input type="text" className="input xl:input-box" />
+                    </div>
+                    <div className="box text-left">
+                        <p className="text-sm xl:text-2xl aldrich-regular">Enter your name</p>
+                        <input type="text" className="input xl:input-box" />
+                    </div>
+                        <button type="submit" className="btn iceberg-regular bg-primary mx-auto my-5 text-xl xl:text-4xl">
+                            Login
+                            <img src={icon} alt="" />
+                        </button>
+                </form>
+            </section>
+        )}
     </>
   )
 }

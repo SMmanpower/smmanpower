@@ -49,8 +49,11 @@ function BookingForm() {
                     <input type="checkbox" name="termsandcondition" id="" className='mx-2'/>
                     Term & Conditions
                 </label>
-                <p className="inter text-xs xl:text-base text-justify">
-                    Apply to a manpower agency online by meeting eligibility, submitting documents like CV and ID proof, and complying with terms. Teams must provide member details and experience.
+                <p className="inter text-xs xl:text-base px-10 text-justify">
+                1. Payment is expected within three working days. Failure to pay may result in legal proceedings <br /> 
+                2. We'll send over the employees but you'll need to handle the coordination and  supervision <br />
+                3. We will not be held responsible for any disputes or complications that may occur between you and the employees. <br />
+                4.Advance payment is required prior to commencement of work
                 </p>
                 <button type="submit" className="btn iceberg-regular bg-primary mx-auto my-5 text-xl xl:text-4xl">
                     Book now
