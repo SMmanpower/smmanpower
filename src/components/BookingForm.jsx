@@ -1,61 +1,129 @@
-import React from 'react'
+import React, { useState } from 'react'
 import icon from '../assets/Circled_Right.png'
+import axios from "axios";
+import Swal from 'sweetalert2';
 function BookingForm() {
+    const [name,setName] = useState("");
+    const [contact_number,setContactNo] = useState("");
+    const [work_details,setWorkDetail] = useState("");
+    const [place_of_event,setWorkPlace] = useState("");
+    const [employees_required,setEmployeesNo] = useState("");
+    const [salary,setSalary] = useState("");
+    const [start_date,setStartdate] = useState("");
+    const [end_date,setEndDate] = useState("");
+    const [proof,setProof] = useState("")
+  
+    const handleSubmit = async (event) => {
+     event.preventDefault();
+      
+      const RequestData = {
+        name,
+        contact_number,
+        work_details,
+        place_of_event,
+        employees_required,
+        salary,
+        start_date,
+        end_date,
+        proof
+      };
+       
+      console.log("Data Sending to the DB are:",RequestData);
+    
+   try {
+    
+    const bookingResponse = await axios.post(
+        'link',
+        RequestData,
+        { headers:{'Content-Type':'appication/json'}}
+    );
+     
+    console.log("Response From  Server:",bookingResponse);
+
+
+    if (bookingResponse?.status === 200 || bookingResponse?.status === 201) {
+        Swal.fire({
+          title: "Your Booking Was Sent Successfully",
+          icon: "success",
+          customClass: {
+            title: "popup-message",
+            popup: "popup-container",
+            confirmButton: "popup-close",
+            actions: "popup-action",
+          },
+        }).then(() => {
+          
+          setName('');
+          setWorkDetail('');
+          setContactNo('');
+          setWorkPlace('');
+          setStartdate('');
+          setEndDate('');
+          setProof('');
+          setSalary(''); 
+          setEmployeesNo('')
+        });
+      } else {
+        Swal.fire('Error', 'Booking failed: ' + (bookingResponse.data.message || bookingResponse.data), 'error');
+      }
+
+   } catch (error) {
+    console.error("Error during Booking:",error);
+   }
+    }
   return (
     <>
     <section className="continer xl:my-5 m-auto xl:px-8 py-4">
         <h2 className="aldrich-regular text-3xl xl:text-5xl text-center xl:m-4">
             Booking
         </h2>
-        <form action="" className=" grid grid-cols-1 grid-rows-12 xl:grid-cols-2 xl:grid-rows-6 grid-flow-col border-2 border-black rounded-lg xl:rounded-3xl m-auto mx-5 p-5 xl:gap-2.5">
+        <form action="" onClick={handleSubmit} className=" grid grid-cols-1 grid-rows-12 xl:grid-cols-2 xl:grid-rows-6 grid-flow-col border-2 border-black rounded-lg xl:rounded-3xl m-auto mx-5 p-5 xl:gap-2.5">
             <div className="box text-left">
                 <p className="text-sm xl:text-2xl aldrich-regular">Enter your name</p>
-                <input type="text" className="input xl:input-box" />
+                <input type="text" className="input xl:input-box" value={name} onChange={(e) => setName(e.target.value)}  required/>
             </div>
             <div className="box text-left ">
                 <p className="text-sm xl:text-2xl aldrich-regular">Contact no</p>
-                <input type="number" className="input xl:input-box" />
+                <input type="number" className="input xl:input-box" value={contact_number} onChange={(e) => setContactNo(e.target.value)} required />
             </div>
-            <div className="box text-left ">
-                <p className="text-sm xl:text-2xl aldrich-regular">Email id</p>
-                <input type="mail" className="input xl:input-box" />
-            </div>
+            
             <div className="box text-left">
                 <p className="text-sm xl:text-2xl aldrich-regular">Enter your Work Details</p>
-                <input type="text" className="input xl:input-box" />
+                <input type="text" className="input xl:input-box"  value={work_details} onChange={(e) => setWorkDetail(e.target.value)} required/>
             </div>
             <div className="box text-left">
                 <p className="text-sm xl:text-2xl aldrich-regular">Place of the Event</p>
-                <input type="text" className="input xl:input-box" />
+                <input type="text" className="input xl:input-box" value={place_of_event} onChange={(e) => setWorkPlace(e.target.value)}  required/>
             </div>
             <div className="box text-left">
                 <p className="text-sm xl:text-2xl aldrich-regular"> Enter your required employees no </p>
-                <input type="number" className="input xl:input-box" />
+                <input type="number" className="input xl:input-box" value={employees_required} onChange={(e) => setEmployeesNo(e.target.value)} required />
             </div>
             <div className="box text-left">
                 <p className="text-sm xl:text-2xl aldrich-regular">Enter Salary amount for employees</p>
-                <input type="number" className="input xl:input-box" />
+                <input type="number" className="input xl:input-box" min={500} value={salary} onChange={(e) => setSalary(e.target.value)}  required/>
+            </div>
+            <div className="box text-left ">
+                <p className="text-sm xl:text-2xl aldrich-regular">Upload The Company Proof</p>
+                <input type="photo" className="input xl:input-box"  value={proof} onChange={(e) => setProof(e.target.value)} />
             </div>
             <div className="box text-left">
                 <p className="text-sm xl:text-2xl aldrich-regular">Event starting date</p>
-                <input type="date" className="input xl:input-box" />
+                <input type="date" className="input xl:input-box" value={start_date} onChange={(e) => setStartdate(e.target.value)} required/>
             </div>
             <div className="box text-left">
                 <p className="text-sm xl:text-2xl aldrich-regular">Event Ending  date</p>
-                <input type="date" className="input xl:input-box" />
+                <input type="date" className="input xl:input-box"value={end_date} onChange={(e) => setEndDate(e.target.value)} required />
             </div>
             <div className="box row-span-3 text-left">
                 <label htmlFor="terms&conditions" className='aldrich-regular'>
                     <input type="checkbox" name="termsandcondition" id="" className='mx-2'/>
                     Term & Conditions
                 </label>
-                <p className="inter text-xs xl:text-base px-10 text-justify">
-                1. Payment is expected within three working days. Failure to pay may result in legal proceedings <br /> 
-                2. We'll send over the employees but you'll need to handle the coordination and  supervision <br />
-                3. We will not be held responsible for any disputes or complications that may occur between you and the employees. <br />
-                4.Advance payment is required prior to commencement of work
+                <p className="inter text-xs xl:text-base text-justify">
+                    Apply to a manpower agency online by meeting eligibility, submitting documents like CV and ID proof, and complying with terms. Teams must provide member details and experience.
                 </p>
-                <button type="submit" className="btn iceberg-regular bg-primary mx-auto my-5 text-xl xl:text-4xl">
+                <button type="Submit" className="btn iceberg-regular bg-primary mx-auto my-5 text-xl xl:text-4xl">
                     Book now
                     <img src={icon} alt="" />
                 </button>
