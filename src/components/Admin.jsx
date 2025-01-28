@@ -2,6 +2,7 @@ import React from 'react'
 import assumed from '../assets/Checkmark.png'
 import decline from '../assets/Multiply.png'
 import AssumeEmploye from './AssumeEmploye'
+import icon from '../assets/Circled_Right.png'
 function Admin() {
   return (
     <>
@@ -17,7 +18,9 @@ function Admin() {
                 
                 <div className="w-full flex justify-end gap-5">
                     <button className="btn h-12">Logout</button>
-                    <button className="btn h-12 bg-primary">Talents</button>
+                    <button className="btn h-12 bg-primary">Talents
+                        <img src={icon} alt="" />
+                    </button>
                 </div>
                     <p className="aldrich-regular text-4xl justify-self-center">
                         Costomer Booking details

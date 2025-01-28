@@ -14,41 +14,41 @@ function Footer() {
   return (
     <>
     <section className="w-full bg-footer pt-4 xl:h-400 xl:py-5">
-        <button onClick={togglePopup} className="font-Wallpoet text-3xl text-center xl:text-5xl xl:text-left">
+        <button onClick={togglePopup} className=" wallpoet-regular text-3xl text-center xl:text-5xl xl:text-left">
             SM Manpower
         </button>
         
         <footer className="xl:flex justify-center items-center p-2 xl:px-10 xl:py-5 gap-5">
-            <div className="box xl:w-1/3 xl:border-r-4 border-black">
-                <p className="aldrich-regular text-2xl xl:text-3xl text-left w-60 xl:w-200 m-auto">Email</p>
-                <li className='w-60 xl:w-200 m-auto list-none'>
+            <div className="box xl:w-1/3 xl:p-4 xl:border-r-4 border-black">
+                <p className="aldrich-regular text-2xl xl:text-3xl text-left w-60 xl:w-300 m-auto">Email</p>
+                <li className='w-60 xl:w-300 m-auto list-none'>
                     <a href="" className="inter text-lg xl:text-2xl w-200 m-auto">desflyer.tech@gmail.com</a>
                 </li>
-                <p className="aldrich-regular text-2xl xl:text-3xl text-left w-60 xl:w-200 m-auto">Phone No</p>
-                <li className="w-60 xl:w-200 m-auto list-none">
-                    <a href="" className="inter text-lg xl:text-2xl text-left xl:w-200 m-auto">+91 9092579460</a>
+                <p className="aldrich-regular text-2xl xl:text-3xl text-left w-60 xl:w-300 m-auto">Phone No</p>
+                <li className="w-60 xl:w-300 m-auto list-none">
+                    <a href="" className="inter text-lg xl:text-2xl text-left xl:w-300 m-auto">+91 9092579460</a>
                 </li>
-                <p className="aldrich-regular text-2xl xl:text-3xl text-left w-60 xl:w-200 m-auto">Adderss</p>
-                <p className="inter w-60 xl:w-200 m-auto text-lg text-left">
+                <p className="aldrich-regular text-2xl xl:text-3xl text-left w-60 xl:w-300 m-auto">Adderss</p>
+                <p className="inter w-60 xl:w-300 m-auto text-lg text-left">
                     ATR Complex Pudukkottai Main 
                     Road,Pudukkottai-613301 
                 </p>
             </div>
             <div className="box hidden xl:block xl:w-1/3 border-r-4 border-black">
                 <li className='list-none py-2 text-left w-200 m-auto'>
-                    <a href="" className="aldrich-regular text-4xl text-center">Home</a>
+                    <a href="" className="aldrich-regular text-3xl text-center">Home</a>
                 </li>
                 <li className='list-none py-2 text-left w-200 m-auto'>
-                    <a href="" className="aldrich-regular text-4xl text-center">About us</a>
+                    <a href="" className="aldrich-regular text-3xl text-center">About us</a>
                 </li>
                 <li className='list-none py-2 text-left w-200 m-auto'>
-                    <a href="" className="aldrich-regular text-4xl text-center">Apply</a>
+                    <a href="" className="aldrich-regular text-3xl text-center">Apply</a>
                 </li>
                 <li className='list-none py-2 text-left w-200 m-auto'>
-                    <a href="" className="aldrich-regular text-4xl text-center">Booking</a>
+                    <a href="" className="aldrich-regular text-3xl text-center">Booking</a>
                 </li>
                 <li className='list-none py-2 text-left w-200 m-auto'>
-                    <a href="" className="aldrich-regular text-4xl text-center">Contact us</a>
+                    <a href="" className="aldrich-regular text-3xl text-center">Contact us</a>
                 </li>
             </div>
             <div className="box xl:w-1/3 xl:h-200 m-auto">
