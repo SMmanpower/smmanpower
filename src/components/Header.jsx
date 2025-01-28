@@ -30,14 +30,14 @@ function Header() {
     </section>
     {
         isPopupOpen && (
-                <section className="w-4/5 xl:w-4/5 border-4 bg-white absolute top-4/5 xl:top-3/4 left-1/2 -translate-y-1/4 -translate-x-1/2 xl:-translate-x-1/2 xl:-translate-y-1/2 xl:my-5 m-auto border-primary xl:rounded-3xl ">
+                <section className="w-4/5 xl:w-4/5 border-4 bg-white absolute top-4/5 xl:top-3/4 left-1/2 -translate-y-1/4 -translate-x-1/2 xl:-translate-x-1/2 xl:-translate-y-1/2 xl:my-5 m-auto border-primary xl:rounded-3xl" >
                     <h2 className="aldrich-regular text-3xl xl:text-4xl text-center text-primary xl:m-4">
                         Apply as Talents
                     <button onClick={togglePopup} className='w-12 h-12 float-end top-2.5'>
                         <img src={close} alt="" />
                     </button>
                     </h2>
-                <form action="" className="grid grid-cols-1 grid-rows-12 xl:grid-cols-2 xl:grid-rows-6 grid-flow-col xl:rounded-3xl m-auto mx-5 p-5 xl:gap-2.5">
+                <form action="" className="grid grid-cols-1 grid-rows-12 xl:grid-cols-2 xl:grid-rows-7 grid-flow-col xl:rounded-3xl m-auto mx-5 p-5 xl:gap-2.5">
                     
                     <div className="box text-left">
                         <p className="text-sm xl:text-2xl aldrich-regular">Enter your name</p>
@@ -52,28 +52,32 @@ function Header() {
                         <input type="number" className="input xl:input-box" />
                     </div>
                     <div className="box text-left">
-                        <p className="text-sm xl:text-2xl aldrich-regular">Enter your Work Details</p>
+                        <p className="text-sm xl:text-2xl aldrich-regular">Enter your Address</p>
                         <input type="text" className="input xl:input-box" />
                     </div>
                     <div className="box text-left">
-                        <p className="text-sm xl:text-2xl aldrich-regular">Place of the Event</p>
+                        <p className="text-sm xl:text-2xl aldrich-regular">Enter your work type</p>
                         <input type="text" className="input xl:input-box" />
                     </div>
                     <div className="box text-left">
-                        <p className="text-sm xl:text-2xl aldrich-regular"> Enter your required employees no </p>
+                        <p className="text-sm xl:text-2xl aldrich-regular"> Experience of Work </p>
+                        <input type="text" className="input xl:input-box" />
+                    </div>
+                    <div className="box text-left">
+                        <p className="text-sm xl:text-2xl aldrich-regular">Enter your UPI Phone no </p>
                         <input type="number" className="input xl:input-box" />
                     </div>
                     <div className="box text-left">
-                        <p className="text-sm xl:text-2xl aldrich-regular">Enter Salary amount for employees</p>
-                        <input type="number" className="input xl:input-box" />
+                        <p className="text-sm xl:text-2xl aldrich-regular">Upload your Full size photo</p>
+                        <input type="file" className="input xl:input-box" />
                     </div>
                     <div className="box text-left">
-                        <p className="text-sm xl:text-2xl aldrich-regular">Event starting date</p>
-                        <input type="date" className="input xl:input-box" />
+                        <p className="text-sm xl:text-2xl aldrich-regular">Adhara no & Adhara photo</p>
+                        <input type="file" className="input xl:input-box" />
                     </div>
                     <div className="box text-left">
-                        <p className="text-sm xl:text-2xl aldrich-regular">Event Ending  date</p>
-                        <input type="date" className="input xl:input-box" />
+                        <p className="text-sm xl:text-2xl aldrich-regular">Upload your Driving licence</p>
+                        <input type="file" className="input xl:input-box " />
                     </div>
                     <div className="box row-span-3 text-left">
                         <label htmlFor="terms&conditions" className='aldrich-regular'>
@@ -92,8 +96,7 @@ function Header() {
                         </button>
                     </div>
                 </form>
-            </section>
-        )
+            </section>)
     }
     </>
   )

@@ -14,7 +14,7 @@ function Footer() {
   return (
     <>
     <section className="w-full bg-footer pt-4 xl:h-400 xl:py-5">
-        <button onClick={togglePopup} className="agbalumo-regular text-3xl text-center xl:text-5xl xl:text-left">
+        <button onClick={togglePopup} className="font-Wallpoet text-3xl text-center xl:text-5xl xl:text-left">
             SM Manpower
         </button>
         
@@ -80,12 +80,12 @@ function Footer() {
                 </h2>
                 <form action="" className="m-auto my-2.5">
                     <div className="box text-left">
-                        <p className="text-sm xl:text-2xl aldrich-regular">Enter your name</p>
+                        <p className="text-sm xl:text-2xl aldrich-regular">Login ID</p>
                         <input type="text" className="input xl:input-box" />
                     </div>
                     <div className="box text-left">
-                        <p className="text-sm xl:text-2xl aldrich-regular">Enter your name</p>
-                        <input type="text" className="input xl:input-box" />
+                        <p className="text-sm xl:text-2xl aldrich-regular">Password</p>
+                        <input type="password" className="input xl:input-box" />
                     </div>
                         <button type="submit" className="btn iceberg-regular bg-primary mx-auto my-5 text-xl xl:text-4xl">
                             Login
