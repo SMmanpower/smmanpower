@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       colors:{
-        "primary":"#FF8B3BBF",
+        "primary":"#F8743C",
         "footer":'#D9D9D9'
       },
       height:{

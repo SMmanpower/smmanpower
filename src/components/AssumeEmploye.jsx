@@ -10,16 +10,14 @@ function AssumeEmploye() {
                 <tr>
                     <th className="aldrich-regular border-r-2 border-black">Name</th>
                     <th className="aldrich-regular border-r-2 border-black">Contact no</th>
+                    <th className="aldrich-regular border-r-2 border-black">Address</th>
                     <th className="aldrich-regular border-r-2 border-black">Work details</th>
-                    <th className="aldrich-regular border-r-2 border-black">Place of the Event</th>
-                    <th className="aldrich-regular border-r-2 border-black">No of Employees</th>
-                    <th className="aldrich-regular border-r-2 border-black">Salary amount</th>
-                    <th className="aldrich-regular border-r-2 border-black">Event Starting date</th>
-                    <th className="aldrich-regular border-r-2 border-black">Event End date</th>
+                    <th className="aldrich-regular border-r-2 border-black">Experience of Work</th>
+                    <th className="aldrich-regular border-r-2 border-black">Photo</th>
                     <th className="aldrich-regular border-r-2 border-black">Assume employee</th>
                 </tr>
             </thead>
-            <tbody>
+            {/* <tbody>
                 <tr className='border-2 border-black'>
                     <td className="aldrich-regular text-lg text-center border-r-2 border-black text-primary">hariharan</td>
                     <td className="aldrich-regular text-lg text-center border-r-2 border-black text-primary">9445862130</td>
@@ -27,8 +25,6 @@ function AssumeEmploye() {
                     <td className="aldrich-regular text-lg text-center border-r-2 border-black text-primary">Chennai</td>
                     <td className="aldrich-regular text-lg text-center border-r-2 border-black text-primary">10</td>
                     <td className="aldrich-regular text-lg text-center border-r-2 border-black text-primary">500</td>
-                    <td className="aldrich-regular text-lg text-center border-r-2 border-black text-primary">25,01,2025</td>
-                    <td className="aldrich-regular text-lg text-center border-r-2 border-black text-primary">25,01,2025</td>
                     <td className="flex items-center justify-center p-1 xl:gap-2.5 border-black">
                                 {status === "approved" ? (
                                     <span className="approve">Approved</span>
@@ -46,7 +42,7 @@ function AssumeEmploye() {
                         )}
                     </td>
                 </tr>
-            </tbody>
+            </tbody> */}
         </table>
     </>
   )

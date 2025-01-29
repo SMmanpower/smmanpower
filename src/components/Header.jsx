@@ -11,10 +11,10 @@ function Header() {
     }
   return (
     <>
-    <section className="header-main container flex flex-row flex-wrap xl:m-auto px-8 justify-center items-center xl:flex-nowrap" id='home'>
+    <section className="header-main container flex flex-row flex-wrap xl:m-auto justify-center items-center xl:flex-nowrap" id='home'>
         <main className="condent w-full xl:w-2/3 p-1">
-            <h2 className="heading text-center text-3xl leading-10 xl:w-3/4 xl:text-left xl:text-5xl xl:leading-head aldrich-regular">Connecting Opportunities with the
-               <br /> <span className='text-primary'> Right People</span>
+            <h2 className="heading text-center text-3xl leading-10 xl:w-full xl:text-left xl:text-5xl xl:leading-head aldrich-regular">Connecting Opportunities with the  <br />
+             <span className='text-primary'> Right People</span>
             </h2>
             <p className="context text-sm inter xl:text-base text-justify p-2">
                 SM Manpower is a leading provider of workforce solutions, dedicated to bridging the gap between exceptional talent and thriving businesses. We specialize in offering tailored recruitment, staffing, and human resource services across various industries, ensuring that our clients achieve operational excellence with the right team.
@@ -37,7 +37,7 @@ function Header() {
                         <img src={close} alt="" />
                     </button>
                     </h2>
-                <form action="" className="grid grid-cols-1 grid-rows-12 xl:grid-cols-2 xl:grid-rows-7 grid-flow-col xl:rounded-3xl m-auto mx-5 p-5 xl:gap-2.5">
+                <form action="" className="grid grid-cols-1 grid-rows-13 xl:grid-cols-2 xl:grid-rows-7 xl:grid-flow-col xl:rounded-3xl m-auto mx-5 p-5 xl:gap-2.5">
                     
                     <div className="box text-left">
                         <p className="text-sm xl:text-2xl aldrich-regular">Enter your name</p>
@@ -79,7 +79,7 @@ function Header() {
                         <p className="text-sm xl:text-2xl aldrich-regular">Upload your Driving licence</p>
                         <input type="file" className="input xl:input-box " />
                     </div>
-                    <div className="box row-span-3 text-left">
+                    <div className="box xl:row-span-3 text-left">
                         <label htmlFor="terms&conditions" className='aldrich-regular'>
                             <input type="checkbox" name="termsandcondition" id="" className='mx-2'/>
                             Term & Conditions

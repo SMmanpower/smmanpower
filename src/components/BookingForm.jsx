@@ -116,8 +116,8 @@ function BookingForm() {
                 <input type="datetime-local" className="input xl:input-box"value={end_date} onChange={(e) => setEndDate(e.target.value)} required />
             </div>
             <div className="box row-span-3 text-left">
-                <label htmlFor="terms&conditions" className='aldrich-regular'>
-                    <input type="checkbox" name="termsandcondition" id="" className='mx-2'/>
+                <label htmlFor="terms&conditions" className='aldrich-regular text-xl leading-none'>
+                    <input type="checkbox" name="termsandcondition" id="" className='mx-2 h-5 w-5'/>
                     Term & Conditions
                 </label>
                 <p className="inter text-xs xl:text-base text-justify">

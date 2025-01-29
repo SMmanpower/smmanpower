@@ -1,5 +1,6 @@
 import './App.css'
 import Aboutus from './components/Aboutus'
+import Admin from './components/Admin'
 import BookingForm from './components/BookingForm'
 import Contactus from './components/Contactus'
 import Footer from './components/Footer'
@@ -10,12 +11,13 @@ function App() {
 
   return (
     <>
-      <Navbar/>
+      {/* <Navbar/>
       <Header/>
       <Aboutus/>
       <BookingForm/>
       <Contactus/>
-      <Footer/>
+      <Footer/> */}
+      <Admin/>
     </>
   )
 }

@@ -17,9 +17,11 @@ function Admin() {
                 </p>
                 
                 <div className="w-full flex justify-end gap-5">
-                    <button className="btn h-12">Logout</button>
-                    <button className="btn h-12 bg-primary">Talents
-                        <img src={icon} alt="" />
+                    <button className="btn h-12 bg-primary iceberg-regular xl:text-2xl">Logout
+                        <img src={icon} alt="" className=' rotate-180' />
+                    </button>
+                    <button className="btn h-12 bg-primary iceberg-regular xl:text-2xl">Talents
+                        <img src={icon} alt="" className='' />
                     </button>
                 </div>
                     <p className="aldrich-regular text-4xl justify-self-center">

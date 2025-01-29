@@ -14,7 +14,7 @@ function Footer() {
   return (
     <>
     <section className="w-full bg-footer pt-4 xl:h-400 xl:py-5">
-        <button onClick={togglePopup} className=" wallpoet-regular text-3xl text-center xl:text-5xl xl:text-left">
+        <button onClick={togglePopup} className=" wallpoet-regular text-3xl text-center xl:text-5xl xl:text-left ml-10">
             SM Manpower
         </button>
         
@@ -22,14 +22,14 @@ function Footer() {
             <div className="box xl:w-1/3 xl:p-4 xl:border-r-4 border-black">
                 <p className="aldrich-regular text-2xl xl:text-3xl text-left w-60 xl:w-300 m-auto">Email</p>
                 <li className='w-60 xl:w-300 m-auto list-none'>
-                    <a href="" className="inter text-lg xl:text-2xl w-200 m-auto">desflyer.tech@gmail.com</a>
+                    <a href="" className="inter text-lg xl:text-xl w-200 m-auto">desflyer.tech@gmail.com</a>
                 </li>
                 <p className="aldrich-regular text-2xl xl:text-3xl text-left w-60 xl:w-300 m-auto">Phone No</p>
                 <li className="w-60 xl:w-300 m-auto list-none">
-                    <a href="" className="inter text-lg xl:text-2xl text-left xl:w-300 m-auto">+91 9092579460</a>
+                    <a href="" className="inter text-lg xl:text-xl text-left xl:w-300 m-auto">+91 9092579460</a>
                 </li>
                 <p className="aldrich-regular text-2xl xl:text-3xl text-left w-60 xl:w-300 m-auto">Adderss</p>
-                <p className="inter w-60 xl:w-300 m-auto text-lg text-left">
+                <p className="inter w-60 xl:w-300 m-auto text-xl text-left">
                     ATR Complex Pudukkottai Main 
                     Road,Pudukkottai-613301 
                 </p>
@@ -55,7 +55,7 @@ function Footer() {
                 <p className="aldrich-regular text-2xl xl:text-3xl text-center">
                     Follow as on social media
                 </p>
-                <div className="flex justify-center items-center gap-2.5 xl:my-5">
+                <div className="flex justify-center items-center gap-2.5 xl:gap-9 xl:my-5">
                     <img src={whatsapp} alt="" className="h-12" />
                     <img src={instagram} alt="" className="h-12" />
                     <img src={facebook} alt="" className="h-12" />
@@ -71,25 +71,25 @@ function Footer() {
        
     </section>
     {isPopupOpen && (
-            <section className="w-600 h-fit fixed xl:p-10 bg-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-3/4 border-2 rounded-3xl border-primary ">
+            <section className="w-4/5 p-2.5 xl:w-600 h-fit fixed xl:p-10 bg-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-3/4 border-2 rounded-3xl border-primary ">
                 <h2 className="aldrich-regular text-center text-primary text-3xl">
                     Welcome admin
-                        <button onClick={togglePopup} className='w-12 h-12 float-end top-2.5'>
+                        <button onClick={togglePopup} className='w-8 h-18 xl:w-12 xl:h-12 float-end xl:top-2.5'>
                             <img src={close} alt="" />
                         </button>
                 </h2>
                 <form action="" className="m-auto my-2.5">
-                    <div className="box text-left">
+                    <div className="box text-left mt-2.5">
                         <p className="text-sm xl:text-2xl aldrich-regular">Login ID</p>
                         <input type="text" className="input xl:input-box" />
                     </div>
-                    <div className="box text-left">
+                    <div className="box text-left mt-2.5">
                         <p className="text-sm xl:text-2xl aldrich-regular">Password</p>
                         <input type="password" className="input xl:input-box" />
                     </div>
-                        <button type="submit" className="btn iceberg-regular bg-primary mx-auto my-5 text-xl xl:text-4xl">
+                        <button type="submit" className="btn xl:h-fit iceberg-regular bg-primary mx-auto my-5 text-xl xl:text-4xl">
                             Login
-                            <img src={icon} alt="" />
+                            <img src={icon} alt="" className='h-8 w-8' />
                         </button>
                 </form>
             </section>
