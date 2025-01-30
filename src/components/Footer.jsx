@@ -22,11 +22,11 @@ function Footer() {
             <div className="box xl:w-1/3 xl:p-4 xl:border-r-4 border-black">
                 <p className="aldrich-regular text-2xl xl:text-3xl text-left w-60 xl:w-300 m-auto">Email</p>
                 <li className='w-60 xl:w-300 m-auto list-none'>
-                    <a href="" className="inter text-lg xl:text-xl w-200 m-auto">desflyer.tech@gmail.com</a>
+                    <a href="mailto:manpowerservicessm@gmail.com" className="inter text-lg xl:text-xl w-200 m-auto">manpowerservicessm@gmail.com</a>
                 </li>
                 <p className="aldrich-regular text-2xl xl:text-3xl text-left w-60 xl:w-300 m-auto">Phone No</p>
                 <li className="w-60 xl:w-300 m-auto list-none">
-                    <a href="" className="inter text-lg xl:text-xl text-left xl:w-300 m-auto">+91 9092579460</a>
+                    <a href="tel:+917867993525" className="inter text-lg xl:text-xl text-left xl:w-300 m-auto">+91 7867993525</a>
                 </li>
                 <p className="aldrich-regular text-2xl xl:text-3xl text-left w-60 xl:w-300 m-auto">Adderss</p>
                 <p className="inter w-60 xl:w-300 m-auto text-xl text-left">
