@@ -28,7 +28,7 @@ function BookingForm() {
         proof
       };
        
-      console.log("Data Sending to the DB are:",RequestData);
+      console.log("Data :",RequestData);
     
    try {
     
@@ -117,7 +117,7 @@ function BookingForm() {
             </div>
             <div className="box row-span-3 text-left">
                 <label htmlFor="terms&conditions" className='aldrich-regular text-xl leading-none'>
-                    <input type="checkbox" name="termsandcondition" id="" className='mx-2 h-5 w-5'/>
+                    <input type="checkbox" name="termsandcondition" id="" className='mx-2 h-5 w-5' required/>
                     Term & Conditions
                 </label>
                 <p className="inter text-xs xl:text-base text-justify">
@@ -126,7 +126,7 @@ function BookingForm() {
                 3. We will not be held responsible for any disputes or complications that may occur between you and the employees. <br />
                 4.Advance payment is required prior to commencement of work
                 </p>
-                <button type="Submit" className="btn iceberg-regular bg-primary mx-auto my-5 text-xl xl:text-4xl">
+                <button type="submit" className="btn iceberg-regular bg-primary mx-auto my-5 text-xl xl:text-4xl">
                     Book now
                     <img src={icon} alt="" />
                 </button>

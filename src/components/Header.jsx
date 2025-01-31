@@ -9,6 +9,74 @@ function Header() {
     const togglePopup =()=>{
         setIsPopupOpen(!isPopupOpen);
     }
+    // -----------------BACK END ----------//
+    const [name,setName] = useState("");
+        const [contact_number,setContactNo] = useState("");
+        const [work_type,setWorkType] = useState("");
+        const [age,setAge] = useState("");
+        const [address,setAddress] = useState("");
+        const [experience,setExperience] = useState("");
+        const [upi_number,setUPINumber] = useState("");
+        const [aadhar_proof,setAadharProof] = useState("");
+        const [drivinglisence,setDL_proof] = useState("");
+        const [photo,setPhoto] = useState("");
+
+    const handleSubmit = async (event)=> {
+        event.preventDefault();
+
+        const requestdata ={
+        name,
+        contact_number,
+        age,
+        work_type,
+        address,
+        experience,
+        upi_number,
+        aadhar_proof,
+        drivinglisence,
+        photo,
+        };
+        console.log("Applied data are:",requestdata)
+try{
+        const ApplicationResponse = await axios.post(
+            '',
+            requestdata,
+            {headers:{'content-type':'application/json'}}
+        );
+
+         console.log("Response From  Server:",ApplicationResponse);
+        
+        
+            if (ApplicationResponse?.status === 200 || ApplicationResponse?.status === 201) {
+                Swal.fire({
+                  title: "Your Booking Was Sent Successfully",
+                  icon: "success",
+                  customClass: {
+                    title: "popup-message",
+                    popup: "popup-container",
+                    confirmButton: "popup-close",
+                    actions: "popup-action",
+                  },
+                }).then(() => {
+                  
+                  setName('');
+                  setWorkType('');
+                  setContactNo('');
+                  setWorkPlace('');
+                  setStartdate('');
+                  setEndDate('');
+                  setProof('');
+                  setSalary(''); 
+                  setEmployeesNo('')
+                });
+              } else {
+                Swal.fire('Error', 'Booking failed: ' + (ApplicationResponse.data.message || ApplicationResponse.data), 'error');
+              }
+        
+           } catch (error) {
+            console.error("Error during Booking:",error);
+           }
+    }
   return (
     <>
     <section className="header-main container flex flex-row flex-wrap xl:m-auto justify-center items-center xl:flex-nowrap" id='home'>
@@ -37,51 +105,51 @@ function Header() {
                         <img src={close} alt="" />
                     </button>
                     </h2>
-                <form action="" className="grid grid-cols-1 grid-rows-13 xl:grid-cols-2 xl:grid-rows-7 xl:grid-flow-col xl:rounded-3xl m-auto mx-5 p-5 xl:gap-2.5">
+                <form action="" onClick={handleSubmit} className="grid grid-cols-1 grid-rows-13 xl:grid-cols-2 xl:grid-rows-7 xl:grid-flow-col xl:rounded-3xl m-auto mx-5 p-5 xl:gap-2.5">
                     
                     <div className="box text-left">
                         <p className="text-sm xl:text-2xl aldrich-regular">Enter your name</p>
-                        <input type="text" className="input xl:input-box" />
+                        <input type="text" className="input xl:input-box"  value={name} onChange={(e) => setName(e.target.value)}  required  />
                     </div>
                     <div className="box text-left ">
                         <p className="text-sm xl:text-2xl aldrich-regular">Contact no</p>
-                        <input type="number" className="input xl:input-box" />
+                        <input type="number" className="input xl:input-box"   value={contact_number} onChange={(e) => setContactNo(e.target.value)}  required />
                     </div>
                     <div className="box text-left ">
                         <p className="text-sm xl:text-2xl aldrich-regular">Enter your Age</p>
-                        <input type="number" className="input xl:input-box" />
+                        <input type="number" className="input xl:input-box"  value={age} onChange={(e) => setAge(e.target.value)}  required  />
                     </div>
                     <div className="box text-left">
                         <p className="text-sm xl:text-2xl aldrich-regular">Enter your Address</p>
-                        <input type="text" className="input xl:input-box" />
+                        <input type="text" className="input xl:input-box"  value={address} onChange={(e) => setAddress(e.target.value)}  required  />
                     </div>
                     <div className="box text-left">
                         <p className="text-sm xl:text-2xl aldrich-regular">Enter your work type</p>
-                        <input type="text" className="input xl:input-box" />
+                        <input type="text" className="input xl:input-box"  value={work_type} onChange={(e) => setWorkType(e.target.value)}  required  />
                     </div>
                     <div className="box text-left">
                         <p className="text-sm xl:text-2xl aldrich-regular"> Experience of Work </p>
-                        <input type="text" className="input xl:input-box" />
+                        <input type="text" className="input xl:input-box"  value={experience} onChange={(e) => setExperience(e.target.value)}  required  />
                     </div>
                     <div className="box text-left">
                         <p className="text-sm xl:text-2xl aldrich-regular">Enter your UPI Phone no </p>
-                        <input type="number" className="input xl:input-box" />
+                        <input type="number" className="input xl:input-box"   value={upi_number} onChange={(e) => setUPINumber(e.target.value)}  required />
                     </div>
                     <div className="box text-left">
                         <p className="text-sm xl:text-2xl aldrich-regular">Upload your Full size photo</p>
-                        <input type="file" className="input xl:input-box" />
+                        <input type="file" className="input xl:input-box" value={photo} onChange={(e) => setPhoto(e.target.value)}  required  />
                     </div>
                     <div className="box text-left">
                         <p className="text-sm xl:text-2xl aldrich-regular">Adhara no & Adhara photo</p>
-                        <input type="file" className="input xl:input-box" />
+                        <input type="file" className="input xl:input-box"  value={aadhar_proof} onChange={(e) => setAadharProof(e.target.value)}  required />
                     </div>
                     <div className="box text-left">
                         <p className="text-sm xl:text-2xl aldrich-regular">Upload your Driving licence</p>
-                        <input type="file" className="input xl:input-box " />
+                        <input type="file" className="input xl:input-box "  value={drivinglisence} onChange={(e) => setDL_proof(e.target.value)}  required  />
                     </div>
                     <div className="box xl:row-span-3 text-left">
                         <label htmlFor="terms&conditions" className='aldrich-regular'>
-                            <input type="checkbox" name="termsandcondition" id="" className='mx-2'/>
+                            <input type="checkbox" name="termsandcondition" id="" className='mx-2' required/>
                             Term & Conditions
                         </label>
                         <p className="inter text-xs xl:text-base px-10 text-justify">
@@ -91,12 +159,13 @@ function Header() {
                         4.Please ensure you arrived on time and are properly attiredz <br />
                         </p>
                         <button type="submit" className="btn iceberg-regular bg-primary mx-auto my-5 text-xl xl:text-4xl">
-                            Book now
+                            Apply  now
                             <img src={icon} alt="" />
                         </button>
                     </div>
                 </form>
-            </section>)
+            </section>
+            )
     }
     </>
   )
