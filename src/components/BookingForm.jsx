@@ -28,7 +28,7 @@ function BookingForm() {
         proof
       };
        
-      console.log("Data Sending to the DB are:",RequestData);
+      console.log("Data :",RequestData);
     
    try {
     
@@ -116,8 +116,13 @@ function BookingForm() {
                 <input type="datetime-local" className="input xl:input-box"value={end_date} onChange={(e) => setEndDate(e.target.value)} required />
             </div>
             <div className="box row-span-3 text-left">
+<<<<<<< HEAD
                 <label htmlFor="terms&conditions" className='aldrich-regular xl:mt-2 text-xl leading-none'>
                     <input type="checkbox" name="termsandcondition" id="" className='mr-2 h-5 w-5'/>
+=======
+                <label htmlFor="terms&conditions" className='aldrich-regular text-xl leading-none'>
+                    <input type="checkbox" name="termsandcondition" id="" className='mx-2 h-5 w-5' required/>
+>>>>>>> 1ae0693f58a7b80b36a0f7f5b578c207ba8537e1
                     Term & Conditions
                 </label>
                 <p className="inter text-xs xl:mt-2 xl:text-base text-justify">
@@ -126,7 +131,7 @@ function BookingForm() {
                 3. We will not be held responsible for any disputes or complications that may occur between you and the employees. <br />
                 4.Advance payment is required prior to commencement of work
                 </p>
-                <button type="Submit" className="btn iceberg-regular bg-primary mx-auto my-5 text-xl xl:text-4xl">
+                <button type="submit" className="btn iceberg-regular bg-primary mx-auto my-5 text-xl xl:text-4xl">
                     Book now
                     <img src={icon} alt="" />
                 </button>
