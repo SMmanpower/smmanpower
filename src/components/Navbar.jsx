@@ -1,64 +1,69 @@
-import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
-import Form from 'react-bootstrap/Form';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import Offcanvas from 'react-bootstrap/Offcanvas';
-// import '../../node_modules/bootstrap/dist/css/bootstrap.min.css'
-function OffcanvasExample() {
-    
+import React, { useState } from 'react'
+import logo from '../assets/logo.png'
+import {FaTimes} from 'react-icons/fa'
+import {CiMenuFries} from 'react-icons/ci'
+function Navbar() {
+    const [click,setClick] = useState(false)
+    const handleClick = () => setClick(!click)
+    const content = <>
+    <div className="xl:hidden block absolute w-full top-16 left-0 z-0 bg-white">
+        <ul className="text-center p-10 ">
+            <li className="my-4 py-4">
+                <a href="" className="text-center">Home</a>
+            </li>
+            <li className="my-4 py-4">
+                <a href="" className="text-center">About us</a>
+            </li>
+            <li className="my-4 py-4">
+                <a href="" className="text-center">Apply</a>
+            </li>
+            <li className="my-4 py-4">
+                <a href="" className="text-center">Booking</a>
+            </li>
+            <li className="my-4 py-4">
+                <a href="" className="text-center">Contact us</a>
+            </li>
+        </ul>
+    </div>
+    </>
   return (
     <>
-      {['sm'].map((expand) => (
-        <Navbar key={expand} expand={expand} className="bg-body-tertiary mb-3">
-          <Container fluid>
-            <Navbar.Brand href="#">Navbar Offcanvas</Navbar.Brand>
-            <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
-            <Navbar.Offcanvas
-              id={`offcanvasNavbar-expand-${expand}`}
-              aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
-              placement="end"
-            >
-              <Offcanvas.Header closeButton>
-                <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
-                  Offcanvas
-                </Offcanvas.Title>
-              </Offcanvas.Header>
-              <Offcanvas.Body>
-                <Nav className="justify-content-end flex-grow-1 pe-3">
-                  <Nav.Link href="#action1">Home</Nav.Link>
-                  <Nav.Link href="#action2">Link</Nav.Link>
-                  <NavDropdown
-                    title="Dropdown"
-                    id={`offcanvasNavbarDropdown-expand-${expand}`}
-                  >
-                    <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-                    <NavDropdown.Item href="#action4">
-                      Another action
-                    </NavDropdown.Item>
-                    <NavDropdown.Divider />
-                    <NavDropdown.Item href="#action5">
-                      Something else here
-                    </NavDropdown.Item>
-                  </NavDropdown>
-                </Nav>
-                <Form className="d-flex">
-                  <Form.Control
-                    type="search"
-                    placeholder="Search"
-                    className="me-2"
-                    aria-label="Search"
-                  />
-                  <Button variant="outline-success">Search</Button>
-                </Form>
-              </Offcanvas.Body>
-            </Navbar.Offcanvas>
-          </Container>
-        </Navbar>
-      ))}
+    <nav className="w-full h-14 flex justify-between bg-primary">
+        <div className="flex">
+            <img src={logo} alt="" className='h-14 w-14 m-auto mt-2' />
+            <h2 className="wallpoet-regular text-2xl m-auto xl:text-4xl">
+                SM Manpower
+            </h2>
+        </div>
+        <div className="hidden lg:block">
+            <ul className="h-full xl:flex justify-center items-center text-center gap-10 mx-2.5">
+                <li className="my-4 py-4">
+                    <a href="" className="text-center aldrich-regular xl:text-2xl">Home</a>
+                </li>
+                <li className="my-4 py-4">
+                    <a href="" className="text-center aldrich-regular xl:text-2xl">About us</a>
+                </li>
+                <li className="my-4 py-4">
+                    <a href="" className="text-center aldrich-regular xl:text-2xl">Apply</a>
+                </li>
+                <li className="my-4 py-4">
+                    <a href="" className="text-center aldrich-regular xl:text-2xl">Booking</a>
+                </li>
+                <li className="my-4 py-4">
+                    <a href="" className="text-center aldrich-regular xl:text-2xl">Contact us</a>
+                </li>
+            </ul>
+        </div>
+        <div className="">
+            {click && content}
+        </div>
+        <button className=' block h-14 w-14 m-auto ml-10 xl:hidden' onClick={handleClick} >
+            {click ? <FaTimes className='h-9 w-9'/> : <CiMenuFries className='h-9 w-9 '/>}
+        </button>
+    </nav>
+
     </>
-  );
+  )
 }
 
-export default OffcanvasExample;
+export default Navbar

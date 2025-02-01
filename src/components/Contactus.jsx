@@ -10,7 +10,7 @@ function Contactus() {
         <h2 className="xl:text-5xl text-3xl text-center aldrich-regular">
             Contact us
         </h2>
-        <p className="inter text-sm xl:text-lg text-justify"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <p className="inter text-sm xl:text-lg xl:mt-2.5 text-justify"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <span className="text-primary">Welcome to SM Manpower</span>, At SM Manpower Services, we take pride in being one of the leading manpower solutions providers, dedicated to connecting businesses with skilled professionals and empowering individuals to achieve their career aspirations. With a strong foundation built on trust, quality, and excellence, we specialize in delivering reliable staffing solutions across a variety of industries.
         </p>
 

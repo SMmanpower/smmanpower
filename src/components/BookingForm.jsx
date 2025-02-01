@@ -73,8 +73,8 @@ function BookingForm() {
     }
   return (
     <>
-    <section className="continer xl:my-5 m-auto xl:px-8 py-4">
-        <h2 className="aldrich-regular text-3xl xl:text-5xl text-center xl:m-4">
+    <section className="continer m-auto xl:px-8">
+        <h2 className="aldrich-regular text-3xl xl:text-5xl text-center xl:mb-4">
             Booking
         </h2>
         <form action="" onClick={handleSubmit} className=" grid grid-cols-1 grid-rows-12 xl:grid-cols-2 xl:grid-rows-6 grid-flow-col border-2 border-black rounded-lg xl:rounded-3xl m-auto mx-5 p-5 xl:gap-2.5">
@@ -116,11 +116,11 @@ function BookingForm() {
                 <input type="datetime-local" className="input xl:input-box"value={end_date} onChange={(e) => setEndDate(e.target.value)} required />
             </div>
             <div className="box row-span-3 text-left">
-                <label htmlFor="terms&conditions" className='aldrich-regular text-xl leading-none'>
-                    <input type="checkbox" name="termsandcondition" id="" className='mx-2 h-5 w-5'/>
+                <label htmlFor="terms&conditions" className='aldrich-regular xl:mt-2 text-xl leading-none'>
+                    <input type="checkbox" name="termsandcondition" id="" className='mr-2 h-5 w-5'/>
                     Term & Conditions
                 </label>
-                <p className="inter text-xs xl:text-base text-justify">
+                <p className="inter text-xs xl:mt-2 xl:text-base text-justify">
                 1. Payment is expected within three working days. Failure to pay may result in legal proceedings <br />
                 2. We'll send over the employees but you'll need to handle the coordination and  supervision <br />
                 3. We will not be held responsible for any disputes or complications that may occur between you and the employees. <br />

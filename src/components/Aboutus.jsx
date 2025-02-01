@@ -3,12 +3,12 @@ import React from 'react'
 function Aboutus() {
   return (
     <>
-    <section className="aboutus container xl:m-auto xl:px-8" id='aboutus'>
+    <section className="aboutus container xl:m-auto" id='aboutus'>
         <header className="p-2">
             <h2 className="text-center text-2xl xl:text-5xl aldrich-regular">
                 About us
             </h2>
-            <p className="text-sm xl:text-base inter text-justify xl:w-full m-auto px-2 py-2.5"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <p className="text-sm xl:text-base inter text-justify xl:w-full m-auto px-2 py-2.5"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <span className="text-primary"> Welcome to SM Manpower</span>,At SM Manpower Services, we take pride in being one of the leading manpower solutions providers, dedicated to connecting businesses with skilled professionals and empowering individuals to achieve their career aspirations. With a strong foundation built on trust, quality, and excellence, we specialize in delivering reliable staffing solutions across a variety of industries.
             </p>
         </header>

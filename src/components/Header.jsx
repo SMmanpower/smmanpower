@@ -30,14 +30,15 @@ function Header() {
     </section>
     {
         isPopupOpen && (
-                <section className="w-4/5 xl:w-4/5 border-4 bg-white absolute top-4/5 xl:top-3/4 left-1/2 -translate-y-1/4 -translate-x-1/2 xl:-translate-x-1/2 xl:-translate-y-1/2 xl:my-5 m-auto border-primary xl:rounded-3xl" >
-                    <h2 className="aldrich-regular text-3xl xl:text-4xl text-center text-primary xl:m-4">
+                <section className="w-4/5 xl:w-4/5 border-4 bg-white absolute top-4/5 xl:top-3/4 left-1/2 -translate-y-1/4 -translate-x-1/2 xl:-translate-x-1/2 xl:-translate-y-1/2 xl:my-5 m-auto border-primary xl:rounded-3xl py-2.5" >
+                    <h2 className="aldrich-regular text-2xl xl:text-4xl text-center text-primary xl:m-4">
                         Apply as Talents
-                    <button onClick={togglePopup} className='w-12 h-12 float-end top-2.5'>
+                    <button onClick={togglePopup} className='w-8 h-8 xl:w-12 xl:h-12 float-end top-2.5'>
                         <img src={close} alt="" />
                     </button>
                     </h2>
-                <form action="" className="grid grid-cols-1 grid-rows-13 xl:grid-cols-2 xl:grid-rows-7 xl:grid-flow-col xl:rounded-3xl m-auto mx-5 p-5 xl:gap-2.5">
+                <form action="" className="grid grid-cols-1 grid-rows-13 xl:grid-cols-2 xl:grid-rows-7 xl:grid-flow-col xl:rounded-3xl m-auto mx-5 py-2.5 gap-2.5
+                 xl:gap-2.5">
                     
                     <div className="box text-left">
                         <p className="text-sm xl:text-2xl aldrich-regular">Enter your name</p>
@@ -69,29 +70,29 @@ function Header() {
                     </div>
                     <div className="box text-left">
                         <p className="text-sm xl:text-2xl aldrich-regular">Upload your Full size photo</p>
-                        <input type="file" className="input xl:input-box" />
+                        <input type="file" className="input xl:input-box file:h-12 file:border-0 placeholder:text-center file:bg-slate-900 file:text-white file:right-0 file:float-end file:p-2.5 file:m-0" />
                     </div>
                     <div className="box text-left">
                         <p className="text-sm xl:text-2xl aldrich-regular">Adhara no & Adhara photo</p>
-                        <input type="file" className="input xl:input-box" />
+                        <input type="file" className="input xl:input-box file:h-12 file:border-0 placeholder:text-center file:bg-slate-900 file:text-white file:right-0 file:float-end file:p-2.5 file:m-0" />
                     </div>
                     <div className="box text-left">
                         <p className="text-sm xl:text-2xl aldrich-regular">Upload your Driving licence</p>
-                        <input type="file" className="input xl:input-box " />
+                        <input type="file" className="input xl:input-box  file:h-12 file:border-0 placeholder:text-center file:bg-slate-900 file:text-white file:right-0 file:float-end file:p-2.5 file:m-0 " />
                     </div>
                     <div className="box xl:row-span-3 text-left">
                         <label htmlFor="terms&conditions" className='aldrich-regular'>
                             <input type="checkbox" name="termsandcondition" id="" className='mx-2'/>
                             Term & Conditions
                         </label>
-                        <p className="inter text-xs xl:text-base px-10 text-justify">
+                        <p className="inter text-xs xl:text-base text-justify">
                         1.Your payment will be processed and sent to you within 5 working days <br />
                         2.Any issues encountered during the work may result in a proportional deduction from the payment <br />
                         3.we will not be held responsible for any disputes or complications that may occur between you and the event organizers. <br />
                         4.Please ensure you arrived on time and are properly attiredz <br />
                         </p>
-                        <button type="submit" className="btn iceberg-regular bg-primary mx-auto my-5 text-xl xl:text-4xl">
-                            Book now
+                        <button type="submit" className="btn iceberg-regular bg-primary mx-auto xl:my-5 my-2.5 text-2xl xl:text-4xl">
+                            Apply now
                             <img src={icon} alt="" />
                         </button>
                     </div>

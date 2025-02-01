@@ -10,6 +10,12 @@ export default {
         "primary":"#F8743C",
         "footer":'#D9D9D9'
       },
+      minWidth:{
+        '450':'450px'
+      },
+      zIndex:{
+        '1':'1'
+      },
       height:{
         "100":"100px",
         "200":"200px",

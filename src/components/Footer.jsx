@@ -14,22 +14,22 @@ function Footer() {
   return (
     <>
     <section className="w-full bg-footer pt-4 xl:h-400 xl:py-5">
-        <button onClick={togglePopup} className=" wallpoet-regular text-3xl text-center xl:text-5xl xl:text-left ml-10">
+        <button onClick={togglePopup} className=" wallpoet-regular text-3xl text-center xl:text-5xl xl:text-left ml-10 xl:mt-2.5">
             SM Manpower
         </button>
         
-        <footer className="xl:flex justify-center items-center p-2 xl:px-10 xl:py-5 gap-5">
+        <footer className="xl:flex justify-center items-center p-2 xl:px-10 xl:py-4 gap-5">
             <div className="box xl:w-1/3 xl:p-4 xl:border-r-4 border-black">
-                <p className="aldrich-regular text-2xl xl:text-3xl text-left w-60 xl:w-300 m-auto">Email</p>
+                <p className="aldrich-regular text-2xl xl:text-3xl text-left w-60 xl:w-300 m-auto xl:mt-1.5">Email</p>
                 <li className='w-60 xl:w-300 m-auto list-none'>
                     <a href="mailto:manpowerservicessm@gmail.com" className="inter text-lg xl:text-xl w-200 m-auto">manpowerservicessm@gmail.com</a>
                 </li>
-                <p className="aldrich-regular text-2xl xl:text-3xl text-left w-60 xl:w-300 m-auto">Phone No</p>
+                <p className="aldrich-regular text-2xl xl:text-3xl text-left w-60 xl:w-300 m-auto xl:mt-1.5">Phone No</p>
                 <li className="w-60 xl:w-300 m-auto list-none">
                     <a href="tel:+917867993525" className="inter text-lg xl:text-xl text-left xl:w-300 m-auto">+91 7867993525</a>
                 </li>
-                <p className="aldrich-regular text-2xl xl:text-3xl text-left w-60 xl:w-300 m-auto">Adderss</p>
-                <p className="inter w-60 xl:w-300 m-auto text-xl text-left">
+                <p className="aldrich-regular text-2xl xl:text-3xl text-left w-60 xl:w-300 m-auto mt-1.5">Adderss</p>
+                <p className="inter w-60 xl:w-300 m-auto text-lg xl:text-xl text-left">
                     ATR Complex Pudukkottai Main 
                     Road,Pudukkottai-613301 
                 </p>
@@ -56,10 +56,10 @@ function Footer() {
                     Follow as on social media
                 </p>
                 <div className="flex justify-center items-center gap-2.5 xl:gap-9 xl:my-5">
-                    <img src={whatsapp} alt="" className="h-12" />
-                    <img src={instagram} alt="" className="h-12" />
-                    <img src={facebook} alt="" className="h-12" />
-                    <img src={x} alt="" className="h-12" />
+                    <img src={whatsapp} alt="" className="h-10 xl:h-12" />
+                    <img src={instagram} alt="" className="h-10 xl:h-12" />
+                    <img src={facebook} alt="" className="h-10 xl:h-12" />
+                    <img src={x} alt="" className="h-10 xl:h-12" />
                 </div>
             </div>
         </footer>
@@ -79,11 +79,11 @@ function Footer() {
                         </button>
                 </h2>
                 <form action="" className="m-auto my-2.5">
-                    <div className="box text-left mt-2.5">
+                    <div className="box text-left mt-2.5 w-400 m-auto">
                         <p className="text-sm xl:text-2xl aldrich-regular">Login ID</p>
-                        <input type="text" className="input xl:input-box" />
+                        <input type="text" className="input xl:input-box xl:min-w-450" />
                     </div>
-                    <div className="box text-left mt-2.5">
+                    <div className="box text-left mt-2.5 w-500 m-auto">
                         <p className="text-sm xl:text-2xl aldrich-regular">Password</p>
                         <input type="password" className="input xl:input-box" />
                     </div>
