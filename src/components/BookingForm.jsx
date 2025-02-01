@@ -105,7 +105,7 @@ function BookingForm() {
             </div>
             <div className="box text-left ">
                 <p className="text-sm xl:text-2xl aldrich-regular">Upload The Company Proof</p>
-                <input type="photo" className="input xl:input-box"  value={proof} onChange={(e) => setProof(e.target.value)} />
+                <input type="file" className="input xl:input-box file:h-12 file:border-0 placeholder:text-center file:bg-slate-900 file:text-white file:right-0 file:float-end file:p-2.5 file:m-0"  value={proof} onChange={(e) => setProof(e.target.value)} />
             </div>
             <div className="box text-left">
                 <p className="text-sm xl:text-2xl aldrich-regular">Event starting date</p>
