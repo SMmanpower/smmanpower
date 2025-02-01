@@ -137,15 +137,15 @@ try{
                     </div>
                     <div className="box text-left">
                         <p className="text-sm xl:text-2xl aldrich-regular">Upload your Full size photo</p>
-                        <input type="file" className="input xl:input-box" value={photo} onChange={(e) => setPhoto(e.target.value)}  required  />
+                        <input type="file" className="input xl:input-box file:h-12 file:border-0 placeholder:text-center file:bg-slate-900 file:text-white file:right-0 file:float-end file:p-2.5 file:m-0" value={photo} onChange={(e) => setPhoto(e.target.value)}  required  />
                     </div>
                     <div className="box text-left">
                         <p className="text-sm xl:text-2xl aldrich-regular">Adhara no & Adhara photo</p>
-                        <input type="file" className="input xl:input-box"  value={aadhar_proof} onChange={(e) => setAadharProof(e.target.value)}  required />
+                        <input type="file" className="input xl:input-box file:h-12 file:border-0 placeholder:text-center file:bg-slate-900 file:text-white file:right-0 file:float-end file:p-2.5 file:m-0"  value={aadhar_proof} onChange={(e) => setAadharProof(e.target.value)}  required />
                     </div>
                     <div className="box text-left">
                         <p className="text-sm xl:text-2xl aldrich-regular">Upload your Driving licence</p>
-                        <input type="file" className="input xl:input-box "  value={drivinglisence} onChange={(e) => setDL_proof(e.target.value)}  required  />
+                        <input type="file" className="input xl:input-box file:h-12 file:border-0 placeholder:text-center file:bg-slate-900 file:text-white file:right-0 file:float-end file:p-2.5 file:m-0 "  value={drivinglisence} onChange={(e) => setDL_proof(e.target.value)}  required  />
                     </div>
                     <div className="box xl:row-span-3 text-left">
                         <label htmlFor="terms&conditions" className='aldrich-regular'>
