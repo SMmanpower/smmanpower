@@ -35,7 +35,7 @@ function Navbar() {
                 SM Manpower
             </h2>
         </div>
-        <div className="hidden lg:block">
+        <div className="hidden lg:block lg:order-3">
             <ul className="h-full xl:flex justify-center items-center text-center gap-10 mx-2.5">
                 <li className="my-4 py-4">
                     <a href="" className="text-center aldrich-regular xl:text-2xl">Home</a>

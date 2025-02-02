@@ -77,7 +77,7 @@ function BookingForm() {
         <h2 className="aldrich-regular text-3xl xl:text-5xl text-center xl:mb-4">
             Booking
         </h2>
-        <form action="" onClick={handleSubmit} className=" grid grid-cols-1 grid-rows-12 xl:grid-cols-2 xl:grid-rows-6 grid-flow-col border-2 border-black rounded-lg xl:rounded-3xl m-auto mx-5 p-5 xl:gap-2.5">
+        <form action="" onClick={handleSubmit} className=" grid grid-cols-1 grid-rows-12 xl:grid-cols-2 xl:grid-rows-6 grid-flow-col border-2 border-black rounded-lg xl:rounded-3xl m-auto mx-5 p-5 gap-0 xl:gap-2.5">
             <div className="box text-left">
                 <p className="text-sm xl:text-2xl aldrich-regular">Enter your name</p>
                 <input type="text" className="input xl:input-box" value={name} onChange={(e) => setName(e.target.value)}  required/>
@@ -103,10 +103,6 @@ function BookingForm() {
                 <p className="text-sm xl:text-2xl aldrich-regular">Enter Salary amount for employees</p>
                 <input type="number" className="input xl:input-box" min={500} value={salary} onChange={(e) => setSalary(e.target.value)}  required/>
             </div>
-            <div className="box text-left ">
-                <p className="text-sm xl:text-2xl aldrich-regular">Upload The Company Proof</p>
-                <input type="file" className="input xl:input-box file:h-12 file:border-0 placeholder:text-center file:bg-slate-900 file:text-white file:right-0 file:float-end file:p-2.5 file:m-0"  value={proof} onChange={(e) => setProof(e.target.value)} />
-            </div>
             <div className="box text-left">
                 <p className="text-sm xl:text-2xl aldrich-regular">Event starting date</p>
                 <input type="datetime-local" className="input xl:input-box" value={start_date} onChange={(e) => setStartdate(e.target.value)} required/>
@@ -114,6 +110,10 @@ function BookingForm() {
             <div className="box text-left">
                 <p className="text-sm xl:text-2xl aldrich-regular">Event Ending  date</p>
                 <input type="datetime-local" className="input xl:input-box"value={end_date} onChange={(e) => setEndDate(e.target.value)} required />
+            </div>
+            <div className="box text-left ">
+                <p className="text-sm xl:text-2xl aldrich-regular">Upload The Company Proof</p>
+                <input type="file" className="input xl:input-box file:p-1 xl:file:h-12 file:border-0 file:bg-slate-900 file:text-white file:right-0 file:float-end xl:file:p-2.5 file:m-0"  value={proof} onChange={(e) => setProof(e.target.value)} />
             </div>
             <div className="box row-span-3 text-left">
                 <label htmlFor="terms&conditions" className='aldrich-regular xl:mt-2 text-xl leading-none'>
