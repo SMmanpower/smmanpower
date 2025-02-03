@@ -12,7 +12,7 @@ function Header() {
     // -----------------BACK END ----------//
     const [name,setName] = useState("");
         const [contact_number,setContactNo] = useState("");
-        const [work_type,setWorkType] = useState("");
+        const [work,setWorkType] = useState("");
         const [age,setAge] = useState("");
         const [address,setAddress] = useState("");
         const [experience,setExperience] = useState("");
@@ -28,7 +28,7 @@ function Header() {
         name,
         contact_number,
         age,
-        work_type,
+         work,
         address,
         experience,
         upi_number,
@@ -39,7 +39,7 @@ function Header() {
         console.log("Applied data are:",requestdata)
 try{
         const ApplicationResponse = await axios.post(
-            '',
+            'https://vdtwit6wib.execute-api.ap-south-1.amazonaws.com/prod/SM_application_detail',
             requestdata,
             {headers:{'content-type':'application/json'}}
         );
@@ -125,7 +125,7 @@ try{
                     </div>
                     <div className="box text-left">
                         <p className="text-sm xl:text-2xl aldrich-regular">Enter your work type</p>
-                        <input type="text" className="input xl:input-box"  value={work_type} onChange={(e) => setWorkType(e.target.value)}  required  />
+                        <input type="text" className="input xl:input-box"  value={work} onChange={(e) => setWorkType(e.target.value)}  required  />
                     </div>
                     <div className="box text-left">
                         <p className="text-sm xl:text-2xl aldrich-regular"> Experience of Work </p>

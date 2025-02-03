@@ -12,13 +12,12 @@ function App() {
 
   return (
     <>
-      <Navbar/>
-      <Header/>
+b      <Header/>
       <Aboutus/>
       <BookingForm/>
       <Contactus/>
       <Footer/>
-      {/* <Admin/> */}
+       {/* <Admin/> */}
       {/* <WorkerTable/> */}
     </>
   )
