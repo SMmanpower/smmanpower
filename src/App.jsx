@@ -12,7 +12,8 @@ function App() {
 
   return (
     <>
-b      <Header/>
+      <Navbar/>
+      <Header/>
       <Aboutus/>
       <BookingForm/>
       <Contactus/>
