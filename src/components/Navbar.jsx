@@ -6,7 +6,7 @@ function Navbar() {
     const [click,setClick] = useState(false)
     const handleClick = () => setClick(!click)
     const content = <>
-    <div className="xl:hidden block absolute w-full top-16 left-0 z-0 bg-white">
+    <div className="lg:hidden block absolute w-1/2 h-full top-16 left-0 z-0 bg-white">
         <ul className="text-center p-10 ">
             <li className="my-4 py-4">
                 <a href="" className="text-center">Home</a>
@@ -28,37 +28,37 @@ function Navbar() {
     </>
   return (
     <>
-    <nav className="w-full h-14 flex justify-between bg-primary">
+    <nav className="w-full h-14 flex justify-between bg-navbar">
         <div className="flex">
             <img src={logo} alt="" className='h-14 w-14 m-auto mt-2' />
-            <h2 className="wallpoet-regular text-2xl m-auto xl:text-4xl">
+            <h2 className="wallpoet-regular text-2xl m-auto lg:text-4xl">
                 SM Manpower
             </h2>
         </div>
         <div className="hidden lg:block lg:order-3">
-            <ul className="h-full xl:flex justify-center items-center text-center gap-10 mx-2.5">
+            <ul className="h-full lg:flex justify-center items-center text-center gap-10 mx-2.5">
                 <li className="my-4 py-4">
-                    <a href="" className="text-center aldrich-regular xl:text-2xl">Home</a>
+                    <a href="" className="text-center aldrich-regular lg:text-2xl">Home</a>
                 </li>
                 <li className="my-4 py-4">
-                    <a href="" className="text-center aldrich-regular xl:text-2xl">About us</a>
+                    <a href="" className="text-center aldrich-regular lg:text-2xl">About us</a>
                 </li>
                 <li className="my-4 py-4">
-                    <a href="" className="text-center aldrich-regular xl:text-2xl">Apply</a>
+                    <a href="" className="text-center aldrich-regular lg:text-2xl">Apply</a>
                 </li>
                 <li className="my-4 py-4">
-                    <a href="" className="text-center aldrich-regular xl:text-2xl">Booking</a>
+                    <a href="" className="text-center aldrich-regular lg:text-2xl">Booking</a>
                 </li>
                 <li className="my-4 py-4">
-                    <a href="" className="text-center aldrich-regular xl:text-2xl">Contact us</a>
+                    <a href="" className="text-center aldrich-regular lg:text-2xl">Contact us</a>
                 </li>
             </ul>
         </div>
         <div className="">
             {click && content}
         </div>
-        <button className=' block h-14 w-14 m-auto ml-10 xl:hidden' onClick={handleClick} >
-            {click ? <FaTimes className='h-9 w-9'/> : <CiMenuFries className='h-9 w-9 '/>}
+        <button className=' ml-2.5 lg:hidden' onClick={handleClick} >
+            {click ? <FaTimes className='h-9 w-9 float-end'/> : <CiMenuFries className='h-9 w-9 '/>}
         </button>
     </nav>
 

@@ -48,7 +48,7 @@ function AssumeEmploye() {
                     <td className="aldrich-regular text-lg text-center border-r-2 border-black text-primary">{apply.work}</td>
                     <td className="aldrich-regular text-lg text-center border-r-2 border-black text-primary">{apply.experience}</td>
                     <td className="aldrich-regular text-lg text-center border-r-2 border-black text-primary">{apply.photo}</td>
-                    <td className="flex items-center justify-center p-1 xl:gap-2.5 border-black">
+                    <td className="flex items-center justify-center p-1 lg:gap-2.5 border-black">
                                 {status === "approved" ? (
                                     <span className="approve">Approved</span>
                                 ) : status === "declined" ? (

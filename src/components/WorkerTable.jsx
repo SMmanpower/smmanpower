@@ -8,7 +8,7 @@ function WorkerTable() {
   return (
     <>
     <section className="w-full">
-        <header className="w-full xl:p-5 m-auto">
+        <header className="w-full lg:p-5 m-auto">
             <h2 className="text-center text-5xl">
                 SM Manpower
             </h2>
@@ -18,7 +18,7 @@ function WorkerTable() {
                 </p>
                 
                 <div className="w-full flex justify-end gap-5">
-                    <button className="btn h-12 bg-primary iceberg-regular xl:text-2xl">Logout
+                    <button className="btn h-12 bg-primary iceberg-regular lg:text-2xl">Logout
                         <img src={icon} alt="" className=' rotate-180' />
                     </button>
                 </div>

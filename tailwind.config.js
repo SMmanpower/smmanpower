@@ -8,7 +8,8 @@ export default {
     extend: {
       colors:{
         "primary":"#F8743C",
-        "footer":'#D9D9D9'
+        "footer":'#D9D9D9',
+        "navbar":'#FF8B3BBF'
       },
       minWidth:{
         '450':'450px'

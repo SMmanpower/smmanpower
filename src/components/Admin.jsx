@@ -7,7 +7,7 @@ function Admin() {
   return (
     <>
     <section className="w-full">
-        <header className="w-full xl:p-5 m-auto">
+        <header className="w-full lg:p-5 m-auto">
             <h2 className="text-center text-5xl">
                 SM Manpower
             </h2>
@@ -17,10 +17,10 @@ function Admin() {
                 </p>
                 
                 <div className="w-full flex justify-end gap-5">
-                    <button className="btn h-12 bg-primary iceberg-regular xl:text-2xl">Logout
+                    <button className="btn h-12 bg-primary iceberg-regular lg:text-2xl">Logout
                         <img src={icon} alt="" className=' rotate-180' />
                     </button>
-                    <button className="btn h-12 bg-primary iceberg-regular xl:text-2xl">Talents
+                    <button className="btn h-12 bg-primary iceberg-regular lg:text-2xl">Talents
                         <img src={icon} alt="" className='' />
                     </button>
                 </div>
@@ -54,7 +54,7 @@ function Admin() {
                         <td className="aldrich-regular text-lg text-center border-r-2 border-black text-primary">500</td>
                         <td className="aldrich-regular text-lg text-center border-r-2 border-black text-primary">25,01,2025</td>
                         <td className="aldrich-regular text-lg text-center border-r-2 border-black text-primary">25,01,2025</td>
-                        <td className="flex items-center justify-center p-1 xl:gap-2.5 border-black">
+                        <td className="flex items-center justify-center p-1 lg:gap-2.5 border-black">
                                     {status === "approved" ? (
                                         <span className="approve">Approved</span>
                                     ) : status === "declined" ? (

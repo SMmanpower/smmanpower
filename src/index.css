@@ -45,7 +45,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 10px;
+        gap: 5px;
         border-radius: 10px;
         border: 1.5px solid #000;
         padding: 5px;
@@ -54,7 +54,7 @@
     .input-box
     {
       height: 48px;
-      width: 90%;
+      width: 480px;
       background-color: #D9D9D9BF;
       outline: none;
       margin-top: 6px;
@@ -66,10 +66,6 @@
       font-style: normal;
       padding-left: 20px;
       font-size: 18px;
-      -webkit-border-radius: 10px;
-      -moz-border-radius: 10px;
-      -ms-border-radius: 10px;
-      -o-border-radius: 10px;
 }
     .input
     {
