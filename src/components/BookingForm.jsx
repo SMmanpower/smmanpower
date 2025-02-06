@@ -5,7 +5,7 @@ import Swal from 'sweetalert2';
 function BookingForm() {
     const [name,setName] = useState("");
     const [contact_number,setContactNo] = useState("");
-    const [work_details,setWorkDetail] = useState("");
+    const [work,setWorkDetail] = useState("");
     const [place_of_event,setWorkPlace] = useState("");
     const [employees_required,setEmployeesNo] = useState("");
     const [salary,setSalary] = useState("");
@@ -19,7 +19,7 @@ function BookingForm() {
       const RequestData = {
         name,
         contact_number,
-        work_details,
+         work,
         place_of_event,
         employees_required,
         salary,
@@ -33,7 +33,7 @@ function BookingForm() {
    try {
     
     const bookingResponse = await axios.post(
-        'link',
+        'https://vdtwit6wib.execute-api.ap-south-1.amazonaws.com/prod/SM_booking_details',
         RequestData,
         { headers:{'Content-Type':'appication/json'}}
     );
@@ -87,9 +87,9 @@ function BookingForm() {
                 <input type="number" className="input lg:input-box" value={contact_number} onChange={(e) => setContactNo(e.target.value)} required />
             </div>
             
-            <div className="box text-left h-fit w-fit m-auto">
+            <div className="box text-left">
                 <p className="text-sm lg:text-2xl aldrich-regular">Enter your Work Details</p>
-                <input type="text" className="input lg:input-box"  value={work_details} onChange={(e) => setWorkDetail(e.target.value)} required/>
+                <input type="text" className="input lg:input-box"  value={work} onChange={(e) => setWorkDetail(e.target.value)} required/>
             </div>
             <div className="box text-left h-fit w-fit m-auto">
                 <p className="text-sm lg:text-2xl aldrich-regular">Place of the Event</p>
