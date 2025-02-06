@@ -15,6 +15,13 @@ function BookingForm() {
   
     const handleSubmit = async (event) => {
      event.preventDefault();
+
+     const file = proof; 
+  const reader = new FileReader();
+
+  reader.readAsDataURL(file);
+  reader.onloadend = async () => {
+    const base64Image = reader.result.split(",")[1];
       
       const RequestData = {
         name,
@@ -25,7 +32,8 @@ function BookingForm() {
         salary,
         start_date,
         end_date,
-        proof
+        proofBase64: base64Image,
+        proofName: file.name
       };
        
       console.log("Data :",RequestData);
@@ -70,6 +78,7 @@ function BookingForm() {
    } catch (error) {
     console.error("Error during Booking:",error);
    }
+}
     }
   return (
     <>
@@ -77,10 +86,17 @@ function BookingForm() {
         <h2 className="aldrich-regular text-3xl lg:text-5xl text-center lg:mb-4">
             Booking
         </h2>
+<<<<<<< HEAD
         <form action="" onClick={handleSubmit} className=" grid grid-cols-1 grid-rows-12 lg:grid-cols-2 lg:grid-rows-6 grid-flow-col border-2 border-black rounded-lg lg:rounded-3xl m-auto mx-5 p-5 gap-0 lg:gap-2.5">
             <div className="box text-left h-fit w-fit m-auto">
                 <p className="text-sm lg:text-2xl aldrich-regular">Enter your name</p>
                 <input type="text" className="input lg:input-box" value={name} onChange={(e) => setName(e.target.value)}  required/>
+=======
+        <form action="" onSubmit={handleSubmit} className=" grid grid-cols-1 grid-rows-12 xl:grid-cols-2 xl:grid-rows-6 grid-flow-col border-2 border-black rounded-lg xl:rounded-3xl m-auto mx-5 p-5 gap-0 xl:gap-2.5">
+            <div className="box text-left">
+                <p className="text-sm xl:text-2xl aldrich-regular">Enter your name</p>
+                <input type="text" className="input xl:input-box" value={name} onChange={(e) => setName(e.target.value)}  required/>
+>>>>>>> e258faa (Talent details page completed)
             </div>
             <div className="box text-left h-fit w-fit m-auto">
                 <p className="text-sm lg:text-2xl aldrich-regular">Contact no</p>

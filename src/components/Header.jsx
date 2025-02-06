@@ -3,6 +3,8 @@ import icon from '../assets/Circled_Right.png'
 import close from '../assets/Close.png'
 import vector from '../assets/shared_workspace.png'
 import '../css/header.css'
+import axios from 'axios'
+import Swal from 'sweetalert2'
 function Header() {
     const [isPopupOpen,setIsPopupOpen] = useState(false);
 
@@ -17,9 +19,21 @@ function Header() {
         const [address,setAddress] = useState("");
         const [experience,setExperience] = useState("");
         const [upi_number,setUPINumber] = useState("");
-        const [aadhar_proof,setAadharProof] = useState("");
-        const [drivinglisence,setDL_proof] = useState("");
-        const [photo,setPhoto] = useState("");
+        const [aadhar_proof,setAadharProof] = useState(null);
+        const [drivinglisence,setDL_proof] = useState(null);
+        const [photo,setPhoto] = useState(null);
+
+        const handleFileUpload = (e, setFileState) => {
+            const file = e.target.files[0]; 
+            if (file) {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = () => {
+                    setFileState({ file, base64: reader.result });
+                };
+            }
+            e.target.value = "";
+        };
 
     const handleSubmit = async (event)=> {
         event.preventDefault();
@@ -32,9 +46,12 @@ function Header() {
         address,
         experience,
         upi_number,
-        aadhar_proof,
-        drivinglisence,
-        photo,
+        photoBase64: photo.base64, 
+        aadharBase64: aadhar_proof.base64,
+        dlBase64: drivinglisence.base64,
+        photoName: photo.file.name,
+        aadharName: aadhar_proof.file.name,
+        dlName: drivinglisence.file.name,
         };
         console.log("Applied data are:",requestdata)
 try{
@@ -49,7 +66,7 @@ try{
         
             if (ApplicationResponse?.status === 200 || ApplicationResponse?.status === 201) {
                 Swal.fire({
-                  title: "Your Booking Was Sent Successfully",
+                  title: "Your Application Was Sent Successfully",
                   icon: "success",
                   customClass: {
                     title: "popup-message",
@@ -59,15 +76,16 @@ try{
                   },
                 }).then(() => {
                   
-                  setName('');
-                  setWorkType('');
-                  setContactNo('');
-                  setWorkPlace('');
-                  setStartdate('');
-                  setEndDate('');
-                  setProof('');
-                  setSalary(''); 
-                  setEmployeesNo('')
+                    setName("");
+                    setContactNo("");
+                    setAge("");
+                    setWorkType("");
+                    setAddress("");
+                    setExperience("");
+                    setUPINumber("");
+                    setPhoto(null);
+                    setAadharProof(null);
+                    setDL_proof(null);
                 });
               } else {
                 Swal.fire('Error', 'Booking failed: ' + (ApplicationResponse.data.message || ApplicationResponse.data), 'error');
@@ -106,7 +124,11 @@ try{
                         <img src={close} alt="" />
                     </button>
                     </h2>
+<<<<<<< HEAD
                 <form action="" onClick={handleSubmit} className="grid grid-cols-1 grid-rows-13 lg:grid-cols-2 lg:grid-rows-7 lg:grid-flow-col lg:rounded-3xl m-auto mx-5 p-5 lg:gap-2.5">
+=======
+                <form action="" onSubmit={handleSubmit} className="grid grid-cols-1 grid-rows-13 xl:grid-cols-2 xl:grid-rows-7 xl:grid-flow-col xl:rounded-3xl m-auto mx-5 p-5 xl:gap-2.5">
+>>>>>>> e258faa (Talent details page completed)
                     
                     <div className="box text-left">
                         <p className="text-sm lg:text-2xl aldrich-regular">Enter your name</p>
@@ -137,6 +159,7 @@ try{
                         <input type="number" className="input lg:input-box"   value={upi_number} onChange={(e) => setUPINumber(e.target.value)}  required />
                     </div>
                     <div className="box text-left">
+<<<<<<< HEAD
                         <p className="text-sm lg:text-2xl aldrich-regular">Upload your Full size photo</p>
                         <input type="file" className="input lg:input-box file:h-12 file:border-0 placeholder:text-center file:bg-slate-900 file:text-white file:right-0 file:float-end file:p-2.5 file:m-0" value={photo} onChange={(e) => setPhoto(e.target.value)}  required  />
                     </div>
@@ -147,6 +170,18 @@ try{
                     <div className="box text-left">
                         <p className="text-sm lg:text-2xl aldrich-regular">Upload your Driving licence</p>
                         <input type="file" className="input lg:input-box file:h-12 file:border-0 placeholder:text-center file:bg-slate-900 file:text-white file:right-0 file:float-end file:p-2.5 file:m-0 "  value={drivinglisence} onChange={(e) => setDL_proof(e.target.value)}  required  />
+=======
+                        <p className="text-sm xl:text-2xl aldrich-regular">Upload your Full size photo</p>
+                        <input type="file" className="input xl:input-box file:h-12 file:border-0 placeholder:text-center file:bg-slate-900 file:text-white file:right-0 file:float-end file:p-2.5 file:m-0"  onChange={(e) => handleFileUpload(e, setPhoto)}  required  />
+                    </div>
+                    <div className="box text-left">
+                        <p className="text-sm xl:text-2xl aldrich-regular">Adhara no & Adhara photo</p>
+                        <input type="file" className="input xl:input-box file:h-12 file:border-0 placeholder:text-center file:bg-slate-900 file:text-white file:right-0 file:float-end file:p-2.5 file:m-0"   onChange={(e) => handleFileUpload(e, setAadharProof)}  required />
+                    </div>
+                    <div className="box text-left">
+                        <p className="text-sm xl:text-2xl aldrich-regular">Upload your Driving licence</p>
+                        <input type="file" className="input xl:input-box file:h-12 file:border-0 placeholder:text-center file:bg-slate-900 file:text-white file:right-0 file:float-end file:p-2.5 file:m-0 "   onChange={(e) => handleFileUpload(e, setDL_proof)}  />
+>>>>>>> e258faa (Talent details page completed)
                     </div>
                     <div className="box lg:row-span-4 place-content-center text-left">
                     <label htmlFor="terms&conditions" className='aldrich-regular lg:mt-2 text-xl flex items-center gap-2.5 '>
