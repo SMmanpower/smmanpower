@@ -105,11 +105,11 @@ function BookingForm() {
             </div>
             <div className="box text-left h-fit w-fit m-auto">
                 <p className="text-sm lg:text-2xl aldrich-regular">Event starting date</p>
-                <input type="datetime-local" className="input-box" value={start_date} onChange={(e) => setStartdate(e.target.value)} required/>
+                <input type="datetime-local" className="input input-box" value={start_date} onChange={(e) => setStartdate(e.target.value)} required/>
             </div>
             <div className="box text-left h-fit w-fit m-auto">
                 <p className="text-sm lg:text-2xl aldrich-regular">Event Ending  date</p>
-                <input type="datetime-local" className="input-box" value={end_date} onChange={(e) => setEndDate(e.target.value)} required />
+                <input type="datetime-local" className="input input-box" value={end_date} onChange={(e) => setEndDate(e.target.value)} required />
             </div>
             <div className="box text-left h-fit w-fit m-auto ">
                 <p className="text-sm lg:text-2xl aldrich-regular">Upload The Company Proof</p>
