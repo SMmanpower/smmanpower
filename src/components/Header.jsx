@@ -124,11 +124,7 @@ try{
                         <img src={close} alt="" />
                     </button>
                     </h2>
-<<<<<<< HEAD
                 <form action="" onClick={handleSubmit} className="grid grid-cols-1 grid-rows-13 lg:grid-cols-2 lg:grid-rows-7 lg:grid-flow-col lg:rounded-3xl m-auto mx-5 p-5 lg:gap-2.5">
-=======
-                <form action="" onSubmit={handleSubmit} className="grid grid-cols-1 grid-rows-13 xl:grid-cols-2 xl:grid-rows-7 xl:grid-flow-col xl:rounded-3xl m-auto mx-5 p-5 xl:gap-2.5">
->>>>>>> e258faa (Talent details page completed)
                     
                     <div className="box text-left">
                         <p className="text-sm lg:text-2xl aldrich-regular">Enter your name</p>
@@ -159,7 +155,6 @@ try{
                         <input type="number" className="input lg:input-box"   value={upi_number} onChange={(e) => setUPINumber(e.target.value)}  required />
                     </div>
                     <div className="box text-left">
-<<<<<<< HEAD
                         <p className="text-sm lg:text-2xl aldrich-regular">Upload your Full size photo</p>
                         <input type="file" className="input lg:input-box file:h-12 file:border-0 placeholder:text-center file:bg-slate-900 file:text-white file:right-0 file:float-end file:p-2.5 file:m-0" value={photo} onChange={(e) => setPhoto(e.target.value)}  required  />
                     </div>
@@ -170,18 +165,6 @@ try{
                     <div className="box text-left">
                         <p className="text-sm lg:text-2xl aldrich-regular">Upload your Driving licence</p>
                         <input type="file" className="input lg:input-box file:h-12 file:border-0 placeholder:text-center file:bg-slate-900 file:text-white file:right-0 file:float-end file:p-2.5 file:m-0 "  value={drivinglisence} onChange={(e) => setDL_proof(e.target.value)}  required  />
-=======
-                        <p className="text-sm xl:text-2xl aldrich-regular">Upload your Full size photo</p>
-                        <input type="file" className="input xl:input-box file:h-12 file:border-0 placeholder:text-center file:bg-slate-900 file:text-white file:right-0 file:float-end file:p-2.5 file:m-0"  onChange={(e) => handleFileUpload(e, setPhoto)}  required  />
-                    </div>
-                    <div className="box text-left">
-                        <p className="text-sm xl:text-2xl aldrich-regular">Adhara no & Adhara photo</p>
-                        <input type="file" className="input xl:input-box file:h-12 file:border-0 placeholder:text-center file:bg-slate-900 file:text-white file:right-0 file:float-end file:p-2.5 file:m-0"   onChange={(e) => handleFileUpload(e, setAadharProof)}  required />
-                    </div>
-                    <div className="box text-left">
-                        <p className="text-sm xl:text-2xl aldrich-regular">Upload your Driving licence</p>
-                        <input type="file" className="input xl:input-box file:h-12 file:border-0 placeholder:text-center file:bg-slate-900 file:text-white file:right-0 file:float-end file:p-2.5 file:m-0 "   onChange={(e) => handleFileUpload(e, setDL_proof)}  />
->>>>>>> e258faa (Talent details page completed)
                     </div>
                     <div className="box lg:row-span-4 place-content-center text-left">
                     <label htmlFor="terms&conditions" className='aldrich-regular lg:mt-2 text-xl flex items-center gap-2.5 '>
