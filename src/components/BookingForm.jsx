@@ -122,9 +122,9 @@ function BookingForm() {
             </div>
             <div className="box text-left h-fit w-fit m-auto ">
                 <p className="text-sm lg:text-2xl aldrich-regular">Upload The Company Proof *</p>
-                <input type="file" className="w-300 rounded-lg lg:w-480 bg-whit border-2  border-primary lg:rounded-xl file:p-1 lg:file:h-12 file:border-0 file:bg-slate-900 file:text-white file:right-0 file:float-end lg:file:p-2.5 file:m-0"  value={proof} onChange={(e) => setProof(e.target.value)} />
+                <input type="file" className="w-250 rounded-lg lg:w-480 bg-whit border-2  border-primary lg:rounded-xl file:p-1 lg:file:h-12 file:border-0 file:bg-slate-900 file:text-white file:right-0 file:float-end lg:file:p-2.5 file:m-0"  value={proof} onChange={(e) => setProof(e.target.value)} />
             </div>
-            <div className="box row-span-3 w-300 m-auto lg:w-480 text-left">
+            <div className="box row-span-3 w-250 m-auto lg:w-480 text-left">
                 <label htmlFor="terms&conditions" className='aldrich-regular lg:w-480 lg:mt-2  text-base lg:text-xl flex items-center gap-2.5 m-auto '>
                     <input type="checkbox" name="termsandcondition" id="" className='lg:h-5 lg:w-5' required/>
                     Term & Conditions

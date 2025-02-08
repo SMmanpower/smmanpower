@@ -124,7 +124,7 @@ try{
                         <img src={close} alt="" />
                     </button>
                     </h2>
-                <form action="" onClick={handleSubmit} className="grid grid-cols-1 grid-rows-13 lg:grid-cols-2 lg:grid-rows-7 lg:grid-flow-col lg:rounded-3xl m-auto mx-5 p-5 lg:gap-2.5">
+                <form action="" onClick={handleSubmit} className="grid grid-cols-1 grid-rows-13 lg:grid-cols-2 lg:grid-rows-7 lg:grid-flow-col lg:rounded-3xl m-auto gap-1 p-5 lg:gap-2.5">
                     
                     <div className="box text-left">
                         <p className="text-sm lg:text-2xl aldrich-regular">Enter your name</p>
