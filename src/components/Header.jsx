@@ -97,7 +97,7 @@ try{
     }
   return (
     <>
-    <section className="header-main container flex flex-row flex-wrap lg:m-auto justify-center items-center lg:flex-nowrap" id='home'>
+    <section className="header-main container pt-12 lg:pt-14 flex flex-row flex-wrap lg:m-auto justify-center items-center lg:flex-nowrap" id='home'>
         <main className="condent w-full lg:w-2/3 p-1">
             <h2 className="heading text-center text-3xl leading-10 lg:w-full lg:text-left lg:text-5xl lg:leading-head aldrich-regular">Connecting <br className="block lg:hidden" /> Opportunities <br className='block lg:hidden' /> with the  <br className='hidden lg:block' />
              <span className='text-primary'> Right People</span>

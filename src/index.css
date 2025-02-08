@@ -7,6 +7,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  scroll-padding: 60px;
+  scroll-behavior: smooth;
 }
 
 @layer base {
@@ -70,10 +72,10 @@
     .input
     {
       height: 35px;
-      width: 90%;
+      width: 300px;
       background-color: #D9D9D9BF;
       outline: none;
-      border: 1px solid #F8743C;
+      border: 2px solid #F8743C;
       border-radius: 10px;
       font-family: "Inter", serif;
       font-optical-sizing: auto;

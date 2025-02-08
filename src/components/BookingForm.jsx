@@ -82,7 +82,7 @@ function BookingForm() {
     }
   return (
     <>
-    <section className="continer m-auto lg:px-8">
+    <section className="continer m-auto lg:px-8" id='booking'>
         <h2 className="aldrich-regular text-3xl lg:text-5xl text-center lg:mb-4">
             Booking
         </h2>
@@ -96,7 +96,7 @@ function BookingForm() {
                 <input type="number" className="input lg:input-box" value={contact_number} onChange={(e) => setContactNo(e.target.value)} required />
             </div>
             
-            <div className="box text-left">
+            <div className="box text-left h-fit w-fit m-auto">
                 <p className="text-sm lg:text-2xl aldrich-regular">Enter your Work Details *</p>
                 <input type="text" className="input lg:input-box"  value={work} onChange={(e) => setWorkDetail(e.target.value)} required/>
             </div>
@@ -113,23 +113,23 @@ function BookingForm() {
                 <input type="number" className="input lg:input-box" min={500} value={salary} onChange={(e) => setSalary(e.target.value)}  required/>
             </div>
             <div className="box text-left h-fit w-fit m-auto">
-                <p className="text-sm lg:text-2xl aldrich-regular">Event starting date</p>
-                <input type="datetime-local" className="input input-box" value={start_date} onChange={(e) => setStartdate(e.target.value)} required/>
+                <p className="text-sm lg:text-2xl aldrich-regular">Event starting date *</p>
+                <input type="datetime-local" className="input lg:input-box" value={start_date} onChange={(e) => setStartdate(e.target.value)} required/>
             </div>
             <div className="box text-left h-fit w-fit m-auto">
                 <p className="text-sm lg:text-2xl aldrich-regular">Event Ending  date *</p>
-                <input type="datetime-local" className="input input-box" value={end_date} onChange={(e) => setEndDate(e.target.value)} required />
+                <input type="datetime-local" className="input lg:input-box" value={end_date} onChange={(e) => setEndDate(e.target.value)} required />
             </div>
             <div className="box text-left h-fit w-fit m-auto ">
                 <p className="text-sm lg:text-2xl aldrich-regular">Upload The Company Proof *</p>
-                <input type="file" className="input lg:input-box file:p-1 lg:file:h-12 file:border-0 file:bg-slate-900 file:text-white file:right-0 file:float-end lg:file:p-2.5 file:m-0"  value={proof} onChange={(e) => setProof(e.target.value)} />
+                <input type="file" className="w-300 rounded-lg lg:w-480 bg-whit border-2  border-primary lg:rounded-xl file:p-1 lg:file:h-12 file:border-0 file:bg-slate-900 file:text-white file:right-0 file:float-end lg:file:p-2.5 file:m-0"  value={proof} onChange={(e) => setProof(e.target.value)} />
             </div>
-            <div className="box row-span-3 text-left">
-                <label htmlFor="terms&conditions" className='aldrich-regular lg:mt-2 text-xl flex items-center gap-2.5 '>
-                    <input type="checkbox" name="termsandcondition" id="" className='h-5 w-5' required/>
+            <div className="box row-span-3 w-300 m-auto lg:w-480 text-left">
+                <label htmlFor="terms&conditions" className='aldrich-regular lg:w-480 lg:mt-2  text-base lg:text-xl flex items-center gap-2.5 m-auto '>
+                    <input type="checkbox" name="termsandcondition" id="" className='lg:h-5 lg:w-5' required/>
                     Term & Conditions
                 </label>
-                <p className="inter text-xs lg:mt-2 lg:text-base text-justify">
+                <p className="inter text-xs lg:w-480 m-auto lg:mt-2 lg:text-base text-justify">
                 1. Payment is expected within three working days. Failure to pay may result in legal proceedings. <br />
                 2. We'll send over the employees but you'll need to handle the coordination and  supervision. <br />
                 3. We will not be held responsible for any disputes or complications that may occur between you and the employees. <br />
