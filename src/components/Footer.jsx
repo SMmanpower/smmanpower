@@ -36,30 +36,38 @@ function Footer() {
             </div>
             <div className="box hidden lg:block lg:w-1/3 border-r-4 border-black">
                 <li className='list-none py-2 text-left w-200 m-auto'>
-                    <a href="" className="aldrich-regular text-3xl text-center">Home</a>
+                    <a href="#home" className="aldrich-regular text-3xl text-center">Home</a>
                 </li>
                 <li className='list-none py-2 text-left w-200 m-auto'>
-                    <a href="" className="aldrich-regular text-3xl text-center">About us</a>
+                    <a href="#about" className="aldrich-regular text-3xl text-center">About us</a>
                 </li>
                 <li className='list-none py-2 text-left w-200 m-auto'>
                     <a href="" className="aldrich-regular text-3xl text-center">Apply</a>
                 </li>
                 <li className='list-none py-2 text-left w-200 m-auto'>
-                    <a href="" className="aldrich-regular text-3xl text-center">Booking</a>
+                    <a href="#booking" className="aldrich-regular text-3xl text-center">Booking</a>
                 </li>
                 <li className='list-none py-2 text-left w-200 m-auto'>
-                    <a href="" className="aldrich-regular text-3xl text-center">Contact us</a>
+                    <a href="#contact" className="aldrich-regular text-3xl text-center">Contact us</a>
                 </li>
             </div>
             <div className="box w-fit border-t-2 border-white lg:border-t-0 lg:w-1/3 lg:h-200 m-auto">
                 <p className="aldrich-regular text-2xl  lg:text-3xl text-center">
                     Follow as on social media
                 </p>
-                <div className="flex justify-center items-center gap-2.5 lg:gap-9 lg:my-5">
-                    <img src={whatsapp} alt="" className="h-10 lg:h-12" />
-                    <img src={instagram} alt="" className="h-10 lg:h-12" />
-                    <img src={facebook} alt="" className="h-10 lg:h-12" />
-                    <img src={x} alt="" className="h-10 lg:h-12" />
+                <div className="flex justify-center items-center gap-5 lg:gap-9 lg:my-5">
+                    <a href="http://">
+                        <img src={whatsapp} alt="" className="h-10 lg:h-12" />
+                    </a>
+                    <a href="http://">
+                        <img src={instagram} alt="" className="h-10 lg:h-12" />
+                    </a>
+                    <a href="http://">
+                        <img src={facebook} alt="" className="h-10 lg:h-12" />
+                    </a>
+                    <a href="http://">
+                        <img src={x} alt="" className="h-10 lg:h-12" />
+                    </a>
                 </div>
             </div>
         </footer>

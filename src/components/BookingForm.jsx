@@ -11,8 +11,8 @@ function BookingForm() {
     const [salary,setSalary] = useState("");
     const [start_date,setStartdate] = useState("");
     const [end_date,setEndDate] = useState("");
-    const [proof,setProof] = useState("")
-  
+    const [proof,setProof] = useState("");
+    const [isChecked,setIsChecked] = useState(false);
     const handleSubmit = async (event) => {
      event.preventDefault();
 
@@ -74,7 +74,7 @@ function BookingForm() {
       } else {
         Swal.fire('Error', 'Booking failed: ' + (bookingResponse.data.message || bookingResponse.data), 'error');
       }
-
+fit
    } catch (error) {
     console.error("Error during Booking:",error);
    }
@@ -86,47 +86,47 @@ function BookingForm() {
         <h2 className="aldrich-regular text-3xl lg:text-5xl text-center lg:mb-4">
             Booking
         </h2>
-        <form action="" onClick={handleSubmit} className=" grid grid-cols-1 grid-rows-12 lg:grid-cols-2 lg:grid-rows-6 grid-flow-col border-2 border-black rounded-lg lg:rounded-3xl m-auto mx-5 p-5 gap-0 lg:gap-2.5">
-            <div className="box text-left h-fit w-fit m-auto">
-                <p className="text-sm lg:text-2xl aldrich-regular">Enter your name *</p>
+        <form action="" onClick={handleSubmit} className=" grid grid-cols-1 grid-rows-12 lg:grid-cols-2 lg:grid-rows-6 grid-flow-col border-2 border-black rounded-lg lg:rounded-3xl m-auto  gap-0 lg:gap-0 items-center justify-center place-items-center">
+            <div className="box w-4/5 h-fit text-left">
+                <p className="text-sm lg:text-2xl aldrich-regular">Enter your name <span className=' text-red-600'>*</span></p>
                 <input type="text" className="input lg:input-box" value={name} onChange={(e) => setName(e.target.value)}  required/>
             </div>
-            <div className="box text-left h-fit w-fit m-auto">
-                <p className="text-sm lg:text-2xl aldrich-regular">Contact no *</p>
+            <div className="box text-left w-4/5 h-fit">
+                <p className="text-sm lg:text-2xl aldrich-regular">Contact no <span className=' text-red-600'>*</span></p>
                 <input type="number" className="input lg:input-box" value={contact_number} onChange={(e) => setContactNo(e.target.value)} required />
             </div>
             
-            <div className="box text-left h-fit w-fit m-auto">
-                <p className="text-sm lg:text-2xl aldrich-regular">Enter your Work Details *</p>
+            <div className="box text-left w-4/5 h-fit">
+                <p className="text-sm lg:text-2xl aldrich-regular">Enter your Work Details <span className=' text-red-600'>*</span></p>
                 <input type="text" className="input lg:input-box"  value={work} onChange={(e) => setWorkDetail(e.target.value)} required/>
             </div>
-            <div className="box text-left h-fit w-fit m-auto">
-                <p className="text-sm lg:text-2xl aldrich-regular">Place of the Event *</p>
+            <div className="box text-left w-4/5 h-fit">
+                <p className="text-sm lg:text-2xl aldrich-regular">Place of the Event <span className=' text-red-600'>*</span></p>
                 <input type="text" className="input lg:input-box" value={place_of_event} onChange={(e) => setWorkPlace(e.target.value)}  required/>
             </div>
-            <div className="box text-left h-fit w-fit m-auto">
-                <p className="text-sm lg:text-2xl aldrich-regular"> Enter your required employees no *</p>
+            <div className="box text-left w-4/5 h-fit">
+                <p className="text-sm lg:text-2xl aldrich-regular"> Enter your required employees no <span className=' text-red-600'>*</span> </p>
                 <input type="number" className="input lg:input-box" value={employees_required} onChange={(e) => setEmployeesNo(e.target.value)} required />
             </div>
-            <div className="box text-left h-fit w-fit m-auto">
-                <p className="text-sm lg:text-2xl aldrich-regular">Enter Salary amount for employees *</p>
+            <div className="box text-left w-4/5 h-fit">
+                <p className="text-sm lg:text-2xl aldrich-regular">Enter Salary amount for employees <span className=' text-red-600'>*</span></p>
                 <input type="number" className="input lg:input-box" min={500} value={salary} onChange={(e) => setSalary(e.target.value)}  required/>
             </div>
-            <div className="box text-left h-fit w-fit m-auto">
-                <p className="text-sm lg:text-2xl aldrich-regular">Event starting date *</p>
+            <div className="box text-left w-4/5 h-fit">
+                <p className="text-sm lg:text-2xl aldrich-regular">Event starting date <span className=' text-red-600'>*</span></p>
                 <input type="datetime-local" className="input lg:input-box" value={start_date} onChange={(e) => setStartdate(e.target.value)} required/>
             </div>
-            <div className="box text-left h-fit w-fit m-auto">
-                <p className="text-sm lg:text-2xl aldrich-regular">Event Ending  date *</p>
+            <div className="box text-left w-4/5 h-fit">
+                <p className="text-sm lg:text-2xl aldrich-regular">Event Ending  date <span className='   text-red-600'>*</span></p>
                 <input type="datetime-local" className="input lg:input-box" value={end_date} onChange={(e) => setEndDate(e.target.value)} required />
             </div>
-            <div className="box text-left h-fit w-fit m-auto ">
-                <p className="text-sm lg:text-2xl aldrich-regular">Upload The Company Proof *</p>
-                <input type="file" className="w-250 rounded-lg lg:w-480 bg-whit border-2  border-primary lg:rounded-xl file:p-1 lg:file:h-12 file:border-0 file:bg-slate-900 file:text-white file:right-0 file:float-end lg:file:p-2.5 file:m-0"  value={proof} onChange={(e) => setProof(e.target.value)} />
+            <div className="box text-left w-4/5 h-fit">
+                <p className="text-sm lg:text-2xl aldrich-regular">Upload The Company Proof <span className='  text-red-600'>*</span></p>
+                <input type="file" className=" file-input lg:file-input-box  rounded-lg bg-whit border-2  border-primary lg:rounded-xl file:p-1 lg:file:h-12 file:border-0 file:bg-slate-900 file:text-white file:right-0 file:float-end lg:file:px-2 lg:file:py-0  file:m-0"  value={proof} onChange={(e) => setProof(e.target.value)} />
             </div>
             <div className="box row-span-3 w-250 m-auto lg:w-480 text-left">
-                <label htmlFor="terms&conditions" className='aldrich-regular lg:w-480 lg:mt-2  text-base lg:text-xl flex items-center gap-2.5 m-auto '>
-                    <input type="checkbox" name="termsandcondition" id="" className='lg:h-5 lg:w-5' required/>
+                <label htmlFor="terms&conditions" className='aldrich-regular lg:leading-5 lg:w-480 lg:mt-2  text-base lg:text-xl flex items-stretch gap-2.5 m-auto '>
+                    <input type="checkbox" checked={isChecked} onChange={(e) => setIsChecked(e.target.checked)} name="termsandcondition" id="" className='lg:h-5 lg:w-5' required/>
                     Term & Conditions
                 </label>
                 <p className="inter text-xs lg:w-480 m-auto lg:mt-2 lg:text-base text-justify">

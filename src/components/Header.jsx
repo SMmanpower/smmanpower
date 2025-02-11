@@ -97,9 +97,9 @@ try{
     }
   return (
     <>
-    <section className="header-main container pt-12 lg:pt-14 flex flex-row flex-wrap lg:m-auto justify-center items-center lg:flex-nowrap" id='home'>
+    <section className="header-main container flex flex-row flex-wrap lg:m-auto justify-center items-center lg:flex-nowrap" id='home'>
         <main className="condent w-full lg:w-2/3 p-1">
-            <h2 className="heading text-center text-3xl leading-10 lg:w-full lg:text-left lg:text-5xl lg:leading-head aldrich-regular">Connecting <br className="block lg:hidden" /> Opportunities <br className='block lg:hidden' /> with the  <br className='hidden lg:block' />
+            <h2 className="heading text-center text-3xl leading-10 lg:w-full lg:text-left lg:text-5xl lg:leading-head aldrich-regular">Connecting <br className="block lg:hidden" /> Opportunities <br/> with the  <br className='hidden lg:block' />
              <span className='text-primary'> Right People</span>
             </h2>
             <p className="context text-sm inter lg:text-base text-justify p-2">
@@ -127,46 +127,63 @@ try{
                 <form action="" onClick={handleSubmit} className="grid grid-cols-1 grid-rows-13 lg:grid-cols-2 lg:grid-rows-7 lg:grid-flow-col lg:rounded-3xl m-auto gap-1 p-5 lg:gap-2.5">
                     
                     <div className="box text-left">
-                        <p className="text-sm lg:text-2xl aldrich-regular">Enter your name</p>
+                        <p className="text-sm lg:text-2xl aldrich-regular">Enter your name
+                            <span className='  text-red-600'>*</span>
+                        </p>
                         <input type="text" className="input lg:input-box"  value={name} onChange={(e) => setName(e.target.value)}  required  />
                     </div>
                     <div className="box text-left ">
-                        <p className="text-sm lg:text-2xl aldrich-regular">Contact no</p>
+                        <p className="text-sm lg:text-2xl aldrich-regular">Contact no
+                            <span className='  text-red-600'>*</span>
+                        </p>
                         <input type="number" className="input lg:input-box"   value={contact_number} onChange={(e) => setContactNo(e.target.value)}  required />
                     </div>
                     <div className="box text-left ">
-                        <p className="text-sm lg:text-2xl aldrich-regular">Enter your Age</p>
+                        <p className="text-sm lg:text-2xl aldrich-regular">Enter your Age
+                            <span className='  text-red-600'>*</span>
+                        </p>
                         <input type="number" className="input lg:input-box"  value={age} onChange={(e) => setAge(e.target.value)}  required  />
                     </div>
                     <div className="box text-left">
-                        <p className="text-sm lg:text-2xl aldrich-regular">Enter your Address</p>
+                        <p className="text-sm lg:text-2xl aldrich-regular">Enter your Address
+                            <span className='  text-red-600'>*</span>
+                        </p>
                         <input type="text" className="input lg:input-box"  value={address} onChange={(e) => setAddress(e.target.value)}  required  />
                     </div>
                     <div className="box text-left">
-                        <p className="text-sm lg:text-2xl aldrich-regular">Enter your work type</p>
+                        <p className="text-sm lg:text-2xl aldrich-regular">Enter your work type
+                            <span className='  text-red-600'>*</span>
+                        </p>
                         <input type="text" className="input lg:input-box"  value={work} onChange={(e) => setWorkType(e.target.value)}  required  />
                     </div>
                     <div className="box text-left">
-                        <p className="text-sm lg:text-2xl aldrich-regular"> Experience of Work </p>
+                        <p className="text-sm lg:text-2xl aldrich-regular"> Experience of Work 
+                            <span className='  text-red-600'>*</span>
+                        </p>
                         <input type="text" className="input lg:input-box"  value={experience} onChange={(e) => setExperience(e.target.value)}  required  />
                     </div>
                     <div className="box text-left">
-                        <p className="text-sm lg:text-2xl aldrich-regular">Enter your UPI Phone no </p>
+                        <p className="text-sm lg:text-2xl aldrich-regular">Enter your UPI Phone no
+                            <span className='  text-red-600'>*</span> </p>
                         <input type="number" className="input lg:input-box"   value={upi_number} onChange={(e) => setUPINumber(e.target.value)}  required />
                     </div>
                     <div className="box text-left">
-                        <p className="text-sm lg:text-2xl aldrich-regular">Upload your Full size photo</p>
-                        <input type="file" className="input lg:input-box file:h-12 file:border-0 placeholder:text-center file:bg-slate-900 file:text-white file:right-0 file:float-end file:p-2.5 file:m-0" value={photo} onChange={(e) => setPhoto(e.target.value)}  required  />
+                        <p className="text-sm lg:text-2xl aldrich-regular">Upload your Full size photo
+                            <span className='  text-red-600'>*</span>
+                        </p>
+                        <input type="file" className=" file-input lg:file-input-box  rounded-lg bg-whit border-2  border-primary lg:rounded-xl file:p-1 lg:file:h-12 file:border-0 file:bg-slate-900 file:text-white file:right-0 file:float-end lg:file:px-2 lg:file:py-0  file:m-0" value={photo} onChange={(e) => setPhoto(e.target.value)}  required  />
                     </div>
                     <div className="box text-left">
-                        <p className="text-sm lg:text-2xl aldrich-regular">Adhara no & Adhara photo</p>
-                        <input type="file" className="input lg:input-box file:h-12 file:border-0 placeholder:text-center file:bg-slate-900 file:text-white file:right-0 file:float-end file:p-2.5 file:m-0"  value={aadhar_proof} onChange={(e) => setAadharProof(e.target.value)}  required />
+                        <p className="text-sm lg:text-2xl aldrich-regular">Adhara photo
+                            <span className='  text-red-600'>*</span>
+                        </p>
+                        <input type="file" className=" file-input lg:file-input-box  rounded-lg bg-whit border-2  border-primary lg:rounded-xl file:p-1 lg:file:h-12 file:border-0 file:bg-slate-900 file:text-white file:right-0 file:float-end lg:file:px-2 lg:file:py-0  file:m-0"  value={aadhar_proof} onChange={(e) => setAadharProof(e.target.value)}  required />
                     </div>
                     <div className="box text-left">
                         <p className="text-sm lg:text-2xl aldrich-regular">Upload your Driving licence</p>
-                        <input type="file" className="input lg:input-box file:h-12 file:border-0 placeholder:text-center file:bg-slate-900 file:text-white file:right-0 file:float-end file:p-2.5 file:m-0 "  value={drivinglisence} onChange={(e) => setDL_proof(e.target.value)}  required  />
+                        <input type="file" className=" file-input lg:file-input-box  rounded-lg bg-whit border-2  border-primary lg:rounded-xl file:p-1 lg:file:h-12 file:border-0 file:bg-slate-900 file:text-white file:right-0 file:float-end lg:file:px-2 lg:file:py-0  file:m-0 "  value={drivinglisence} onChange={(e) => setDL_proof(e.target.value)}  required  />
                     </div>
-                    <div className="box lg:row-span-4 place-content-center text-left">
+                    <div className="box lg:row-span-4 lg:w-480 place-content-center text-left">
                     <label htmlFor="terms&conditions" className='aldrich-regular lg:mt-2 text-xl flex items-center gap-2.5 '>
                     <input type="checkbox" name="termsandcondition" id="" className='h-5 w-5'/>
                     Term & Conditions

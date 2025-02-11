@@ -6,7 +6,7 @@ function Navbar() {
     const [click,setClick] = useState(false)
     const handleClick = () => setClick(!click)
     const content = <>
-    <div className="lg:hidden block fixed w-1/2 h-full top-14 left-0 z-0 bg-white">
+    <div className="lg:hidden block absolute w-1/2 h-full top-14 left-0 z-0 bg-white">
         <ul className="text-center p-10 ">
             <li className="my-4 py-4">
                 <a href="#home" className="text-center">Home</a>
@@ -28,7 +28,7 @@ function Navbar() {
     </>
   return (
     <>
-    <section className="fixed top-0 left-0 w-full">
+    {/* <section className="fixed top-0 left-0 w-full"> */}
         <nav className="w-full h-14 flex justify-between bg-navbar">
             <div className="flex">
                 <img src={logo} alt="" className='h-14 w-14 m-auto mt-2' />
@@ -62,7 +62,7 @@ function Navbar() {
                 {click ? <FaTimes className='h-9 w-9 float-end'/> : <CiMenuFries className='h-9 w-9 '/>}
             </button>
         </nav>
-    </section>
+    {/* </section> */}
     </>
   )
 }
