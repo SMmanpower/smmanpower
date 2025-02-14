@@ -59,18 +59,9 @@ function BookingForm() {
         
         const file = fileInputRef.current.files[0];
         console.log("Selected File:", file);
-        if (!file) {
-            Swal.fire('Error', 'Please select a file!', 'error');
-            return;
-        }
-
+       
         try {
             const fileUrl = await handleFileUpload(file);  
-
-            if (!fileUrl) {
-                Swal.fire('Error', 'File upload failed!', 'error');
-                return;
-            }
 
             const formData = {
                 name,
@@ -100,7 +91,6 @@ function BookingForm() {
                         actions: "popup-action",
                     },
                 }).then(() => {
-                    // Reset all input fields
                     setName('');
                     setWorkDetail('');
                     setContactNo('');
@@ -110,7 +100,7 @@ function BookingForm() {
                     setSalary('');
                     setEmployeesNo('');
                     if (fileInputRef.current) {
-                        fileInputRef.current.value = ""; // Reset file input
+                        fileInputRef.current.value = null; 
                     }
                 });
             } else {
@@ -128,7 +118,7 @@ function BookingForm() {
         <h2 className="aldrich-regular text-3xl lg:text-5xl text-center lg:mb-4">
             Booking
         </h2>
-        <form action="" onClick={handleSubmit} className=" grid grid-cols-1 grid-rows-12 lg:grid-cols-2 lg:grid-rows-6 grid-flow-col border-2 border-black rounded-lg lg:rounded-3xl m-auto  gap-0 lg:gap-0 items-center justify-center place-items-center">
+        <form action="" onSubmit={handleSubmit} className=" grid grid-cols-1 grid-rows-12 lg:grid-cols-2 lg:grid-rows-6 grid-flow-col border-2 border-black rounded-lg lg:rounded-3xl m-auto  gap-0 lg:gap-0 items-center justify-center place-items-center">
             <div className="box w-4/5 h-fit text-left">
                 <p className="text-sm lg:text-2xl aldrich-regular">Enter your name <span className=' text-red-600'>*</span></p>
                 <input type="text" className="input lg:input-box" value={name} onChange={(e) => setName(e.target.value)}  required/>

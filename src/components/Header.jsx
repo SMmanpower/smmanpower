@@ -22,49 +22,79 @@ function Header() {
         const [aadhar_proof,setAadharProof] = useState(null);
         const [drivinglisence,setDL_proof] = useState(null);
         const [photo,setPhoto] = useState(null);
-
-        const handleFileUpload = (e, setFileState) => {
-            const file = e.target.files[0]; 
-            if (file) {
-                const reader = new FileReader();
-                reader.readAsDataURL(file);
-                reader.onload = () => {
-                    setFileState({ file, base64: reader.result });
-                };
+       
+        const handleFileUpload = async (file, setFileUrl) => {
+            if (!file) return;
+        
+            try {
+                console.log("Uploading File:", file.name);
+        
+                const response = await fetch("https://vdtwit6wib.execute-api.ap-south-1.amazonaws.com/prod/Sm_serviceBooking", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        fileName: file.name,
+                        fileType: file.type,
+                    }),
+                });
+        
+                const data = await response.json();
+                console.log("Pre-signed URL Response:", data);
+        
+                if (!data.uploadURL || !data.fileKey) {
+                    throw new Error("Failed to get upload URL");
+                }
+        
+                const uploadResponse = await fetch(data.uploadURL, {
+                    method: "PUT",
+                    body: file,
+                    headers: { "Content-Type": file.type },
+                });
+        
+                if (!uploadResponse.ok) {
+                    throw new Error(`Failed to upload file: ${uploadResponse.statusText}`);
+                }
+        
+                console.log("File successfully uploaded to S3:", data.fileKey);
+                setFileUrl(data.fileKey); 
+        
+            } catch (error) {
+                console.error("Error uploading file:", error);
             }
-            e.target.value = "";
         };
-
-    const handleSubmit = async (event)=> {
-        event.preventDefault();
-
-        const requestdata ={
-        name,
-        contact_number,
-        age,
-         work,
-        address,
-        experience,
-        upi_number,
-        photoBase64: photo.base64, 
-        aadharBase64: aadhar_proof.base64,
-        dlBase64: drivinglisence.base64,
-        photoName: photo.file.name,
-        aadharName: aadhar_proof.file.name,
-        dlName: drivinglisence.file.name,
-        };
-        console.log("Applied data are:",requestdata)
-try{
-        const ApplicationResponse = await axios.post(
-            'https://vdtwit6wib.execute-api.ap-south-1.amazonaws.com/prod/SM_application_detail',
-            requestdata,
-            {headers:{'content-type':'application/json'}}
-        );
-
-         console.log("Response From  Server:",ApplicationResponse);
         
+        const handlePhotoUpload = (e) => handleFileUpload(e.target.files[0], setPhoto);
+        const handleAadharUpload = (e) => handleFileUpload(e.target.files[0], setAadharProof);
+        const handleDLUpload = (e) => handleFileUpload(e.target.files[0], setDL_proof);
         
-            if (ApplicationResponse?.status === 200 || ApplicationResponse?.status === 201) {
+        const handleSubmit = async (event) => {
+            event.preventDefault();
+        
+            const requestData = {
+                name,
+                contact_number,
+                age,
+                work,
+                address,
+                experience,
+                upi_number,
+                photo,         
+                aadhar_proof,  
+                drivinglisence,
+            };
+        
+            console.log("Applied data:", requestData);
+        
+            try {
+                const ApplicationResponse = await axios.post(
+                    'https://vdtwit6wib.execute-api.ap-south-1.amazonaws.com/prod/SM_application_detail',
+                    requestData,
+                    { headers: { 'Content-Type': 'application/json' } }
+                );
+        
+                console.log("Server Response:", ApplicationResponse);
+        
+        if (ApplicationResponse?.status === 200 || ApplicationResponse?.status === 201) {
                 Swal.fire({
                   title: "Your Application Was Sent Successfully",
                   icon: "success",
@@ -124,7 +154,7 @@ try{
                         <img src={close} alt="" />
                     </button>
                     </h2>
-                <form action="" onClick={handleSubmit} className="grid grid-cols-1 grid-rows-13 lg:grid-cols-2 lg:grid-rows-7 lg:grid-flow-col lg:rounded-3xl m-auto gap-1 p-5 lg:gap-2.5">
+                <form action="" onSubmit={handleSubmit} className="grid grid-cols-1 grid-rows-13 lg:grid-cols-2 lg:grid-rows-7 lg:grid-flow-col lg:rounded-3xl m-auto gap-1 p-5 lg:gap-2.5">
                     
                     <div className="box text-left">
                         <p className="text-sm lg:text-2xl aldrich-regular">Enter your name
@@ -171,17 +201,17 @@ try{
                         <p className="text-sm lg:text-2xl aldrich-regular">Upload your Full size photo
                             <span className='  text-red-600'>*</span>
                         </p>
-                        <input type="file" className=" file-input lg:file-input-box  rounded-lg bg-whit border-2  border-primary lg:rounded-xl file:p-1 lg:file:h-12 file:border-0 file:bg-slate-900 file:text-white file:right-0 file:float-end lg:file:px-2 lg:file:py-0  file:m-0" value={photo} onChange={(e) => setPhoto(e.target.value)}  required  />
+                        <input type="file" className=" file-input lg:file-input-box  rounded-lg bg-whit border-2  border-primary lg:rounded-xl file:p-1 lg:file:h-12 file:border-0 file:bg-slate-900 file:text-white file:right-0 file:float-end lg:file:px-2 lg:file:py-0  file:m-0" onChange={handlePhotoUpload}  required  />
                     </div>
                     <div className="box text-left">
                         <p className="text-sm lg:text-2xl aldrich-regular">Adhara photo
                             <span className='  text-red-600'>*</span>
                         </p>
-                        <input type="file" className=" file-input lg:file-input-box  rounded-lg bg-whit border-2  border-primary lg:rounded-xl file:p-1 lg:file:h-12 file:border-0 file:bg-slate-900 file:text-white file:right-0 file:float-end lg:file:px-2 lg:file:py-0  file:m-0"  value={aadhar_proof} onChange={(e) => setAadharProof(e.target.value)}  required />
+                        <input type="file" className=" file-input lg:file-input-box  rounded-lg bg-whit border-2  border-primary lg:rounded-xl file:p-1 lg:file:h-12 file:border-0 file:bg-slate-900 file:text-white file:right-0 file:float-end lg:file:px-2 lg:file:py-0  file:m-0"  onChange={handleAadharUpload} required />
                     </div>
                     <div className="box text-left">
                         <p className="text-sm lg:text-2xl aldrich-regular">Upload your Driving licence</p>
-                        <input type="file" className=" file-input lg:file-input-box  rounded-lg bg-whit border-2  border-primary lg:rounded-xl file:p-1 lg:file:h-12 file:border-0 file:bg-slate-900 file:text-white file:right-0 file:float-end lg:file:px-2 lg:file:py-0  file:m-0 "  value={drivinglisence} onChange={(e) => setDL_proof(e.target.value)}  required  />
+                        <input type="file" className=" file-input lg:file-input-box  rounded-lg bg-whit border-2  border-primary lg:rounded-xl file:p-1 lg:file:h-12 file:border-0 file:bg-slate-900 file:text-white file:right-0 file:float-end lg:file:px-2 lg:file:py-0  file:m-0 "  onChange={handleDLUpload}  required  />
                     </div>
                     <div className="box lg:row-span-4 lg:w-480 place-content-center text-left">
                     <label htmlFor="terms&conditions" className='aldrich-regular lg:mt-2 text-xl flex items-center gap-2.5 '>
