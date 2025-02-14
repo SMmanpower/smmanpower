@@ -147,7 +147,7 @@ function Header() {
     </section>
     {
         isPopupOpen && (
-                <section className="w-4/5 lg:w-4/5 border-4 bg-white absolute top-4/5 lg:top-3/4 left-1/2 -translate-y-1/4 -translate-x-1/2 lg:-translate-x-1/2 lg:-translate-y-1/2 lg:my-5 m-auto border-primary lg:rounded-3xl py-2.5" >
+                <section className="w-4/5 lg:w-4/5rounde rounded-lg lg:rounded-3xl border-4 bg-white absolute top-4/5 lg:top-3/4 left-1/2 -translate-y-1/4 -translate-x-1/2 lg:-translate-x-1/2 lg:-translate-y-1/2 lg:my-5 m-auto border-primary lg:rounded-3xl py-2.5" >
                     <h2 className="aldrich-regular text-2xl lg:text-4xl text-center text-primary lg:m-4">
                         Apply as Talents
                     <button onClick={togglePopup} className='w-8 h-8 lg:w-12 lg:h-12 float-end top-2.5'>
