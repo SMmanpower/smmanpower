@@ -132,7 +132,7 @@ function Header() {
             <h2 className="heading text-center text-3xl leading-10 lg:w-full lg:text-left lg:text-5xl lg:leading-head aldrich-regular">Connecting <br className="block lg:hidden" /> Opportunities <br/> with the  <br className='hidden lg:block' />
              <span className='text-primary'> Right People</span>
             </h2>
-            <p className="context text-sm inter lg:text-base text-justify p-2">
+            <p className="context text-sm inter lg:text-base text-justify p-2.5">
                 <lable className="lg:hidden">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</lable>
                 SM Manpower is a leading provider of workforce solutions, dedicated to bridging the gap between exceptional talent and thriving businesses. We specialize in offering tailored recruitment, staffing, and human resource services across various industries, ensuring that our clients achieve operational excellence with the right team.
             </p>
@@ -147,14 +147,14 @@ function Header() {
     </section>
     {
         isPopupOpen && (
-                <section className="w-4/5 lg:w-4/5rounde rounded-lg lg:rounded-3xl border-4 bg-white absolute top-4/5 lg:top-3/4 left-1/2 -translate-y-1/4 -translate-x-1/2 lg:-translate-x-1/2 lg:-translate-y-1/2 lg:my-5 m-auto border-primary lg:rounded-3xl py-2.5" >
+                <section className="w-11/12 lg:w-4/5 rounded-xl lg:rounded-3xl border-4 bg-white absolute top-1/2 lg:top-3/4 left-1/2 -translate-y-1/4 -translate-x-1/2 lg:-translate-x-1/2 lg:-translate-y-1/2 lg:my-5 m-auto border-primary py-2.5" >
                     <h2 className="aldrich-regular text-2xl lg:text-4xl text-center text-primary lg:m-4">
                         Apply as Talents
                     <button onClick={togglePopup} className='w-8 h-8 lg:w-12 lg:h-12 float-end top-2.5'>
                         <img src={close} alt="" />
                     </button>
                     </h2>
-                <form action="" onSubmit={handleSubmit} className="grid grid-cols-1 grid-rows-13 lg:grid-cols-2 lg:grid-rows-7 lg:grid-flow-col lg:rounded-3xl m-auto gap-1 p-5 lg:gap-2.5">
+                <form action="" onSubmit={handleSubmit} className="grid grid-cols-1 grid-rows-13 lg:grid-cols-2 lg:grid-rows-7 lg:grid-flow-col lg:rounded-3xl m-auto gap-1 px-5 lg:gap-2.5">
                     
                     <div className="box text-left">
                         <p className="text-sm lg:text-2xl aldrich-regular">Enter your name
@@ -173,6 +173,21 @@ function Header() {
                             <span className='  text-red-600'>*</span>
                         </p>
                         <input type="number" className="input lg:input-box"  value={age} onChange={(e) => setAge(e.target.value)}  required  />
+                    </div>
+                    <div className="box text-left ">
+                        <p className="text-sm lg:text-2xl aldrich-regular">Select Your Gender
+                            <span className='  text-red-600'>*</span>
+                        </p>
+                        <div className="w-full flex gap-5 lg:mt-5">
+                    <div className="w-1/2 flex items-center gap-5">
+                        <input type='radio' name='male' className="h-5 w-5" required />
+                        <label htmlFor="" className='text-sm lg:text-2xl aldrich-regular'>Male</label>
+                    </div>
+                    <div className="w-1/2 flex items-center gap-5">
+                        <input type="radio" name='female' className="h-5 w-5" required />
+                        <label htmlFor="" className='text-sm lg:text-2xl aldrich-regular'>Female</label>
+                    </div>
+                </div>
                     </div>
                     <div className="box text-left">
                         <p className="text-sm lg:text-2xl aldrich-regular">Enter your Address
@@ -213,20 +228,20 @@ function Header() {
                         <p className="text-sm lg:text-2xl aldrich-regular">Upload your Driving licence</p>
                         <input type="file" className=" file-input lg:file-input-box  rounded-lg bg-whit border-2  border-primary lg:rounded-xl file:p-1 lg:file:h-12 file:border-0 file:bg-slate-900 file:text-white file:right-0 file:float-end lg:file:px-2 lg:file:py-0  file:m-0 "  onChange={handleDLUpload}  required  />
                     </div>
-                    <div className="box lg:row-span-4 lg:w-480 place-content-center text-left">
-                    <label htmlFor="terms&conditions" className='aldrich-regular lg:mt-2 text-xl flex items-center gap-2.5 '>
-                    <input type="checkbox" name="termsandcondition" id="" className='h-5 w-5'/>
-                    Term & Conditions
-                </label>
+                    <div className="box lg:row-span-3 lg:w-480 place-content-center text-left">
+                    <label htmlFor="terms&conditions" className='aldrich-regular lg:leading-5 lg:w-full lg:mt-2  text-base lg:text-xl flex items-center justify-start gap-2.5 m-auto '>
+                        <input type="checkbox" name="termsandcondition" id="" className='lg:h-5 lg:w-5' required/>
+                        Term & Conditions
+                    </label>
                         <p className="inter text-xs lg:text-base text-justify">
                         1.Your payment will be processed and sent to you within 5 working days <br />
                         2.Any issues encountered during the work may result in a proportional deduction from the payment <br />
                         3.we will not be held responsible for any disputes or complications that may occur between you and the event organizers. <br />
                         4.Please ensure you arrived on time and are properly attiredz <br />
                         </p>
-                        <button type="submit" className="btn iceberg-regular bg-primary mx-auto my-5 text-xl lg:text-4xl">
+                        <button type="submit" className="btn h-10 lg:h-auto iceberg-regular bg-primary mx-auto my-5 text-xl lg:text-4xl">
                             Apply  now
-                            <img src={icon} alt="" />
+                            <img src={icon} alt="" className='h-9 lg:h-12' />
                         </button>
                     </div>
                 </form>

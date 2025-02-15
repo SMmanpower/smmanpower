@@ -15,7 +15,9 @@ function Navbar() {
                 <a href="#about" className="text-center">About us</a>
             </li>
             <li className="my-4 py-4">
-                <a href="" className="text-center">Apply</a>
+                <button className="text-center border-none outline-none">
+                    Apply
+                </button>
             </li>
             <li className="my-4 py-4">
                 <a href="#booking" className="text-center">Booking</a>
@@ -45,7 +47,9 @@ function Navbar() {
                         <a href="#about" className="text-center aldrich-regular lg:text-2xl">About us</a>
                     </li>
                     <li className="my-4 py-4">
-                        <a href="" className="text-center aldrich-regular lg:text-2xl">Apply</a>
+                        <button className="text-center border-none outline-none aldrich-regular lg:text-2xl">
+                            Apply
+                        </button>
                     </li>
                     <li className="my-4 py-4">
                         <a href="#booking" className="text-center aldrich-regular lg:text-2xl">Booking</a>
@@ -62,7 +66,6 @@ function Navbar() {
                 {click ? <FaTimes className='h-9 w-9 float-end'/> : <CiMenuFries className='h-9 w-9 '/>}
             </button>
         </nav>
-    {/* </section> */}
     </>
   )
 }

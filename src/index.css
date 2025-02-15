@@ -69,10 +69,45 @@
       padding-left: 20px;
       font-size: 18px;
 }
+    .input-sm
+    {
+      height: 35px;
+      width: 100%;
+      background-color: #D9D9D9BF;
+      outline: none;
+      border: 2px solid #F8743C;
+      border-radius: 10px;
+      font-family: "Inter", serif;
+      font-optical-sizing: auto;
+      font-weight: 400;
+      font-style: normal;
+      padding-left: 10px;
+      font-size: 18px;
+      -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      -ms-border-radius: 10px;
+      -o-border-radius: 10px;
+}
+    .input-small
+    {
+      height: 48px;
+      width: 100%;
+      background-color: #D9D9D9BF;
+      outline: none;
+      margin-top: 6px;
+      border: 1px solid #F8743C;
+      border-radius: 10px;
+      font-family: "Inter", serif;
+      font-optical-sizing: auto;
+      font-weight: 400;
+      font-style: normal;
+      padding-left: 20px;
+      font-size: 18px;
+}
     .input
     {
       height: 35px;
-      width: 90%;
+      width: 100%;
       background-color: #D9D9D9BF;
       outline: none;
       border: 2px solid #F8743C;
@@ -107,12 +142,13 @@
       -ms-border-radius: 10px;
       -o-border-radius: 10px;
       line-height: 48px;
+      padding-left: 20px;
       
 }
     .file-input
     {
       height: 35px;
-      width: 90%;
+      width: 100%;
       background-color: #fff;
       outline: none;
       border: 2px solid #F8743C;
@@ -121,11 +157,13 @@
       font-optical-sizing: auto;
       font-weight: 400;
       font-style: normal;
-      font-size: 18px;
+      font-size: 16px;
+      line-height: 35px;
       -webkit-border-radius: 10px;
       -moz-border-radius: 10px;
       -ms-border-radius: 10px;
       -o-border-radius: 10px;
+      padding-left: 10px;
 }
     .search-box
     {

@@ -55,7 +55,7 @@ function Footer() {
                 <p className="aldrich-regular text-2xl  lg:text-3xl text-center">
                     Follow as on social media
                 </p>
-                <div className="flex justify-center items-center gap-5 lg:gap-9 lg:my-5">
+                <div className="flex lg:justify-center justify-evenly items-center gap-5 lg:gap-9 lg:my-5">
                     <a href="http://">
                         <img src={whatsapp} alt="" className="h-10 lg:h-12" />
                     </a>
@@ -79,7 +79,7 @@ function Footer() {
        
     </section>
     {isPopupOpen && (
-            <section className="w-4/5 p-2.5 lg:w-600 h-fit fixed lg:p-5 bg-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-3/4 border-2 rounded-3xl border-primary ">
+            <section className="w-11/12 p-2.5 lg:w-600 h-fit fixed lg:p-5 bg-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-3/4 border-2 rounded-3xl border-primary ">
                 <h1 className="aldrich-regular text-center flex items-center justify-between lg:w-500 m-auto text-primary text-3xl">
                 <div className="">  </div>
                     Welcome admin
@@ -88,17 +88,17 @@ function Footer() {
                         </button>
                 </h1>
                 <form action="" className="m-auto my-2.5">
-                    <div className="box text-left mt-2.5 w-480 m-auto">
+                    <div className="box text-left mt-2.5 m-auto">
                         <p className="text-sm lg:text-2xl aldrich-regular">Login ID</p>
-                        <input type="text" className="input lg:input-box lg:min-w-450" />
+                        <input type="text" className="h-10 input lg:input-box lg:min-w-450" />
                     </div>
-                    <div className="box text-left mt-2.5 w-480 m-auto">
+                    <div className="box text-left mt-2.5 m-auto">
                         <p className="text-sm lg:text-2xl aldrich-regular">Password</p>
-                        <input type="password" className="input lg:input-box" />
+                        <input type="password" className="h-10 input lg:input-box" />
                     </div>
-                        <button type="submit" className="btn lg:h-fit iceberg-regular bg-primary mx-auto my-5 text-xl lg:text-4xl">
+                        <button type="submit" className="btn px-2.5 lg:h-fit iceberg-regular bg-primary mx-auto my-5 text-2xl lg:text-4xl">
                             Login
-                            <img src={icon} alt="" className='h-8 w-8' />
+                            <img src={icon} alt="" className='h-9 lg:h-auto' />
                         </button>
                 </form>
             </section>
