@@ -12,10 +12,11 @@ function Header() {
         setIsPopupOpen(!isPopupOpen);
     }
     // -----------------BACK END ----------//
-    const [name,setName] = useState("");
+       const [name,setName] = useState("");
         const [contact_number,setContactNo] = useState("");
         const [work,setWorkType] = useState("");
         const [age,setAge] = useState("");
+        const [gender,setGender] = useState("");
         const [address,setAddress] = useState("");
         const [experience,setExperience] = useState("");
         const [upi_number,setUPINumber] = useState("");
@@ -74,6 +75,7 @@ function Header() {
                 name,
                 contact_number,
                 age,
+                gender,
                 work,
                 address,
                 experience,
@@ -109,6 +111,7 @@ function Header() {
                     setName("");
                     setContactNo("");
                     setAge("");
+                    setGender("");
                     setWorkType("");
                     setAddress("");
                     setExperience("");
@@ -180,11 +183,11 @@ function Header() {
                         </p>
                         <div className="w-full flex gap-5 lg:mt-5">
                     <div className="w-1/2 flex items-center gap-5">
-                        <input type='radio' name='male' className="h-5 w-5" required />
+                        <input type='radio' name='male' className="h-5 w-5" value={gender} onChange={(e) => setGender(e.target.value)}/>
                         <label htmlFor="" className='text-sm lg:text-2xl aldrich-regular'>Male</label>
                     </div>
                     <div className="w-1/2 flex items-center gap-5">
-                        <input type="radio" name='female' className="h-5 w-5" required />
+                        <input type="radio" name='female' className="h-5 w-5"   required />
                         <label htmlFor="" className='text-sm lg:text-2xl aldrich-regular'>Female</label>
                     </div>
                 </div>
