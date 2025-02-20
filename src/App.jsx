@@ -19,7 +19,7 @@ function App() {
       <Contactus/>
       <Footer/>
        {/* <Admin/> */}
-      {/* <WorkerTable/> */}
+       {/*<WorkerTable/> */}
     </>
   )
 }
