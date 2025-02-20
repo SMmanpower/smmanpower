@@ -12,103 +12,121 @@ function BookingForm() {
     const [salary, setSalary] = useState("");
     const [start_date, setStartdate] = useState("");
     const [end_date, setEndDate] = useState("");
-    const [fileUrl, setFileUrl] = useState(""); 
+    const [termsAccepted, setTermsAccepted] = useState(false);
 
-  const fileInputRef = useRef(null);
+    const fileInputRef = useRef(null);
 
-  const handleFileUpload = async (file) => {
-    try {
-      if (!file) throw new Error("No file selected for upload");
-
-      console.log("Uploading File:", file);
-
-      const response = await fetch(
-        "https://vdtwit6wib.execute-api.ap-south-1.amazonaws.com/prod/Sm_serviceBooking",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            fileName: file.name,
-            fileType: file.type,
-          }),
+    const handleFileUpload = async (file) => {
+      try {
+        if (!file) throw new Error("No file selected for upload");
+    
+        console.log("Uploading File:", file);
+    
+        const response = await fetch(
+          "https://vdtwit6wib.execute-api.ap-south-1.amazonaws.com/prod/Sm_serviceBooking",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              fileName: file.name,
+              fileType: file.type,
+            }),
+          }
+        );
+    
+        if (!response.ok) {
+          throw new Error(`Failed to get pre-signed URL: ${response.statusText}`);
         }
-      );
-
-      if (!response.ok) {
-        throw new Error(`Failed to get pre-signed URL: ${response.statusText}`);
+    
+        const data = await response.json();
+        console.log("Pre-signed URL Response:", data);
+    
+        if (!data.uploadURL || !data.fileUrl) {
+          throw new Error("Invalid pre-signed URL response");
+        }
+    
+        const uploadResponse = await fetch(data.uploadURL, {
+          method: "PUT",
+          body: file,
+          headers: { "Content-Type": file.type },
+        });
+    
+        if (!uploadResponse.ok) {
+          throw new Error(`Failed to upload file: ${uploadResponse.statusText}`);
+        }
+    
+        console.log("File successfully uploaded to S3:", data.fileUrl);
+    
+        return data.fileUrl;  
+      } catch (error) {
+        console.error("Error uploading file:", error);
+        Swal.fire("Error", error.message, "error");
+        return null;
       }
+    };
+    
+    const handleSubmit = async (event) => {
+      event.preventDefault();
 
-      const data = await response.json();
-      console.log("Pre-signed URL Response:", data);
-
-      if (!data.uploadURL || !data.fileUrl) {
-        throw new Error("Invalid pre-signed URL response");
-      }
-
-      const uploadResponse = await fetch(data.uploadURL, {
-        method: "PUT",
-        body: file,
-        headers: { "Content-Type": file.type },
-      });
-
-      if (!uploadResponse.ok) {
-        throw new Error(`Failed to upload file: ${uploadResponse.statusText}`);
-      }
-
-      console.log("File successfully uploaded to S3:", data.fileUrl);
-      setFileUrl(data.fileUrl); 
-
-      return data.fileUrl;
-    } catch (error) {
-      console.error("Error uploading file:", error);
-      Swal.fire("Error", error.message, "error");
-      return null;
-    }
-  };
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    const file = fileInputRef.current.files[0];
-
-    if (!file) {
-      Swal.fire("Error", "Please select a file to upload", "error");
-      return;
-    }
-
-    console.log("Selected File:", file);
-
-    try {
-      const uploadedFileUrl = await handleFileUpload(file);
-
-      if (!uploadedFileUrl) {
-        Swal.fire("Error", "File upload failed", "error");
+      const startDateTime = new Date(start_date);
+      const endDateTime = new Date(end_date);
+  
+      if (endDateTime <= startDateTime) {
+        Swal.fire(
+          "Error",
+          "Event ending date and time must be after event starting date and time",
+          "error"
+        );
         return;
       }
-
-      const formData = {
-        name,
-        contact_number,
-        work,
-        place_of_event,
-        salary,
-        employees_required_male,
-        employees_required_female,
-        start_date,
-        end_date,
-        proof_url: uploadedFileUrl, 
-      };
-
-      console.log("Form Data Before Submit:", formData);
-
-      const bookingResponse = await axios.post(
-        "https://vdtwit6wib.execute-api.ap-south-1.amazonaws.com/prod/SM_booking_details",
-        formData,
-        {
-          headers: { "Content-Type": "application/json" },
+  
+      if (!termsAccepted) {
+        Swal.fire("Error", "Please accept the Terms and Conditions", "error");
+        return;
+      }
+  
+    
+      const file = fileInputRef.current.files[0];
+    
+      if (!file) {
+        Swal.fire("Error", "Please select a file to upload", "error");
+        return;
+      }
+    
+      console.log("Selected File:", file);
+    
+      try {
+        const uploadedFileUrl = await handleFileUpload(file);
+    
+        if (!uploadedFileUrl) {
+          Swal.fire("Error", "File upload failed", "error");
+          return;
         }
-      );
-     if (bookingResponse.status === 200 || bookingResponse.status === 201) {
+    
+        const formData = {
+          name,
+          contact_number,
+          work,
+          place_of_event,
+          salary,
+          employees_required_male,
+          employees_required_female,
+          start_date,
+          end_date,
+          proof_url: uploadedFileUrl,  
+        };
+    
+        // console.log("Form Data Before Submit:", formData);
+    
+        const bookingResponse = await axios.post(
+          "https://vdtwit6wib.execute-api.ap-south-1.amazonaws.com/prod/SM_booking_details",
+          formData,
+          {
+            headers: { "Content-Type": "application/json" },
+          }
+        );
+      
+  if (bookingResponse.status === 200 || bookingResponse.status === 201) {
         Swal.fire("Your Booking Was Sent Successfully", "", "success").then(
           () => {
             setName("");
@@ -119,8 +137,8 @@ function BookingForm() {
             setEndDate("");
             setSalary("");
             setEmployeesNoMale("");
-            setEmployeesNoFemale("");
-            setFileUrl(""); 
+            setEmployeesNoFemale(""); 
+            setTermsAccepted(false);
             if (fileInputRef.current) {
               fileInputRef.current.value = null;
             }
@@ -139,9 +157,6 @@ function BookingForm() {
     }
   };
 
- 
-
-    
   return (
     <>
     <section className="container w-full m-auto lg:px-8" id='booking'>
@@ -197,7 +212,7 @@ function BookingForm() {
             </div>
             <div className="box row-span-3 w-11/12 m-auto  lg: mt-2 lg:w-4/5 text-left">
                 <label htmlFor="terms&conditions" className='aldrich-regular lg:leading-5 lg:w-full lg:mt-2  text-base lg:text-xl flex items-stretch gap-2.5 m-auto '>
-                    <input type="checkbox" name="termsandcondition" id="" className='lg:h-5 lg:w-5' required/>
+                    <input type="checkbox" name="termsandcondition" id="" className='lg:h-5 lg:w-5' checked={termsAccepted} onChange={(e) => setTermsAccepted(e.target.checked)} required/>
                     Term & Conditions
                 </label>
                 <p className="inter text-xs lg:w-4/5 lg:mt-2 lg:text-base text-justify">

@@ -217,7 +217,7 @@ function WorkerTable() {
                                 <th className="aldrich-regular border-r-2 border-black">Work type</th>
                                 <th className="aldrich-regular border-r-2 border-black">Experience</th>
                                 <th className="aldrich-regular border-r-2 border-black">Age</th>
-                                <th className="aldrich-regular border-r-2 border-black">Aadhar no</th>
+                                <th className="aldrich-regular border-r-2 border-black">Aadhar Proof</th>
                                 <th className="aldrich-regular border-r-2 border-black">Photo</th>
                                 <th className="aldrich-regular border-r-2 border-black">UPI ID</th>
                                 <th className="aldrich-regular border-r-2 border-black">
@@ -247,7 +247,7 @@ function WorkerTable() {
                                         <td className="aldrich-regular text-lg text-center border-r-2 border-black text-primary">{worker.experience?.S}</td>
                                         <td className="aldrich-regular text-lg text-center border-r-2 border-black text-primary">{worker.age?.S}</td>
                                         <td className="aldrich-regular text-lg text-center border-r-2 border-black text-primary">
-                                        <img src={worker.aadhar_proof?.S||aadhar_proof } alt="" className="w-16 h-16 rounded"  onClick={() => handleImageClick(worker.aadhar_proof?.S)}/></td>
+                                        <img src={worker.aadhar_proof?.S} alt="" className="w-16 h-16 rounded"  onClick={() => handleImageClick(worker.aadhar_proof?.S)}/></td>
                                         <td className="aldrich-regular text-lg text-center border-r-2 border-black text-primary">
                                             <img src={worker.photo?.S|| photo} alt="" className="w-16 h-16 rounded" onClick={() => handleImageClick(worker.photo?.S)} /></td>
                                         <td className="aldrich-regular text-lg text-center border-r-2 border-black text-primary">{worker.upi_number?.S}</td>

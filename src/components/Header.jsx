@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import icon from '../assets/Circled_Right.png'
 import close from '../assets/Close.png'
 import vector from '../assets/shared_workspace.png'
@@ -21,29 +21,41 @@ function Header() {
         const [experience,setExperience] = useState("");
         const [upi_number,setUPINumber] = useState("");
         const [aadhar_proof,setAadharProof] = useState(null);
-        const [drivinglisence,setDL_proof] = useState(null);
-        const [photo,setPhoto] = useState(null);
-       
-        const handleFileUpload = async (file, setFileUrl) => {
-            if (!file) return;
+        const [driving_license,setDL_proof] = useState(null);
+        const [photo,setPhoto] = useState(null);  
+        const [termsAccepted, setTermsAccepted] = useState(false);
+            const fileInputRef = useRef(null);
         
+        const handleFileUpload = async (file) => {
             try {
-                console.log("Uploading File:", file.name);
+                if (!file) {
+                    throw new Error("No file selected for upload");
+                }
         
-                const response = await fetch("https://vdtwit6wib.execute-api.ap-south-1.amazonaws.com/prod/Sm_serviceBooking", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                        fileName: file.name,
-                        fileType: file.type,
-                    }),
-                });
+                console.log("Uploading File:", file);
+        
+                const response = await fetch(
+                    "https://vdtwit6wib.execute-api.ap-south-1.amazonaws.com/prod/Sm_serviceBooking",
+                    {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                            fileName: file.name,
+                            fileType: file.type,
+                        }),
+                    }
+                );
+                console.log("Sending File Upload Request:", { fileName: file.name, fileType: file.type });
+
+                if (!response.ok) {
+                    throw new Error(`Failed to get pre-signed URL: ${response.statusText}`);
+                }
         
                 const data = await response.json();
                 console.log("Pre-signed URL Response:", data);
         
-                if (!data.uploadURL || !data.fileKey) {
-                    throw new Error("Failed to get upload URL");
+                if (!data.uploadURL || !data.fileUrl) {
+                    throw new Error("Invalid pre-signed URL response");
                 }
         
                 const uploadResponse = await fetch(data.uploadURL, {
@@ -56,47 +68,84 @@ function Header() {
                     throw new Error(`Failed to upload file: ${uploadResponse.statusText}`);
                 }
         
-                console.log("File successfully uploaded to S3:", data.fileKey);
-                setFileUrl(data.fileKey); 
-        
+                console.log("File successfully uploaded to S3:", data.fileUrl);
+                return data.fileUrl; 
             } catch (error) {
                 console.error("Error uploading file:", error);
+                Swal.fire("Error", error.message, "error");
+                return null; 
             }
         };
         
-        const handlePhotoUpload = (e) => handleFileUpload(e.target.files[0], setPhoto);
-        const handleAadharUpload = (e) => handleFileUpload(e.target.files[0], setAadharProof);
-        const handleDLUpload = (e) => handleFileUpload(e.target.files[0], setDL_proof);
+        const handlePhotoUpload = async (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const url = await handleFileUpload(file);
+                setPhoto(url);
+            }
+        };
         
+        const handleAadharUpload = async (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const url = await handleFileUpload(file);
+                setAadharProof(url);
+            }
+        };
+        
+        const handleDLUpload = async (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const url = await handleFileUpload(file);
+                setDL_proof(url);
+            }
+        };
+        
+                  
+        const photoInputRef = useRef(null);
+        const aadharInputRef = useRef(null);
+        const dlInputRef = useRef(null);
+
         const handleSubmit = async (event) => {
             event.preventDefault();
         
-            const requestData = {
-                name,
-                contact_number,
-                age,
-                gender,
-                work,
-                address,
-                experience,
-                upi_number,
-                photo,         
-                aadhar_proof,  
-                drivinglisence,
-            };
-        
-            console.log("Applied data:", requestData);
+            if (!termsAccepted) {
+                Swal.fire("Error", "Please accept the Terms and Conditions", "error");
+                return;
+            }
         
             try {
+                const uploadedPhotoUrl = photo && typeof photo === "string" && photo.startsWith("http") ? photo : await handleFileUpload(photo);
+                const uploadedAadharUrl = aadhar_proof && typeof aadhar_proof === "string" && aadhar_proof.startsWith("http") ? aadhar_proof : await handleFileUpload(aadhar_proof);
+                const uploadedDLUrl = driving_license && typeof driving_license === "string" && driving_license.startsWith("http") ? driving_license : (driving_license ? await handleFileUpload(driving_license) : null);
+
+                if (!uploadedPhotoUrl || !uploadedAadharUrl) {
+                    Swal.fire("Error", "File upload failed", "error");
+                    return;
+                }
+        
+                const employeeFormData = {
+                    name,
+                    contact_number,
+                    age,
+                    work,
+                    address,
+                    experience,
+                    upi_number,
+                    driving_license: uploadedDLUrl,
+                    photo: uploadedPhotoUrl,
+                    aadhar_proof: uploadedAadharUrl,
+                };
+        
                 const ApplicationResponse = await axios.post(
-                    'https://vdtwit6wib.execute-api.ap-south-1.amazonaws.com/prod/SM_application_detail',
-                    requestData,
-                    { headers: { 'Content-Type': 'application/json' } }
+                    "https://vdtwit6wib.execute-api.ap-south-1.amazonaws.com/prod/SM_application_detail",
+                    employeeFormData,
+                    { headers: { "Content-Type": "application/json" } }
                 );
         
-                console.log("Server Response:", ApplicationResponse);
-        
-        if (ApplicationResponse?.status === 200 || ApplicationResponse?.status === 201) {
+                // console.log("Server Response:", ApplicationResponse);
+                
+              if (ApplicationResponse?.status === 200 || ApplicationResponse?.status === 201) {
                 Swal.fire({
                   title: "Your Application Was Sent Successfully",
                   icon: "success",
@@ -107,27 +156,31 @@ function Header() {
                     actions: "popup-action",
                   },
                 }).then(() => {
-                  
-                    setName("");
-                    setContactNo("");
-                    setAge("");
-                    setGender("");
-                    setWorkType("");
-                    setAddress("");
-                    setExperience("");
-                    setUPINumber("");
-                    setPhoto(null);
-                    setAadharProof(null);
-                    setDL_proof(null);
+                  setName("");
+                  setContactNo("");
+                  setAge("");
+                  setGender("");
+                  setWorkType("");
+                  setAddress("");
+                  setExperience("");
+                  setUPINumber("");
+                  setPhoto(null);
+                  setAadharProof(null);
+                  setDL_proof(null);
+                  setTermsAccepted(false);
+                if (photoInputRef.current) photoInputRef.current.value = "";
+                if (aadharInputRef.current) aadharInputRef.current.value = "";
+                if (dlInputRef.current) dlInputRef.current.value = "";
                 });
               } else {
-                Swal.fire('Error', 'Booking failed: ' + (ApplicationResponse.data.message || ApplicationResponse.data), 'error');
+                Swal.fire("Error", "Booking failed: " + (ApplicationResponse.data.message || ApplicationResponse.data), "error");
               }
-        
-           } catch (error) {
-            console.error("Error during Booking:",error);
-           }
-    }
+            } catch (error) {
+                console.error("Error submitting form:", error);
+                Swal.fire("Error", "An error occurred while submitting the form.", "error");
+            }
+          };
+          
   return (
     <>
     <section className="header-main container flex flex-row flex-wrap lg:m-auto justify-center items-center lg:flex-nowrap" id='home'>
@@ -183,11 +236,11 @@ function Header() {
                         </p>
                         <div className="w-full flex gap-5 lg:mt-5">
                     <div className="w-1/2 flex items-center gap-5">
-                        <input type='radio' name='male' className="h-5 w-5" value={gender} onChange={(e) => setGender(e.target.value)}/>
+                        <input type='radio'  className="h-5 w-5" name="gender" value="Male" checked={gender === "Male"} onChange={(e) => setGender(e.target.value)}  required/>
                         <label htmlFor="" className='text-sm lg:text-2xl aldrich-regular'>Male</label>
                     </div>
                     <div className="w-1/2 flex items-center gap-5">
-                        <input type="radio" name='female' className="h-5 w-5"   required />
+                        <input type="radio" className="h-5 w-5"   name="gender" value="Female" checked={gender === "Female"} onChange={(e) => setGender(e.target.value)}  required />
                         <label htmlFor="" className='text-sm lg:text-2xl aldrich-regular'>Female</label>
                     </div>
                 </div>
@@ -219,21 +272,21 @@ function Header() {
                         <p className="text-sm lg:text-2xl aldrich-regular">Upload your Full size photo
                             <span className='  text-red-600'>*</span>
                         </p>
-                        <input type="file" className=" file-input lg:file-input-box  rounded-lg bg-whit border-2  border-primary lg:rounded-xl file:p-1 lg:file:h-12 file:border-0 file:bg-slate-900 file:text-white file:right-0 file:float-end lg:file:px-2 lg:file:py-0  file:m-0" onChange={handlePhotoUpload}  required  />
+                        <input ref={photoInputRef}  accept="image/*"  type="file" className=" file-input lg:file-input-box  rounded-lg bg-whit border-2  border-primary lg:rounded-xl file:p-1 lg:file:h-12 file:border-0 file:bg-slate-900 file:text-white file:right-0 file:float-end lg:file:px-2 lg:file:py-0  file:m-0" onChange={handlePhotoUpload}  required  />
                     </div>
                     <div className="box text-left">
                         <p className="text-sm lg:text-2xl aldrich-regular">Adhara photo
                             <span className='  text-red-600'>*</span>
                         </p>
-                        <input type="file" className=" file-input lg:file-input-box  rounded-lg bg-whit border-2  border-primary lg:rounded-xl file:p-1 lg:file:h-12 file:border-0 file:bg-slate-900 file:text-white file:right-0 file:float-end lg:file:px-2 lg:file:py-0  file:m-0"  onChange={handleAadharUpload} required />
+                        <input type="file" ref={aadharInputRef}  accept="image/*"  className=" file-input lg:file-input-box  rounded-lg bg-whit border-2  border-primary lg:rounded-xl file:p-1 lg:file:h-12 file:border-0 file:bg-slate-900 file:text-white file:right-0 file:float-end lg:file:px-2 lg:file:py-0  file:m-0"  onChange={handleAadharUpload} required />
                     </div>
                     <div className="box text-left">
                         <p className="text-sm lg:text-2xl aldrich-regular">Upload your Driving licence</p>
-                        <input type="file" className=" file-input lg:file-input-box  rounded-lg bg-whit border-2  border-primary lg:rounded-xl file:p-1 lg:file:h-12 file:border-0 file:bg-slate-900 file:text-white file:right-0 file:float-end lg:file:px-2 lg:file:py-0  file:m-0 "  onChange={handleDLUpload}  required  />
+                        <input type="file" ref={dlInputRef}  accept="image/*"  className=" file-input lg:file-input-box  rounded-lg bg-whit border-2  border-primary lg:rounded-xl file:p-1 lg:file:h-12 file:border-0 file:bg-slate-900 file:text-white file:right-0 file:float-end lg:file:px-2 lg:file:py-0  file:m-0 "  onChange={handleDLUpload}    />
                     </div>
                     <div className="box lg:row-span-3 lg:w-480 place-content-center text-left">
                     <label htmlFor="terms&conditions" className='aldrich-regular lg:leading-5 lg:w-full lg:mt-2  text-base lg:text-xl flex items-center justify-start gap-2.5 m-auto '>
-                        <input type="checkbox" name="termsandcondition" id="" className='lg:h-5 lg:w-5' required/>
+                        <input type="checkbox" name="termsandcondition" id="" className='lg:h-5 lg:w-5' checked={termsAccepted} onChange={(e) => setTermsAccepted(e.target.checked)} required/>
                         Term & Conditions
                     </label>
                         <p className="inter text-xs lg:text-base text-justify">

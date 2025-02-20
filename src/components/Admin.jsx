@@ -63,6 +63,7 @@ function Admin() {
                                 <th className="aldrich-regular border-r-2 border-black">Salary amount</th>
                                 <th className="aldrich-regular border-r-2 border-black">Event Starting date</th>
                                 <th className="aldrich-regular border-r-2 border-black">Event End date</th>
+                                <th className="aldrich-regular border-r-2 border-black">Proof</th>
                                 <th className="aldrich-regular border-r-2 border-black">Assume employee</th>
                             </tr>
                         </thead>
@@ -82,6 +83,8 @@ function Admin() {
                                         <td className="aldrich-regular text-lg text-center border-r-2 border-black text-primary">{booking.salary?.S}</td>
                                         <td className="aldrich-regular text-lg text-center border-r-2 border-black text-primary">{booking.start_date?.S}</td>
                                         <td className="aldrich-regular text-lg text-center border-r-2 border-black text-primary">{booking.end_date?.S}</td>
+                                        <td className="aldrich-regular text-lg text-center border-r-2 border-black text-primary">
+                                        <img src={booking.proof_url?.S}  alt="" className="w-16 h-16 rounded" ></img></td>
                                         <td className="flex items-center justify-center p-1 xl:gap-2.5 border-black">
                                             {booking.status === "approved" ? (
                                                 <span className="approve">Approved</span>
