@@ -68,18 +68,30 @@ function BookingForm() {
     const handleSubmit = async (event) => {
       event.preventDefault();
 
+      const now = new Date();
       const startDateTime = new Date(start_date);
       const endDateTime = new Date(end_date);
-  
-      if (endDateTime <= startDateTime) {
-        Swal.fire(
-          "Error",
-          "Event ending date and time must be after event starting date and time",
-          "error"
-        );
+    
+      if (startDateTime < now) {
+        Swal.fire("Error", "Event start date must be not be today .", "error");
         return;
       }
-  
+    
+      if (startDateTime.toDateString() === endDateTime.toDateString()) {
+        if (endDateTime <= startDateTime) {
+          Swal.fire(
+            "Error",
+            "When the start and end date are the same, the end time must be after the start time.",
+            "error"
+          );
+          return;
+        }
+      } else if (endDateTime < startDateTime) {
+        Swal.fire("Error", "End date must be after the start date.", "error");
+        return;
+      }
+    
+      
       if (!termsAccepted) {
         Swal.fire("Error", "Please accept the Terms and Conditions", "error");
         return;
@@ -186,11 +198,15 @@ function BookingForm() {
                 <div className="w-full flex gap-5">
                     <div className="w-1/2">
                         <label htmlFor="" className='text-sm lg:text-2xl aldrich-regular'>Male:</label>
-                        <input type="number" className="input lg:input-box" value={employees_required_male} onChange={(e) => setEmployeesNoMale(e.target.value)} required />
+                        <input type="number" className="input lg:input-box" value={employees_required_male} onBlur={(e) => {
+                                    if (e.target.value === "") setEmployeesNoMale("0");
+                                  }}  onChange={(e) => setEmployeesNoMale(e.target.value)} required />
                     </div>
                     <div className="w-1/2">
                         <label htmlFor="" className='text-sm lg:text-2xl aldrich-regular'>Female:</label>
-                        <input type="number" className="input lg:input-box" value={employees_required_female} onChange={(e) => setEmployeesNoFemale(e.target.value)} required />
+                        <input type="number" className="input lg:input-box" value={employees_required_female}onBlur={(e) => {
+                                  if (e.target.value === "") setEmployeesNoFemale("0");
+                                }}  onChange={(e) => setEmployeesNoFemale(e.target.value)} required />
                     </div>
                 </div>
             </div>

@@ -55,7 +55,7 @@ function AssumeEmploye() {
                                 <td className="aldrich-regular text-lg text-center border-r-2 border-black text-primary">{apply.work?.S}</td>
                                 <td className="aldrich-regular text-lg text-center border-r-2 border-black text-primary">{apply.experience?.S}</td>
                                 <td className="aldrich-regular text-lg text-center border-r-2 border-black text-primary">
-                                    <img src={apply.photo} alt="Employee" className="w-16 h-16 rounded" />
+                                    <img src={apply.photo?.S} alt="" className="w-16 h-16 rounded" />
                                 </td>
                                 <td className="flex items-center justify-center p-1 xl:gap-2.5 border-black">
                                     {apply.status === "approved" ? ( 

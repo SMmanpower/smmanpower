@@ -131,6 +131,7 @@ function Header() {
                     work,
                     address,
                     experience,
+                    gender,
                     upi_number,
                     driving_license: uploadedDLUrl,
                     photo: uploadedPhotoUrl,
