@@ -13,28 +13,28 @@ function Footer() {
         }
   return (
     <>
-    <section className="w-full bg-footer text-center lg:text-left pt-4 lg:h-400 lg:py-5">
-        <button onClick={togglePopup} className=" wallpoet-regular w-fit text-3xl text-center lg:text-5xl lg:text-left lg:ml-10 lg:mt-2.5">
+    <section className="w-full bg-footer text-center sm:text-left pt-4 sm:h-400 sm:py-5">
+        <button onClick={togglePopup} className=" wallpoet-regular w-fit text-3xl text-center sm:text-5xl sm:text-left sm:ml-10 sm:mt-2.5">
             SM Manpower
         </button>
         
-        <footer className="lg:flex justify-center items-center p-2 lg:px-10 lg:py-4 gap-5">
-            <div className="box lg:w-1/3 lg:p-4 lg:border-r-4 border-black">
-                <p className="aldrich-regular text-2xl text-center lg:text-3xl lg:text-left w-60 lg:w-300 m-auto lg:mt-1.5">Email</p>
-                <li className='w-60 lg:w-300 m-auto list-none '>
-                    <a href="mailto:manpowerservicessm@gmail.com" className="inter text-lg lg:text-xl w-200 lg:text-left text-center m-auto">manpowerservicessm@gmail.com</a>
+        <footer className="sm:flex justify-center items-center p-2 sm:px-10 sm:py-4 gap-5">
+            <div className="box sm:w-1/3 sm:p-4 sm:border-r-4 border-black">
+                <p className="aldrich-regular text-2xl text-center sm:text-3xl sm:text-left w-60 sm:w-300 m-auto sm:mt-1.5">Email</p>
+                <li className='w-60 sm:w-300 m-auto list-none '>
+                    <a href="mailto:manpowerservicessm@gmail.com" className="inter text-sm sm:text-xl w-200 sm:text-left text-center m-auto">manpowerservicessm@gmail.com</a>
                 </li>
-                <p className="aldrich-regular text-2xl lg:text-3xl text-center lg:text-left w-60 lg:w-300 m-auto lg:mt-1.5">Phone No</p>
-                <li className="w-60 lg:w-300 m-auto list-none lg:text-left text-center">
-                    <a href="tel:+917867993525" className="inter text-lg lg:text-xl lg:text-left text-center lg:w-300 m-auto">+91 7867993525</a>
+                <p className="aldrich-regular text-2xl sm:text-3xl text-center sm:text-left w-60 sm:w-300 m-auto sm:mt-1.5">Phone No</p>
+                <li className="w-60 sm:w-300 m-auto list-none sm:text-left text-center">
+                    <a href="tel:+917867993525" className="inter text-sm sm:text-xl sm:text-left text-center sm:w-300 m-auto">+91 7867993525</a>
                 </li>
-                <p className="aldrich-regular text-2xl lg:text-3xl lg:text-left text-center w-60 lg:w-300 m-auto mt-1.5">Adderss</p>
-                <p className="inter w-60 lg:w-300 m-auto text-lg lg:text-xl lg:text-left text-center">
+                <p className="aldrich-regular text-2xl sm:text-3xl sm:text-left text-center w-60 sm:w-300 m-auto mt-1.5">Adderss</p>
+                <p className="inter w-60 sm:w-300 m-auto text-sm sm:text-xl sm:text-left text-center">
                     ATR Complex Pudukkottai Main 
                     Road,Pudukkottai-613301 
                 </p>
             </div>
-            <div className="box hidden lg:block lg:w-1/3 border-r-4 border-black">
+            <div className="box hidden sm:block sm:w-1/3 border-r-4 border-black">
                 <li className='list-none py-2 text-left w-200 m-auto'>
                     <a href="#home" className="aldrich-regular text-3xl text-center">Home</a>
                 </li>
@@ -51,22 +51,22 @@ function Footer() {
                     <a href="#contact" className="aldrich-regular text-3xl text-center">Contact us</a>
                 </li>
             </div>
-            <div className="box w-fit border-t-2 border-white lg:border-t-0 lg:w-1/3 lg:h-200 m-auto">
-                <p className="aldrich-regular text-2xl  lg:text-3xl text-center">
+            <div className="box w-fit border-t-2 border-white sm:border-t-0 sm:w-1/3 sm:h-200 m-auto">
+                <p className="aldrich-regular text-2xl  sm:text-3xl text-center">
                     Follow as on social media
                 </p>
-                <div className="flex lg:justify-center justify-evenly items-center gap-5 lg:gap-9 lg:my-5">
+                <div className="flex sm:justify-center justify-evenly items-center gap-5 sm:gap-9 sm:my-5">
                     <a href="http://">
-                        <img src={whatsapp} alt="" className="h-10 lg:h-12" />
+                        <img src={whatsapp} alt="" className="h-10 sm:h-12" />
                     </a>
                     <a href="http://">
-                        <img src={instagram} alt="" className="h-10 lg:h-12" />
+                        <img src={instagram} alt="" className="h-10 sm:h-12" />
                     </a>
                     <a href="http://">
-                        <img src={facebook} alt="" className="h-10 lg:h-12" />
+                        <img src={facebook} alt="" className="h-10 sm:h-12" />
                     </a>
                     <a href="http://">
-                        <img src={x} alt="" className="h-10 lg:h-12" />
+                        <img src={x} alt="" className="h-10 sm:h-12" />
                     </a>
                 </div>
             </div>
@@ -79,26 +79,26 @@ function Footer() {
        
     </section>
     {isPopupOpen && (
-            <section className="w-11/12 p-2.5 lg:w-600 h-fit fixed lg:p-5 bg-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-3/4 border-2 rounded-3xl border-primary ">
-                <h1 className="aldrich-regular text-center flex items-center justify-between lg:w-500 m-auto text-primary text-3xl">
+            <section className="w-11/12 p-2.5 sm:w-600 h-fit fixed sm:p-5 bg-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-3/4 border-2 rounded-3xl border-primary ">
+                <h1 className="aldrich-regular text-center flex items-center justify-between sm:w-500 m-auto text-primary text-3xl">
                 <div className="">  </div>
                     Welcome admin
-                        <button onClick={togglePopup} className='w-8 h-18 lg:w-12 lg:h-12 items-end '>
+                        <button onClick={togglePopup} className='w-8 h-18 sm:w-12 sm:h-12 items-end '>
                             <img src={close} alt="" />
                         </button>
                 </h1>
                 <form action="" className="m-auto my-2.5">
                     <div className="box text-left mt-2.5 m-auto">
-                        <p className="text-sm lg:text-2xl aldrich-regular">Login ID</p>
-                        <input type="text" className="h-10 input lg:input-box lg:min-w-450" />
+                        <p className="text-sm sm:text-2xl aldrich-regular">Login ID</p>
+                        <input type="text" className="h-10 input sm:input-box sm:min-w-450" />
                     </div>
                     <div className="box text-left mt-2.5 m-auto">
-                        <p className="text-sm lg:text-2xl aldrich-regular">Password</p>
-                        <input type="password" className="h-10 input lg:input-box" />
+                        <p className="text-sm sm:text-2xl aldrich-regular">Password</p>
+                        <input type="password" className="h-10 input sm:input-box" />
                     </div>
-                        <button type="submit" className="btn px-2.5 lg:h-fit iceberg-regular bg-primary mx-auto my-5 text-2xl lg:text-4xl">
+                        <button type="submit" className="btn px-2.5 sm:h-fit iceberg-regular bg-primary mx-auto my-5 text-2xl sm:text-4xl">
                             Login
-                            <img src={icon} alt="" className='h-9 lg:h-auto' />
+                            <img src={icon} alt="" className='h-9 sm:h-auto' />
                         </button>
                 </form>
             </section>
