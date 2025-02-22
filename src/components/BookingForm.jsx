@@ -80,12 +80,14 @@ function BookingForm() {
       const now = new Date();
       const startDateTime = new Date(start_date);
       const endDateTime = new Date(end_date);
-    
-      if (startDateTime < now) {
-        Swal.fire("Error", "Event start date must be not be today .", "error");
+      
+      const minStartDateTime = new Date(now.getTime() + 5 * 60 * 60 * 1000);
+      
+      if (startDateTime < minStartDateTime) {
+        Swal.fire("Error", "Event start time must be at least 5 hours after the current time.", "error");
         return;
       }
-    
+      
       if (startDateTime.toDateString() === endDateTime.toDateString()) {
         if (endDateTime <= startDateTime) {
           Swal.fire(
@@ -99,7 +101,7 @@ function BookingForm() {
         Swal.fire("Error", "End date must be after the start date.", "error");
         return;
       }
-    
+      
       
       if (!termsAccepted) {
         Swal.fire("Error", "Please accept the Terms and Conditions", "error");
@@ -145,8 +147,8 @@ function BookingForm() {
             setStartdate("");
             setEndDate("");
             setSalary("");
-            setEmployeesNoMale("");
-            setEmployeesNoFemale(""); 
+            setEmployeesNoMale("0");
+            setEmployeesNoFemale("0"); 
             setTermsAccepted(false);
             if (fileInputRef.current) {
               fileInputRef.current.value = null;
@@ -176,7 +178,7 @@ function BookingForm() {
             </div>
             <div className="box text-left w-11/12 sm:w-4/5 h-fit">
                 <p className="text-sm sm:text-2xl aldrich-regular">Contact no <span className=' text-red-600'>*</span></p>
-                <input type="number" className="input sm:input-box" value={contact_number} onChange={(e) => setContactNo(e.target.value)} required />
+                <input type="number" className="input sm:input-box" value={contact_number} onChange={(e) => setContactNo(e.target.value.slice(0, 10))} required />
             </div>
             
             <div className="box text-left w-11/12 sm:w-4/5 h-fit">
@@ -221,7 +223,7 @@ function BookingForm() {
                     <input type="checkbox" name="termsandcondition" id="" className='sm:h-5 sm:w-5' checked={termsAccepted} onChange={(e) => setTermsAccepted(e.target.checked)} required/>
                     Term & Conditions
                 </label>
-                <p className="inter text-xs sm:w-4/5 sm:mt-2 sm:text-base text-justify">
+                <p className="inter text-xs sm:w- 4/5 sm:mt-2 sm:text-base text-justify">
                 1. Payment is expected within three working days. Failure to pay may result in legal proceedings. <br />
                 2. We'll send over the employees but you'll need to handle the coordination and  supervision. <br />
                 3. We will not be held responsible for any disputes or complications that may occur between you and the employees. <br />
