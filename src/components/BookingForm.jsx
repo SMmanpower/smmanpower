@@ -174,15 +174,9 @@ function BookingForm() {
                 <p className="text-sm sm:text-2xl aldrich-regular">Enter your name <span className=' text-red-600'>*</span></p>
                 <input type="text" className="input sm:input-box" value={name} onChange={(e) => setName(e.target.value)}  required/>
             </div>
-<<<<<<< HEAD
-            <div className="box text-left w-11/12 lg:w-4/5 h-fit">
-                <p className="text-sm lg:text-2xl aldrich-regular">Contact no <span className=' text-red-600'>*</span></p>
-                <input type="number"  maxLength={10} className="input lg:input-box" value={contact_number} onChange={(e) => setContactNo(e.target.value)} required />
-=======
             <div className="box text-left w-11/12 sm:w-4/5 h-fit">
                 <p className="text-sm sm:text-2xl aldrich-regular">Contact no <span className=' text-red-600'>*</span></p>
                 <input type="number" className="input sm:input-box" value={contact_number} onChange={(e) => setContactNo(e.target.value)} required />
->>>>>>> 217d3fa2a49f9b32d0bc4659635824312074e738
             </div>
             
             <div className="box text-left w-11/12 sm:w-4/5 h-fit">
@@ -197,7 +191,6 @@ function BookingForm() {
                 <p className="text-sm sm:text-2xl aldrich-regular"> Enter your required employees no <span className=' text-red-600'>*</span> </p>
                 <div className="w-full flex gap-5">
                     <div className="w-1/2">
-<<<<<<< HEAD
                         <label htmlFor="" className='text-sm lg:text-2xl aldrich-regular'>Male:</label>
                         <input type="number" className="input lg:input-box" value={employees_required_male}  onChange={(e) => setEmployeesNoMale(e.target.value|| "0")} required />
                     </div>
@@ -210,24 +203,6 @@ function BookingForm() {
             <div className="box text-left w-11/12 lg:w-4/5 h-fit">
                 <p className="text-sm lg:text-2xl aldrich-regular">Enter Salary amount for per employee <span className=' text-red-600'>*</span></p>
                 <input type="number" className="input lg:input-box" min={500} value={salary} onChange={(e) => setSalary(e.target.value)}  required/>
-=======
-                        <label htmlFor="" className='text-sm sm:text-2xl aldrich-regular'>Male:</label>
-                        <input type="number" className="input sm:input-box" value={employees_required_male} onBlur={(e) => {
-                                    if (e.target.value === "") setEmployeesNoMale("0");
-                                  }}  onChange={(e) => setEmployeesNoMale(e.target.value)} required />
-                    </div>
-                    <div className="w-1/2">
-                        <label htmlFor="" className='text-sm sm:text-2xl aldrich-regular'>Female:</label>
-                        <input type="number" className="input sm:input-box" value={employees_required_female}onBlur={(e) => {
-                                  if (e.target.value === "") setEmployeesNoFemale("0");
-                                }}  onChange={(e) => setEmployeesNoFemale(e.target.value)} required />
-                    </div>
-                </div>
-            </div>
-            <div className="box text-left w-11/12 sm:w-4/5 h-fit">
-                <p className="text-sm sm:text-2xl aldrich-regular">Enter Salary amount for employees <span className=' text-red-600'>*</span></p>
-                <input type="number" className="input sm:input-box" min={500} value={salary} onChange={(e) => setSalary(e.target.value)}  required/>
->>>>>>> 217d3fa2a49f9b32d0bc4659635824312074e738
             </div>
             <div className="box text-left w-11/12 sm:w-4/5 h-fit">
                 <p className="text-sm sm:text-2xl aldrich-regular">Event starting date <span className=' text-red-600'>*</span></p>
@@ -237,15 +212,9 @@ function BookingForm() {
                 <p className="text-sm sm:text-2xl aldrich-regular">Event Ending  date <span className='   text-red-600'>*</span></p>
                 <input type="datetime-local" className="input sm:input-box" value={end_date} onChange={(e) => setEndDate(e.target.value)} required />
             </div>
-<<<<<<< HEAD
             <div className="box text-left w-11/12 lg:w-4/5 h-fit">
                 <p className="text-sm lg:text-2xl aldrich-regular">Upload The Company Proof <span className='  text-red-600'>*</span></p>
                 <input ref={fileInputRef} type='file'  onChange={handleFileChange} accept="image/*" name="proof" className=" file-input lg:file-input-box  rounded-lg bg-whit border-2  border-primary lg:rounded-xl file:p-1 lg:file:h-12 file:border-0 file:bg-slate-900 file:text-white file:right-0 file:float-end lg:file:px-2 lg:file:py-0  file:m-0"  required />
-=======
-            <div className="box text-left w-11/12 sm:w-4/5 h-fit">
-                <p className="text-sm sm:text-2xl aldrich-regular">Upload The Company Proof <span className='  text-red-600'>*</span></p>
-                <input ref={fileInputRef} type='file' accept="image/*" name="proof" className=" file-input sm:file-input-box  rounded-sm bg-whit border-2  border-primary sm:rounded-xl file:p-1 sm:file:h-12 file:border-0 file:bg-slate-900 file:text-white file:right-0 file:float-end sm:file:px-2 sm:file:py-0  file:m-0"  required />
->>>>>>> 217d3fa2a49f9b32d0bc4659635824312074e738
             </div>
             <div className="box row-span-3 w-11/12 m-auto  sm: mt-2 sm:w-4/5 text-left">
                 <label htmlFor="terms&conditions" className='aldrich-regular sm:leading-5 sm:w-full sm:mt-2  text-base sm:text-xl flex items-stretch gap-2.5 m-auto '>
