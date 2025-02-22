@@ -45,14 +45,14 @@ function Header() {
                         }),
                     }
                 );
-                console.log("Sending File Upload Request:", { fileName: file.name, fileType: file.type });
+                // console.log("Sending File Upload Request:", { fileName: file.name, fileType: file.type });
 
                 if (!response.ok) {
                     throw new Error(`Failed to get pre-signed URL: ${response.statusText}`);
                 }
         
                 const data = await response.json();
-                console.log("Pre-signed URL Response:", data);
+                // console.log("Pre-signed URL Response:", data);
         
                 if (!data.uploadURL || !data.fileUrl) {
                     throw new Error("Invalid pre-signed URL response");
@@ -68,7 +68,7 @@ function Header() {
                     throw new Error(`Failed to upload file: ${uploadResponse.statusText}`);
                 }
         
-                console.log("File successfully uploaded to S3:", data.fileUrl);
+                // console.log("File successfully uploaded to S3:", data.fileUrl);
                 return data.fileUrl; 
             } catch (error) {
                 console.error("Error uploading file:", error);

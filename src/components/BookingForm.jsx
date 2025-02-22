@@ -7,20 +7,29 @@ function BookingForm() {
     const [contact_number, setContactNo] = useState("");
     const [work, setWorkDetail] = useState("");
     const [place_of_event, setWorkPlace] = useState("");
-    const [employees_required_female, setEmployeesNoFemale] = useState("");
-    const [employees_required_male, setEmployeesNoMale] = useState("");
+    const [employees_required_female, setEmployeesNoFemale] = useState("0");
+    const [employees_required_male, setEmployeesNoMale] = useState("0");
     const [salary, setSalary] = useState("");
     const [start_date, setStartdate] = useState("");
     const [end_date, setEndDate] = useState("");
     const [termsAccepted, setTermsAccepted] = useState(false);
-
+    const [uploadedFileUrl, setUploadedFileUrl] = useState("");
     const fileInputRef = useRef(null);
+
+    const handleFileChange = async (event) => {
+      const file = event.target.files[0];
+      if (file) {
+          const url = await handleFileUpload(file);
+          if (url) {
+              setUploadedFileUrl(url);
+          }
+      }
+  };
+  
 
     const handleFileUpload = async (file) => {
       try {
-        if (!file) throw new Error("No file selected for upload");
-    
-        console.log("Uploading File:", file);
+        // console.log("Uploading File:", file);
     
         const response = await fetch(
           "https://vdtwit6wib.execute-api.ap-south-1.amazonaws.com/prod/Sm_serviceBooking",
@@ -39,7 +48,7 @@ function BookingForm() {
         }
     
         const data = await response.json();
-        console.log("Pre-signed URL Response:", data);
+        // console.log("Pre-signed URL Response:", data);
     
         if (!data.uploadURL || !data.fileUrl) {
           throw new Error("Invalid pre-signed URL response");
@@ -55,7 +64,7 @@ function BookingForm() {
           throw new Error(`Failed to upload file: ${uploadResponse.statusText}`);
         }
     
-        console.log("File successfully uploaded to S3:", data.fileUrl);
+        // console.log("File successfully uploaded to S3:", data.fileUrl);
     
         return data.fileUrl;  
       } catch (error) {
@@ -96,20 +105,8 @@ function BookingForm() {
         Swal.fire("Error", "Please accept the Terms and Conditions", "error");
         return;
       }
-  
-    
-      const file = fileInputRef.current.files[0];
-    
-      if (!file) {
-        Swal.fire("Error", "Please select a file to upload", "error");
-        return;
-      }
-    
-      console.log("Selected File:", file);
-    
-      try {
-        const uploadedFileUrl = await handleFileUpload(file);
-    
+      
+      // console.log("Selected File:", file);    
         if (!uploadedFileUrl) {
           Swal.fire("Error", "File upload failed", "error");
           return;
@@ -163,10 +160,7 @@ function BookingForm() {
           "error"
         );
       }
-    } catch (error) {
-      console.error("Error during Booking:", error);
-      Swal.fire("Error", "Failed to send booking request", "error");
-    }
+   
   };
 
   return (
@@ -182,7 +176,7 @@ function BookingForm() {
             </div>
             <div className="box text-left w-11/12 lg:w-4/5 h-fit">
                 <p className="text-sm lg:text-2xl aldrich-regular">Contact no <span className=' text-red-600'>*</span></p>
-                <input type="number" className="input lg:input-box" value={contact_number} onChange={(e) => setContactNo(e.target.value)} required />
+                <input type="number"  maxLength={10} className="input lg:input-box" value={contact_number} onChange={(e) => setContactNo(e.target.value)} required />
             </div>
             
             <div className="box text-left w-11/12 lg:w-4/5 h-fit">
@@ -198,20 +192,16 @@ function BookingForm() {
                 <div className="w-full flex gap-5">
                     <div className="w-1/2">
                         <label htmlFor="" className='text-sm lg:text-2xl aldrich-regular'>Male:</label>
-                        <input type="number" className="input lg:input-box" value={employees_required_male} onBlur={(e) => {
-                                    if (e.target.value === "") setEmployeesNoMale("0");
-                                  }}  onChange={(e) => setEmployeesNoMale(e.target.value)} required />
+                        <input type="number" className="input lg:input-box" value={employees_required_male}  onChange={(e) => setEmployeesNoMale(e.target.value|| "0")} required />
                     </div>
                     <div className="w-1/2">
                         <label htmlFor="" className='text-sm lg:text-2xl aldrich-regular'>Female:</label>
-                        <input type="number" className="input lg:input-box" value={employees_required_female}onBlur={(e) => {
-                                  if (e.target.value === "") setEmployeesNoFemale("0");
-                                }}  onChange={(e) => setEmployeesNoFemale(e.target.value)} required />
+                        <input type="number" className="input lg:input-box" value={employees_required_female} onChange={(e) => setEmployeesNoFemale(e.target.value|| "0")} required />
                     </div>
                 </div>
             </div>
             <div className="box text-left w-11/12 lg:w-4/5 h-fit">
-                <p className="text-sm lg:text-2xl aldrich-regular">Enter Salary amount for employees <span className=' text-red-600'>*</span></p>
+                <p className="text-sm lg:text-2xl aldrich-regular">Enter Salary amount for per employee <span className=' text-red-600'>*</span></p>
                 <input type="number" className="input lg:input-box" min={500} value={salary} onChange={(e) => setSalary(e.target.value)}  required/>
             </div>
             <div className="box text-left w-11/12 lg:w-4/5 h-fit">
@@ -224,7 +214,7 @@ function BookingForm() {
             </div>
             <div className="box text-left w-11/12 lg:w-4/5 h-fit">
                 <p className="text-sm lg:text-2xl aldrich-regular">Upload The Company Proof <span className='  text-red-600'>*</span></p>
-                <input ref={fileInputRef} type='file' accept="image/*" name="proof" className=" file-input lg:file-input-box  rounded-lg bg-whit border-2  border-primary lg:rounded-xl file:p-1 lg:file:h-12 file:border-0 file:bg-slate-900 file:text-white file:right-0 file:float-end lg:file:px-2 lg:file:py-0  file:m-0"  required />
+                <input ref={fileInputRef} type='file'  onChange={handleFileChange} accept="image/*" name="proof" className=" file-input lg:file-input-box  rounded-lg bg-whit border-2  border-primary lg:rounded-xl file:p-1 lg:file:h-12 file:border-0 file:bg-slate-900 file:text-white file:right-0 file:float-end lg:file:px-2 lg:file:py-0  file:m-0"  required />
             </div>
             <div className="box row-span-3 w-11/12 m-auto  lg: mt-2 lg:w-4/5 text-left">
                 <label htmlFor="terms&conditions" className='aldrich-regular lg:leading-5 lg:w-full lg:mt-2  text-base lg:text-xl flex items-stretch gap-2.5 m-auto '>

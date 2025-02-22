@@ -10,7 +10,7 @@ function AssumeEmploye() {
     useEffect(() => {
         const fetchemployess_data = async () => {
             try {
-                const response = await axios.get('https://vdtwit6wib.execute-api.ap-south-1.amazonaws.com/prod/SM_application_detail'); 
+                const response = await axios.get('https://vdtwit6wib.execute-api.ap-south-1.amazonaws.com/prod/Sm_serviceBooking'); 
                 setEmployeesData(response.data.employees_data);
 
                 console.log("API response data:", response.data);
@@ -34,11 +34,14 @@ function AssumeEmploye() {
                     <tr>
                         <th className="aldrich-regular border-r-2 border-black">Name</th>
                         <th className="aldrich-regular border-r-2 border-black">Contact no</th>
-                        <th className="aldrich-regular border-r-2 border-black">Address</th>
+                        <th className="aldrich-regular border-r-2 border-black">Address
+                            <img src={decline}  className='w-8' alt="" />
+                        </th>
+                        <th className="aldrich-regular border-r-2 border-black">Gender  <img src={decline}  className='w-8' alt="" /></th>
                         <th className="aldrich-regular border-r-2 border-black">Work details</th>
                         <th className="aldrich-regular border-r-2 border-black">Experience of Work</th>
                         <th className="aldrich-regular border-r-2 border-black">Photo</th>
-                        <th className="aldrich-regular border-r-2 border-black">Assume employee</th>
+                        <th className="aldrich-regular border-r-2 border-black">Assume employee <img src={decline}  className='w-8' alt="" /> <img src={assumed}  className='w-10' alt="" /></th>
                     </tr>
                 </thead>
                 {error ? (
@@ -52,10 +55,11 @@ function AssumeEmploye() {
                                 <td className="aldrich-regular text-lg text-center border-r-2 border-black text-primary">{apply.name?.S}</td>
                                 <td className="aldrich-regular text-lg text-center border-r-2 border-black text-primary">{apply.contact_number?.S}</td>
                                 <td className="aldrich-regular text-lg text-center border-r-2 border-black text-primary">{apply.address?.S}</td>
+                                <td className="aldrich-regular text-lg text-center border-r-2 border-black text-primary">{apply.gender?.S}</td>
                                 <td className="aldrich-regular text-lg text-center border-r-2 border-black text-primary">{apply.work?.S}</td>
                                 <td className="aldrich-regular text-lg text-center border-r-2 border-black text-primary">{apply.experience?.S}</td>
                                 <td className="aldrich-regular text-lg text-center border-r-2 border-black text-primary">
-                                    <img src={apply.photo?.S} alt="" className="w-16 h-16 rounded" />
+                                    <img src={apply.photo_url?.S} alt="" className="w-16 h-16 rounded" />
                                 </td>
                                 <td className="flex items-center justify-center p-1 xl:gap-2.5 border-black">
                                     {apply.status === "approved" ? ( 

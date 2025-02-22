@@ -59,7 +59,8 @@ function Admin() {
                                 <th className="aldrich-regular border-r-2 border-black">Contact no</th>
                                 <th className="aldrich-regular border-r-2 border-black">Work details</th>
                                 <th className="aldrich-regular border-r-2 border-black">Place of the Event</th>
-                                <th className="aldrich-regular border-r-2 border-black">No of Employees</th>
+                                <th className="aldrich-regular border-r-2 border-black">No of Employees Male</th>
+                                <th className="aldrich-regular border-r-2 border-black">No of Employees Female</th>
                                 <th className="aldrich-regular border-r-2 border-black">Salary amount</th>
                                 <th className="aldrich-regular border-r-2 border-black">Event Starting date</th>
                                 <th className="aldrich-regular border-r-2 border-black">Event End date</th>
@@ -79,7 +80,8 @@ function Admin() {
                                         <td className="aldrich-regular text-lg text-center border-r-2 border-black text-primary">{booking.contact_number?.S}</td>
                                         <td className="aldrich-regular text-lg text-center border-r-2 border-black text-primary">{booking.work?.S}</td>
                                         <td className="aldrich-regular text-lg text-center border-r-2 border-black text-primary">{booking.place_of_event?.S}</td>
-                                        <td className="aldrich-regular text-lg text-center border-r-2 border-black text-primary">{booking.employees_required?.S}</td>
+                                        <td className="aldrich-regular text-lg text-center border-r-2 border-black text-primary">{booking.employees_required_male?.S}</td>
+                                        <td className="aldrich-regular text-lg text-center border-r-2 border-black text-primary">{booking.employees_required_female?.S}</td>
                                         <td className="aldrich-regular text-lg text-center border-r-2 border-black text-primary">{booking.salary?.S}</td>
                                         <td className="aldrich-regular text-lg text-center border-r-2 border-black text-primary">{booking.start_date?.S}</td>
                                         <td className="aldrich-regular text-lg text-center border-r-2 border-black text-primary">{booking.end_date?.S}</td>
@@ -114,3 +116,4 @@ function Admin() {
 }
 
 export default Admin;
+
