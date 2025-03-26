@@ -1,27 +1,28 @@
+import { Buffer } from 'buffer';
+window.Buffer = Buffer;
+import { BrowserRouter,Routes,Route,Navigate} from 'react-router-dom'
 import './App.css'
-import Aboutus from './components/Aboutus'
+import Home from './components/Home'
+import ProtectedRoute from './components/ProtectedRoute';
 import Admin from './components/Admin'
-import BookingForm from './components/BookingForm'
-import Contactus from './components/Contactus'
-import Footer from './components/Footer'
-import Header from './components/Header'
-import Navbar from './components/Navbar'
 import WorkerTable from './components/WorkerTable'
 
 function App() {
 
   return (
     <>
-      {/* <Navbar/>
-      <Header/>
-      <Aboutus/>
-      <BookingForm/>
-      <Contactus/>
-      <Footer/> */}
-       <Admin/>
-       {/*<WorkerTable/> */}
+      <BrowserRouter>
+      <Routes>
+         <Route path='/' element={<Home/>}/>
+         <Route path="/admin" element={<ProtectedRoute><Admin /></ProtectedRoute>} /> 
+         <Route path='/workers'  element={<WorkerTable/>}/>
+         <Route path="*" element={<Navigate to="/" />} />
+      </Routes>
+      </BrowserRouter>
     </>
   )
 }
 
 export default App
+
+

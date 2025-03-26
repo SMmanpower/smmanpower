@@ -3,14 +3,16 @@ import whatsapp from '../assets/WhatsApp.png'
 import facebook from '../assets/Facebook.png'
 import instagram from '../assets/Instagram.png'
 import x from '../assets/X.png'
-import icon from '../assets/Circled_Right.png'
 import close from '../assets/Close.png'
+import Login from './Login'
 function Footer() {
         const [isPopupOpen,setIsPopupOpen] = useState(false);
     
         const togglePopup =()=>{
             setIsPopupOpen(!isPopupOpen);
         }
+
+      
   return (
     <>
     <section className="w-full bg-footer text-center sm:text-left pt-4 sm:h-400 sm:py-5">
@@ -87,20 +89,7 @@ function Footer() {
                             <img src={close} alt="" />
                         </button>
                 </h1>
-                <form action="" className="m-auto my-2.5">
-                    <div className="box text-left mt-2.5 m-auto">
-                        <p className="text-sm sm:text-2xl aldrich-regular">Login ID</p>
-                        <input type="text" className="h-10 input sm:input-box sm:min-w-450" />
-                    </div>
-                    <div className="box text-left mt-2.5 m-auto">
-                        <p className="text-sm sm:text-2xl aldrich-regular">Password</p>
-                        <input type="password" className="h-10 input sm:input-box" />
-                    </div>
-                        <button type="submit" className="btn px-2.5 sm:h-fit iceberg-regular bg-primary mx-auto my-5 text-2xl sm:text-4xl">
-                            Login
-                            <img src={icon} alt="" className='h-9 sm:h-auto' />
-                        </button>
-                </form>
+                <Login closePopup={togglePopup} />
             </section>
         )}
     </>
