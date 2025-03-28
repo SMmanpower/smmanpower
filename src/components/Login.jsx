@@ -25,41 +25,39 @@ const Login = () => {
       Password: password,
     });
   
-    user.authenticateUser(authDetails, {
-      onSuccess: (data) => {
-        console.log('Login successful:', data);
-        localStorage.setItem('isAuthenticated', 'true'); 
-        navigate('/admin'); 
-      },
-      onFailure: (err) => {
-        console.error('Login failed:', err);
-        alert('Login failed. Please check your credentials.');
-      },
-      newPasswordRequired: (userAttributes) => {
-        console.log('New password required:', userAttributes);
+  user.authenticateUser(authDetails, {
+    onSuccess: (data) => {
+      console.log('Login successful:', data);
+      localStorage.setItem('isAuthenticated', 'true'); 
+      navigate('/admin'); 
+    },
+    onFailure: (err) => {
+      console.error('Login failed:', err);
+      alert('Login failed. Please check your credentials.');
+    },
+    newPasswordRequired: (userAttributes) => {
+      console.log('New password required:', userAttributes);
+      const newPassword = prompt('Enter your new password:');
   
-        const newPassword = prompt('Enter your new password:');
+      if (newPassword) {
+        delete userAttributes.email;
+        delete userAttributes.email_verified;
   
-        if (newPassword) {
-          delete userAttributes.email;
-          delete userAttributes.email_verified;
-  
-          user.completeNewPasswordChallenge(newPassword, userAttributes, {
-            onSuccess: (data) => {
-              console.log('Password updated successfully:', data);
-              localStorage.setItem('isAuthenticated', 'true'); 
-              navigate('/admin'); 
-            },
-            onFailure: (err) => {
-              console.error('Failed to update password:', err);
-              alert('Password update failed. Try again.');
-            },
-          });
-        }
-      },
-    });
-  };
-  
+        user.completeNewPasswordChallenge(newPassword, userAttributes, {
+          onSuccess: (data) => {
+            console.log('Password updated successfully:', data);
+            localStorage.setItem('isAuthenticated', 'true'); 
+            navigate('/admin'); 
+          },
+          onFailure: (err) => {
+            console.error('Failed to update password:', err);
+            alert('Password update failed. Try again.');
+          },
+        });
+      }
+    },
+  });  
+};
   return (
     <form action="" onSubmit={handleSubmit} className="m-auto my-2.5">
                      <div className="box text-left mt-2.5 m-auto">

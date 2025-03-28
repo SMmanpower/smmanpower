@@ -11,7 +11,7 @@ import { applyFilter } from '../AddressFilter';
 function Admin() {
     const [bookings, setBookings] = useState([]);
     const [selectedBooking, setSelectedBooking] = useState(null);
-    const [filteredEmployees, setFilteredEmployees] = useState([]);
+    // const [filteredEmployees, setFilteredEmployees] = useState([]);
     const [assignedBookings, setAssignedBookings] = useState(new Set());
 
     const [employees_data, setEmployeesData] = useState([]);
@@ -24,13 +24,16 @@ function Admin() {
     const navigate = useNavigate();
 
     const handleLogout = () => {
-        localStorage.removeItem('isAuthenticated');
-        navigate("/"); 
-    };
+        localStorage.removeItem('isAuthenticated'); 
+        navigate('/'); 
+      };
+      
 
     const handleTalentClick = () => {
         navigate("/workers"); 
     };
+
+
 
     useEffect(() => {
         const fetchBookings = async () => {
@@ -46,6 +49,8 @@ function Admin() {
         fetchBookings();
     }, []);
 
+
+
     const fetchEmployees = async (work) => {
         try {
             const response = await axios.get(
@@ -59,16 +64,18 @@ function Admin() {
             setError("Failed to fetch employee data");
         }
     };
-     const handleSearch = (e) => {
+    
+    
+    const handleSearch = (e) => {
         setSearchQuery(e.target.value.toLowerCase());
     };
-
     const displayedEmployees = employees_data.filter((employee) =>
         employee.name?.S.toLowerCase().includes(searchQuery) ||
         employee.address?.S.toLowerCase().includes(searchQuery) ||
         employee.contact_number?.S.includes(searchQuery)
     );
     
+
     const handleApplyFilter = () => {
         if (!selectedBooking || !selectedBooking.place_of_event?.S) return;
     
@@ -80,33 +87,29 @@ function Admin() {
     
             let filteredData = applyFilter(allEmployees, selectedBooking.place_of_event?.S, nextFilterLevel, searchQuery);
             setEmployeesData(filteredData);
-    console.log(selectedBooking.place_of_event);
             return nextFilterLevel;
         });
     };
-    
+
     const handleApprove = async (booking) => {
         if (!booking.place_of_event?.S || !booking.work?.S) {
-            console.log("Missing place_of_event or work:", booking);
             return;
         }
-    
-        console.log("Filtering employees for:", booking.place_of_event?.S);
-    
-        await fetchEmployees(booking.work?.S);
-        let initialFilteredData = applyFilter(allEmployees, booking.place_of_event?.S, 1);
-    
-        console.log("Filtered Data:", initialFilteredData);
-    
-        if (initialFilteredData.length === 0) {
-            console.log("No matching employees found.");
-        }
-    
-        setEmployeesData(initialFilteredData);
+        
         setSelectedBooking(booking);
         setFilterLevel(1);
-        setAssignedBookings(prev => new Set([...prev, booking.booking_id?.N]));
+    
+        await fetchEmployees(booking.work?.S);
     };
+    
+    useEffect(() => {
+        if (selectedBooking && allEmployees.length > 0) {
+            const initialFilteredData = applyFilter(allEmployees, selectedBooking.place_of_event?.S, 1);
+            setEmployeesData(initialFilteredData);
+          setAssignedBookings(prev => new Set([...prev, selectedBooking.booking_id?.N]));
+
+        }
+    }, [allEmployees, selectedBooking]);
     
 
 
@@ -118,6 +121,7 @@ const sortedBookings = [...bookings].sort((a, b) => {
     
     return aAssigned - bAssigned || idSort;
 });
+
 
     const handleDelete = async (bookingId) => {
         if (!bookingId) {
@@ -150,7 +154,9 @@ const sortedBookings = [...bookings].sort((a, b) => {
             }
         }
     };
+
     
+
     return (
         <>
             <section className="w-full">
@@ -227,7 +233,9 @@ const sortedBookings = [...bookings].sort((a, b) => {
                                 </div>
                             )}
                         </td>
-                    </tr>
+                </tr>
+
+
                     {selectedBooking?.booking_id?.N === booking.booking_id?.N && (
                         <tr>
                             <td colSpan="11">
@@ -306,11 +314,11 @@ const sortedBookings = [...bookings].sort((a, b) => {
     </tr>
 )}
 
-</React.Fragment>
-))}
-</tbody>
-)}
-</table>
+     </React.Fragment>
+          ))}
+         </tbody>
+            )}
+      </table>
                 </main>
             </section>
         </>

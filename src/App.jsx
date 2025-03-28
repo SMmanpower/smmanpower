@@ -15,7 +15,7 @@ function App() {
       <Routes>
          <Route path='/' element={<Home/>}/>
          <Route path="/admin" element={<ProtectedRoute><Admin /></ProtectedRoute>} /> 
-         <Route path='/workers'  element={<WorkerTable/>}/>
+         <Route path='/workers'  element={<ProtectedRoute><WorkerTable/></ProtectedRoute>}/>
          <Route path="*" element={<Navigate to="/" />} />
       </Routes>
       </BrowserRouter>

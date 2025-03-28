@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import jsPDF from "jspdf";
@@ -15,6 +16,14 @@ function WorkerTable() {
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedImage, setSelectedImage] = useState(null);
     // --------------------fetch the data-------------
+    
+    const navigate = useNavigate();
+    
+        const handleLogout = () => {
+            localStorage.removeItem('isAuthenticated'); 
+            navigate('/'); 
+          };
+    
     useEffect(() => {
         const fetchWorkers = async () => {
             try {
@@ -186,7 +195,7 @@ function WorkerTable() {
                             Welcome admin
                         </p>
                         <div className="w-full flex justify-end gap-5">
-                            <button className="btn h-12 bg-primary iceberg-regular xl:text-2xl">
+                            <button onClick={handleLogout} className="btn h-12 bg-primary iceberg-regular xl:text-2xl">
                                 Logout <img src={icon} alt="" className="rotate-180" />
                             </button>
                         </div>
