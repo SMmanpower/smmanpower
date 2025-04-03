@@ -276,7 +276,7 @@ function Header() {
                         <input ref={photoInputRef}  accept="image/*"  type="file" className=" file-input sm:file-input-box  rounded-sm bg-whit border-2  border-primary sm:rounded-xl file:p-1 sm:file:h-12 file:border-0 file:bg-slate-900 file:text-white file:right-0 file:float-end sm:file:px-2 sm:file:py-0  file:m-0" onChange={handlePhotoUpload}  required  />
                     </div>
                     <div className="box text-left">
-                        <p className="text-sm sm:text-2xl aldrich-regular">Adhara photo
+                        <p className="text-sm sm:text-2xl aldrich-regular">Aadhara photo
                             <span className='  text-red-600'>*</span>
                         </p>
                         <input type="file" ref={aadharInputRef}  accept="image/*"  className=" file-input sm:file-input-box  rounded-sm bg-whit border-2  border-primary sm:rounded-xl file:p-1 sm:file:h-12 file:border-0 file:bg-slate-900 file:text-white file:right-0 file:float-end sm:file:px-2 sm:file:py-0  file:m-0"  onChange={handleAadharUpload} required />

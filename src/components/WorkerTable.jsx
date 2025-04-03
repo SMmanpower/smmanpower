@@ -30,7 +30,7 @@ function WorkerTable() {
                 const response = await axios.get('https://vdtwit6wib.execute-api.ap-south-1.amazonaws.com/prod/SM_application_detail'); 
                 setWorkers(response.data.workers);
 
-                console.log("API response data:", response.data);
+                // console.log("API response data:", response.data);
                 const workerData = Array.isArray(response.data.data)
                   ? response.data.data
                   : [];
@@ -106,7 +106,7 @@ function WorkerTable() {
             return;
         }
     
-        console.log("Selected Worker Data:", JSON.stringify(worker, null, 2)); 
+        // console.log("Selected Worker Data:", JSON.stringify(worker, null, 2)); 
     
         const doc = new jsPDF();
         doc.setFontSize(18);
@@ -142,7 +142,7 @@ function WorkerTable() {
                     reader.readAsDataURL(blob);
                 });
             } catch (error) {
-                console.error("Error loading image:", imageUrl, error);
+                console.error("Error loading image:", error);
                 return null;
             }
         };
@@ -226,7 +226,6 @@ function WorkerTable() {
                                 <th className="aldrich-regular border-r-2 border-black">Work type</th>
                                 <th className="aldrich-regular border-r-2 border-black">Experience</th>
                                 <th className="aldrich-regular border-r-2 border-black">Age</th>
-                                <th className="aldrich-regular border-r-2 border-black">Aadhar Proof</th>
                                 <th className="aldrich-regular border-r-2 border-black">Photo</th>
                                 <th className="aldrich-regular border-r-2 border-black">UPI ID</th>
                                 <th className="aldrich-regular border-r-2 border-black">
@@ -256,9 +255,7 @@ function WorkerTable() {
                                         <td className="aldrich-regular text-lg text-center border-r-2 border-black text-primary">{worker.experience?.S}</td>
                                         <td className="aldrich-regular text-lg text-center border-r-2 border-black text-primary">{worker.age?.S}</td>
                                         <td className="aldrich-regular text-lg text-center border-r-2 border-black text-primary">
-                                        <img src={worker.aadhar_proof?.S} alt="" className="w-16 h-16 rounded"  onClick={() => handleImageClick(worker.aadhar_proof?.S)}/></td>
-                                        <td className="aldrich-regular text-lg text-center border-r-2 border-black text-primary">
-                                            <img src={worker.photo?.S|| photo} alt="" className="w-16 h-16 rounded" onClick={() => handleImageClick(worker.photo?.S)} /></td>
+                                            <img src={worker.photo_url?.S|| photo} alt="" className="w-16 h-16 rounded" onClick={() => handleImageClick(worker.photo_url?.S)} /></td>
                                         <td className="aldrich-regular text-lg text-center border-r-2 border-black text-primary">{worker.upi_number?.S}</td>
                                         <td className="text-center border-r-2 border-black">
                                         <button onClick={() => handleDownload(worker.apply_id?.N)}>

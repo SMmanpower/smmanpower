@@ -111,6 +111,13 @@ function Admin() {
         }
     }, [allEmployees, selectedBooking]);
     
+    const handleImageClick = (imageUrl) => {
+        setSelectedImage(imageUrl);
+    };
+
+    const closeModal = () => {
+        setSelectedImage(null);
+    };
 
 
 const sortedBookings = [...bookings].sort((a, b) => {
@@ -216,7 +223,7 @@ const sortedBookings = [...bookings].sort((a, b) => {
                         <td className="aldrich-regular text-lg text-center border-r-2 border-black text-primary">{booking.start_date?.S}</td>
                         <td className="aldrich-regular text-lg text-center border-r-2 border-black text-primary">{booking.end_date?.S}</td>
                         <td className="aldrich-regular text-lg text-center border-r-2 border-black text-primary">
-                        <img src={booking.proof_url?.S}  alt="" className="w-16 h-16 rounded" ></img></td>
+                        <img src={booking.proof_url?.S}  alt="" onClick={() => handleImageClick(booking.photo_url?.S)}  className="w-16 h-16 rounded" ></img></td>
                         <td className="flex items-center justify-center p-1 xl:gap-2.5 border-black">
                         {assignedBookings.has(booking.booking_id?.N) ? (
                                 <span className="approve">Worker Assigned</span>
@@ -320,6 +327,20 @@ const sortedBookings = [...bookings].sort((a, b) => {
             )}
       </table>
                 </main>
+                
+                {selectedImage && (
+                        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center">
+                            <div className="relative">
+                                <img src={selectedImage} alt="Zoomed" className="w-96 h-auto rounded-lg shadow-lg" />
+                                <button 
+                                    onClick={closeModal} 
+                                    className="absolute top-2 right-2 bg-white text-black px-3 py-1 rounded-full"
+                                >
+                                    X
+                                </button>
+                            </div>
+                        </div>
+                    )}
             </section>
         </>
     );
