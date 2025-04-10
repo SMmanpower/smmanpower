@@ -14,17 +14,14 @@ export const parseAddress = (address) => {
 
 export const applyFilter = (employees, selectedAddress, filterLevel, searchQuery = "") => {
     if (!Array.isArray(employees)) {
-        console.error("applyFilter Error: employees is not an array", employees);
         return [];
     }
 
     if (!selectedAddress) {
-        console.warn("No selected address, returning all employees.");
         return employees;
     }
 
     const parsedAddress = parseAddress(selectedAddress);
-    console.log("Parsed Selected Address:", parsedAddress, "Filter Level:", filterLevel);
 
     if (filterLevel === 6) {
         const searchResults = employees.filter(emp =>
@@ -33,7 +30,6 @@ export const applyFilter = (employees, selectedAddress, filterLevel, searchQuery
             emp.work?.S.toLowerCase().includes(searchQuery.toLowerCase()) ||
             emp.contact_number?.S.includes(searchQuery)
         );
-        console.log("Search Results:", searchResults);
         return searchResults;
     }
 
@@ -41,7 +37,6 @@ export const applyFilter = (employees, selectedAddress, filterLevel, searchQuery
         if (!employee.address?.S) return false;
 
         const employeeAddress = parseAddress(employee.address.S);
-        console.log("Comparing Employee Address:", employeeAddress);
 
         switch (filterLevel) {
             case 1:
@@ -75,7 +70,6 @@ export const applyFilter = (employees, selectedAddress, filterLevel, searchQuery
         }
     });
 
-    console.log("Filtered Employees Before Search:", filteredEmployees);
 
     if (searchQuery.trim()) {
         filteredEmployees = filteredEmployees.filter(emp =>
@@ -86,6 +80,5 @@ export const applyFilter = (employees, selectedAddress, filterLevel, searchQuery
         );
     }
 
-    console.log("Final Filtered Employees:", filteredEmployees);
     return filteredEmployees;
 };

@@ -6,20 +6,21 @@ import icon from '../assets/Circled_Right.png';
 import filter from '../assets/Adjust.png';
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import { applyFilter } from '../AddressFilter';
+import { applyFilter } from '../utils/AddressFilter';
+import { WhatsAppMessage } from '../utils/WhatsappAPI';
+
 
 function Admin() {
     const [bookings, setBookings] = useState([]);
     const [selectedBooking, setSelectedBooking] = useState(null);
-    // const [filteredEmployees, setFilteredEmployees] = useState([]);
-    const [assignedBookings, setAssignedBookings] = useState(new Set());
-
     const [employees_data, setEmployeesData] = useState([]);
     const [allEmployees, setAllEmployees] = useState([]);
     const [filterLevel, setFilterLevel] = useState(1);
     const [searchQuery, setSearchQuery] = useState("");
     const [showSearch, setShowSearch] = useState(false);
     const [error, setError] = useState(null);
+    const [selectedImage, setSelectedImage] = useState(null);
+    
 
     const navigate = useNavigate();
 
@@ -33,24 +34,40 @@ function Admin() {
         navigate("/workers"); 
     };
 
-
+// --------------------Fetch data ------------------------------------------------------------------------------------
 
     useEffect(() => {
         const fetchBookings = async () => {
             try {
-                const response = await axios.get('https://vdtwit6wib.execute-api.ap-south-1.amazonaws.com/prod/SM_booking_details');
+                const response = await axios.get(
+                    'https://vdtwit6wib.execute-api.ap-south-1.amazonaws.com/prod/SM_booking_details'
+                );
                 const BookingData = Array.isArray(response.data.data) ? response.data.data : [];
-                setBookings(BookingData);
+    
+                const notAssigned = BookingData
+                    .filter(b => b.status?.S !== 'Work Assigned')
+                    .sort((a, b) => {
+                        const aId = parseInt(a.booking_id?.N || "0");
+                        const bId = parseInt(b.booking_id?.N || "0");
+                        return aId - bId; 
+                    });
+    
+                const assigned = BookingData.filter(b => b.status?.S === 'Work Assigned');
+    
+                const finalSorted = [...notAssigned, ...assigned];
+    
+    
+                setBookings(finalSorted);
             } catch (error) {
-                console.error("Error fetching data:", error);
                 setError("Failed to fetch booking data");
             }
         };
+    
         fetchBookings();
     }, []);
+    
 
-
-
+    
     const fetchEmployees = async (work) => {
         try {
             const response = await axios.get(
@@ -65,7 +82,7 @@ function Admin() {
         }
     };
     
-    
+    // ---------------------------search---------------------------------------------------------------------------
     const handleSearch = (e) => {
         setSearchQuery(e.target.value.toLowerCase());
     };
@@ -74,7 +91,7 @@ function Admin() {
         employee.address?.S.toLowerCase().includes(searchQuery) ||
         employee.contact_number?.S.includes(searchQuery)
     );
-    
+    // --------------------------------address filter------------------------------------------------------------------
 
     const handleApplyFilter = () => {
         if (!selectedBooking || !selectedBooking.place_of_event?.S) return;
@@ -90,6 +107,8 @@ function Admin() {
             return nextFilterLevel;
         });
     };
+
+// =----------------------------appove in booking----------------------------------------------------------------------
 
     const handleApprove = async (booking) => {
         if (!booking.place_of_event?.S || !booking.work?.S) {
@@ -111,6 +130,8 @@ function Admin() {
         }
     }, [allEmployees, selectedBooking]);
     
+// -----------------------------image zoom ----------------------------------------------------------------------------
+
     const handleImageClick = (imageUrl) => {
         setSelectedImage(imageUrl);
     };
@@ -119,17 +140,12 @@ function Admin() {
         setSelectedImage(null);
     };
 
-
-const sortedBookings = [...bookings].sort((a, b) => {
-    const aAssigned = assignedBookings.has(a.booking_id?.N);
-    const bAssigned = assignedBookings.has(b.booking_id?.N);
+    const removeBooking = (idToRemove) => {
+        setBookings(prev => prev.filter(booking => booking.booking_id?.N !== idToRemove));
+    };
     
-    const idSort = Number(a.booking_id?.N) - Number(b.booking_id?.N);
-    
-    return aAssigned - bAssigned || idSort;
-});
 
-
+// ----------------------------- delete  booking---------------------------------------------------------------------
     const handleDelete = async (bookingId) => {
         if (!bookingId) {
             Swal.fire("Error!", "Invalid booking ID.", "error");
@@ -162,8 +178,61 @@ const sortedBookings = [...bookings].sort((a, b) => {
         }
     };
 
-    
+    // -----------------------assign employee--------------------------------------------------------------------
+    const handleAssignWork = async (apply, booking) => {
+        const raw = apply.contact_number?.S || apply.contact_number;
+        if (!raw) {
+          alert("Contact number is missing!");
+          return;
+        }
+      
+        const phone = raw.toString().replace(/\D/g, "");
+        const toPhoneNumber = `91${phone}`;
+      
+        const work = booking.work?.S || "Not specified";
+        const startTime = booking.start_date?.S || "N/A";
+        const endTime = booking.end_date?.S || "N/A";
+        const place = booking.place_of_event?.S || "N/A";
+      
+        const messageRes = await WhatsAppMessage(toPhoneNumber, work, startTime, endTime, place);
+      
+        if (messageRes.success) {
+          alert("Message sent ✅");
+      
+          const bookingId = booking.booking_id?.N;
+          if (bookingId) {
+            const updateRes = await updateBookingStatus(bookingId);
+            if (updateRes.success) {
+              console.log("Booking status updated to 'Work Assigned'");
+            } else {
+              console.error("Failed to update booking status");
+            }
+          } else {
+            console.warn("Booking ID is missing, cannot update status.");
+          }
+        } else {
+          alert("❌ Failed to send WhatsApp message.");
+          console.error(messageRes.error);
+        }
+      };
+        
 
+    // --------------------------Status of the booking------------------------------------------------------------------
+
+const updateBookingStatus = async (bookingId) => {
+  try {
+    const res = await axios.put(`https://vdtwit6wib.execute-api.ap-south-1.amazonaws.com/prod/SM_booking_details`, {
+      booking_id:bookingId,
+      status: "Work Assigned",
+    });
+    return { success: true, data: res.data };
+  } catch (error) {
+    console.error("Failed to update booking status:", error);
+    return { success: false, error };
+  }
+};
+  
+// -------------------------------------end---------------------------------------------------------------------
     return (
         <>
             <section className="w-full">
@@ -209,7 +278,7 @@ const sortedBookings = [...bookings].sort((a, b) => {
             <p>No Bookings Found!</p>
         ) : (
             <tbody>
-                {sortedBookings.map((booking) => (
+                {bookings.map((booking) => (
 
                         <React.Fragment key={booking.booking_id?.N || booking.contact_number?.S}>
                     <tr className={`border-2 border-black ${selectedBooking?.booking_id?.N === booking.booking_id?.N ? 'bg-gray-300' : ''}`}>
@@ -223,26 +292,27 @@ const sortedBookings = [...bookings].sort((a, b) => {
                         <td className="aldrich-regular text-lg text-center border-r-2 border-black text-primary">{booking.start_date?.S}</td>
                         <td className="aldrich-regular text-lg text-center border-r-2 border-black text-primary">{booking.end_date?.S}</td>
                         <td className="aldrich-regular text-lg text-center border-r-2 border-black text-primary">
-                        <img src={booking.proof_url?.S}  alt="" onClick={() => handleImageClick(booking.photo_url?.S)}  className="w-16 h-16 rounded" ></img></td>
+                        <img src={booking.proof_url?.S} className="w-16 h-16 rounded"  alt="" onClick={() => handleImageClick(booking.proof_url?.S)}  ></img></td>
                         <td className="flex items-center justify-center p-1 xl:gap-2.5 border-black">
-                        {assignedBookings.has(booking.booking_id?.N) ? (
+                        {booking.status?.S === "Work Assigned" ? (
                                 <span className="approve">Worker Assigned</span>
-                            ) : booking.status === "declined" ? (
+                            ) : booking.status?.S === "declined" ? (
                                 <span className="decline">Declined</span>
                             ) : (
                                 <div className="cheack-btns">
                                     <button onClick={() => handleDelete(booking.booking_id?.N)}>
                                         <img src={decline} alt="" className='w-10' />
                                     </button>
-                                    <button  onClick={() => handleApprove(booking)}>
+                                    <button onClick={() => handleApprove(booking)}>
                                         <img src={assumed} alt="" className='w-10' />
                                     </button>
                                 </div>
                             )}
+
                         </td>
                 </tr>
 
-
+{/* ----------------------------Employee Table --------------------------------------------------------- */}
                     {selectedBooking?.booking_id?.N === booking.booking_id?.N && (
                         <tr>
                             <td colSpan="11">
@@ -301,10 +371,10 @@ const sortedBookings = [...bookings].sort((a, b) => {
                                         <span className="decline">Declined</span>
                                     ) : (
                                         <div className="cheack-btns">
-                                            <button>
+                                            <button onClick={() => removeBooking(apply.apply_id?.N)}>
                                                 <img src={decline} alt="Decline" className='w-10' />
                                             </button>
-                                            <button>
+                                            <button onClick={() => handleAssignWork(apply,booking)}>
                                                 <img src={assumed} alt="Assume" className='w-10' />
                                             </button>
                                         </div>

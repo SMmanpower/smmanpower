@@ -12,5 +12,6 @@ export default new CognitoUserPool(poolData);
     
   
 // SMmanpoweradmin
-// manpowerservicessm@gmail.com
-// Smmanpower@2004abi
+// SMmanpower@2004
+
+

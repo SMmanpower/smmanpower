@@ -31,10 +31,10 @@ function Footer() {
                     <a href="tel:+917867993525" className="inter text-sm sm:text-xl sm:text-left text-center sm:w-300 m-auto">+91 7867993525</a>
                 </li>
                 <p className="aldrich-regular text-2xl sm:text-3xl sm:text-left text-center w-60 sm:w-300 m-auto mt-1.5">Adderss</p>
-                <p className="inter w-60 sm:w-300 m-auto text-sm sm:text-xl sm:text-left text-center">
+                {/* <p className="inter w-60 sm:w-300 m-auto text-sm sm:text-xl sm:text-left text-center">
                     ATR Complex Pudukkottai Main 
                     Road,Pudukkottai-613301 
-                </p>
+                </p> */}
             </div>
             <div className="box hidden sm:block sm:w-1/3 border-r-4 border-black">
                 <li className='list-none py-2 text-left w-200 m-auto'>

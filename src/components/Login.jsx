@@ -2,7 +2,7 @@ import icon from '../assets/Circled_Right.png'
 import React, { useState } from 'react';
 import { AuthenticationDetails, CognitoUser } from 'amazon-cognito-identity-js';
 import { useNavigate } from 'react-router-dom'; 
-import UserPool from '../../src/UserPool';
+import UserPool from '../../src/utils/UserPool';
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -33,7 +33,7 @@ const Login = () => {
     },
     onFailure: (err) => {
       console.error('Login failed:', err);
-      alert('Login failed. Please check your credentials.');
+      alert('Login failed. Please check your Password and Login Id are Correct.');
     },
     newPasswordRequired: (userAttributes) => {
       console.log('New password required:', userAttributes);
