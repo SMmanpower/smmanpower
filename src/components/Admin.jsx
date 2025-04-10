@@ -13,6 +13,7 @@ import { WhatsAppMessage } from '../utils/WhatsappAPI';
 function Admin() {
     const [bookings, setBookings] = useState([]);
     const [selectedBooking, setSelectedBooking] = useState(null);
+    const [assignedBookings, setAssignedBookings] = useState(new Set());
     const [employees_data, setEmployeesData] = useState([]);
     const [allEmployees, setAllEmployees] = useState([]);
     const [filterLevel, setFilterLevel] = useState(1);
@@ -140,10 +141,6 @@ function Admin() {
         setSelectedImage(null);
     };
 
-    const removeBooking = (idToRemove) => {
-        setBookings(prev => prev.filter(booking => booking.booking_id?.N !== idToRemove));
-    };
-    
 
 // ----------------------------- delete  booking---------------------------------------------------------------------
     const handleDelete = async (bookingId) => {
@@ -232,6 +229,15 @@ const updateBookingStatus = async (bookingId) => {
   }
 };
   
+const handleRemoveEmployee = (applyId) => {   
+            setEmployeesData(prev =>
+                prev.filter(emp => emp.apply_id?.N !== applyId)
+            );
+    
+};
+
+
+
 // -------------------------------------end---------------------------------------------------------------------
     return (
         <>
@@ -371,7 +377,7 @@ const updateBookingStatus = async (bookingId) => {
                                         <span className="decline">Declined</span>
                                     ) : (
                                         <div className="cheack-btns">
-                                            <button onClick={() => removeBooking(apply.apply_id?.N)}>
+                                            <button onClick={()=> handleRemoveEmployee(apply.apply_id?.N)}>
                                                 <img src={decline} alt="Decline" className='w-10' />
                                             </button>
                                             <button onClick={() => handleAssignWork(apply,booking)}>
