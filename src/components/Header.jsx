@@ -5,6 +5,7 @@ import vector from '../assets/shared_workspace.png'
 import '../css/header.css'
 import axios from 'axios'
 import Swal from 'sweetalert2'
+import phone from '../assets/Phone.png'
 function Header() {
     const [isPopupOpen,setIsPopupOpen] = useState(false);
 
@@ -20,7 +21,6 @@ function Header() {
         const [address,setAddress] = useState("");
         const [experience,setExperience] = useState("");
         const [upi_number,setUPINumber] = useState("");
-        const [aadhar_proof,setAadharProof] = useState(null);
         const [driving_license,setDL_proof] = useState(null);
         const [photo,setPhoto] = useState(null);  
         const [termsAccepted, setTermsAccepted] = useState(false);
@@ -85,13 +85,6 @@ function Header() {
             }
         };
         
-        const handleAadharUpload = async (e) => {
-            const file = e.target.files[0];
-            if (file) {
-                const url = await handleFileUpload(file);
-                setAadharProof(url);
-            }
-        };
         
         const handleDLUpload = async (e) => {
             const file = e.target.files[0];
@@ -103,7 +96,6 @@ function Header() {
         
                   
         const photoInputRef = useRef(null);
-        const aadharInputRef = useRef(null);
         const dlInputRef = useRef(null);
 
         const handleSubmit = async (event) => {
@@ -116,7 +108,6 @@ function Header() {
         
             try {
                 const uploadedPhotoUrl = photo && typeof photo === "string" && photo.startsWith("http") ? photo : await handleFileUpload(photo);
-                const uploadedAadharUrl = aadhar_proof && typeof aadhar_proof === "string" && aadhar_proof.startsWith("http") ? aadhar_proof : await handleFileUpload(aadhar_proof);
                 const uploadedDLUrl = driving_license && typeof driving_license === "string" && driving_license.startsWith("http") ? driving_license : (driving_license ? await handleFileUpload(driving_license) : null);
 
                 if (!uploadedPhotoUrl || !uploadedAadharUrl) {
@@ -135,7 +126,6 @@ function Header() {
                     upi_number,
                     driving_license: uploadedDLUrl,
                     photo: uploadedPhotoUrl,
-                    aadhar_proof: uploadedAadharUrl,
                 };
         
                 const ApplicationResponse = await axios.post(
@@ -170,7 +160,6 @@ function Header() {
                   setDL_proof(null);
                   setTermsAccepted(false);
                 if (photoInputRef.current) photoInputRef.current.value = "";
-                if (aadharInputRef.current) aadharInputRef.current.value = "";
                 if (dlInputRef.current) dlInputRef.current.value = "";
                 });
               } else {
@@ -193,10 +182,15 @@ function Header() {
                 <lable className="sm:hidden">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</lable>
                 SM Manpower is a leading provider of workforce solutions, dedicated to bridging the gap between exceptional talent and thriving businesses. We specialize in offering tailored recruitment, staffing, and human resource services across various industries, ensuring that our clients achieve operational excellence with the right team.
             </p>
-            <button onClick={togglePopup} className="btn h-12 text-center p-2 bg-primary sm:text-2xl iceberg-regular text-xl m-auto sm:m-0">
-                Apply Now
+           <div className="flex items-center justify-center sm:justify-start gap-5">
+           <button onClick={togglePopup} className="btn h-12 text-center p-2 bg-primary sm:text-2xl iceberg-regular text-xl sm:m-0">
+                Apply Talents
                 <img src={icon} alt="" />
             </button>
+            <a href="tel:+91 936341661" className="w-12 h-12">
+                <img src={phone} alt="" />
+            </a>
+           </div>
         </main>
         <aside className="right hidden sm:w-3/5 sm:block">
             <img src={vector} alt="" className="vector-img" />
@@ -275,12 +269,7 @@ function Header() {
                         </p>
                         <input ref={photoInputRef}  accept="image/*"  type="file" className=" file-input sm:file-input-box  rounded-sm bg-whit border-2  border-primary sm:rounded-xl file:p-1 sm:file:h-12 file:border-0 file:bg-slate-900 file:text-white file:right-0 file:float-end sm:file:px-2 sm:file:py-0  file:m-0" onChange={handlePhotoUpload}  required  />
                     </div>
-                    <div className="box text-left">
-                        <p className="text-sm sm:text-2xl aldrich-regular">Aadhara photo
-                            <span className='  text-red-600'>*</span>
-                        </p>
-                        <input type="file" ref={aadharInputRef}  accept="image/*"  className=" file-input sm:file-input-box  rounded-sm bg-whit border-2  border-primary sm:rounded-xl file:p-1 sm:file:h-12 file:border-0 file:bg-slate-900 file:text-white file:right-0 file:float-end sm:file:px-2 sm:file:py-0  file:m-0"  onChange={handleAadharUpload} required />
-                    </div>
+                    
                     <div className="box text-left">
                         <p className="text-sm sm:text-2xl aldrich-regular">Upload your Driving licence</p>
                         <input type="file" ref={dlInputRef}  accept="image/*"  className=" file-input sm:file-input-box  rounded-sm bg-whit border-2  border-primary sm:rounded-xl file:p-1 sm:file:h-12 file:border-0 file:bg-slate-900 file:text-white file:right-0 file:float-end sm:file:px-2 sm:file:py-0  file:m-0 "  onChange={handleDLUpload}    />
@@ -290,11 +279,11 @@ function Header() {
                         <input type="checkbox" name="termsandcondition" id="" className='sm:h-5 sm:w-5' checked={termsAccepted} onChange={(e) => setTermsAccepted(e.target.checked)} required/>
                         Term & Conditions
                     </label>
-                        <p className="inter text-xs sm:text-base text-justify">
+                        <p className="inter terms text-justify">
                         1.Your payment will be processed and sent to you within 5 working days <br />
                         2.Any issues encountered during the work may result in a proportional deduction from the payment <br />
                         3.we will not be held responsible for any disputes or complications that may occur between you and the event organizers. <br />
-                        4.Please ensure you arrived on time and are properly attiredz <br />
+                        4.Please ensure you arrived on time and are properly attired<br />
                         </p>
                         <button type="submit" className="btn h-10 sm:h-auto iceberg-regular bg-primary mx-auto my-5 text-xl sm:text-4xl">
                             Apply  now

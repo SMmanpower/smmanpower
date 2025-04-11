@@ -39,6 +39,10 @@
         font-weight: 400;
         font-style: normal;
       }
+      .terms
+      {
+        font-size: 10px;
+      }
 }   
 @layer components{
     .btn

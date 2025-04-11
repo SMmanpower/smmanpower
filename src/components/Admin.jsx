@@ -322,20 +322,16 @@ const handleRemoveEmployee = (applyId) => {
                     {selectedBooking?.booking_id?.N === booking.booking_id?.N && (
                         <tr>
                             <td colSpan="11">
-                                <div className="relative w-full bg-white border-2">
-                                    <button 
-                                        onClick={() => setSelectedBooking(null)} 
-                                        className="absolute top-8 right-0 text-white p-2 rounded">
-                                        <img src={decline} alt="" className='w-10' />
-                    </button>
+                                <div className=" w-full bg-white border-2">
+                                   
                         <>
             <table className='w-full border-black border-2 border-collapse mt-8'>
                 <thead>
                     <tr>
                         <th className="aldrich-regular border-r-2 border-black">Name</th>
                         <th className="aldrich-regular border-r-2 border-black">Contact no</th>
-                        <th className="aldrich-regular border-r-2 border-black">Address
-                        <img src={filter}  onClick={handleApplyFilter} className='w-8' alt="" /> 
+                        <th className="aldrich-regular border-r-2 border-black flex items-center justify-center flex-wrap">Address
+                        <img src={filter}  onClick={handleApplyFilter} className='w-8 order-last' alt="" /> 
                         {showSearch && (
                         <input 
                             type="text"
@@ -350,7 +346,13 @@ const handleRemoveEmployee = (applyId) => {
                         <th className="aldrich-regular border-r-2 border-black">Work details</th>
                         <th className="aldrich-regular border-r-2 border-black">Experience of Work</th>
                         <th className="aldrich-regular border-r-2 border-black">Photo</th>
-                        <th className="aldrich-regular border-r-2 border-black">Assume employee  </th>
+                        <th className="aldrich-regular border-r-2 border-black flex items-center justify-center ">Assume employee
+                            <button 
+                                onClick={() => setSelectedBooking(null)} 
+                                className=" text-white p-2 rounded">
+                                <img src={decline} alt="" className='w-10' />
+                            </button>
+                        </th>
                     </tr>
                 </thead>
                 {error ? (

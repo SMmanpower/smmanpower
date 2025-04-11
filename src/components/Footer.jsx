@@ -20,7 +20,7 @@ function Footer() {
             SM Manpower
         </button>
         
-        <footer className="sm:flex justify-center items-center p-2 sm:px-10 sm:py-4 gap-5">
+        <footer className=" sm:flex justify-center items-stretch p-2 sm:px-10 sm:py-4 gap-5">
             <div className="box sm:w-1/3 sm:p-4 sm:border-r-4 border-black">
                 <p className="aldrich-regular text-2xl text-center sm:text-3xl sm:text-left w-60 sm:w-300 m-auto sm:mt-1.5">Email</p>
                 <li className='w-60 sm:w-300 m-auto list-none '>
@@ -28,9 +28,9 @@ function Footer() {
                 </li>
                 <p className="aldrich-regular text-2xl sm:text-3xl text-center sm:text-left w-60 sm:w-300 m-auto sm:mt-1.5">Phone No</p>
                 <li className="w-60 sm:w-300 m-auto list-none sm:text-left text-center">
-                    <a href="tel:+917867993525" className="inter text-sm sm:text-xl sm:text-left text-center sm:w-300 m-auto">+91 7867993525</a>
+                    <a href="tel:+91 936341661" className="inter text-sm sm:text-xl sm:text-left text-center sm:w-300 m-auto">+91 9363641661</a>
                 </li>
-                <p className="aldrich-regular text-2xl sm:text-3xl sm:text-left text-center w-60 sm:w-300 m-auto mt-1.5">Adderss</p>
+                {/* <p className="aldrich-regular text-2xl sm:text-3xl sm:text-left text-center w-60 sm:w-300 m-auto mt-1.5">Adderss</p> */}
                 {/* <p className="inter w-60 sm:w-300 m-auto text-sm sm:text-xl sm:text-left text-center">
                     ATR Complex Pudukkottai Main 
                     Road,Pudukkottai-613301 
