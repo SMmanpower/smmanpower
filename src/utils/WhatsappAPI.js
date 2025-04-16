@@ -1,7 +1,25 @@
 import axios from "axios";
 
-export const WhatsAppMessage = async (to, work, startTime, endTime, place) => {
-  const accessToken = "EAAUDEG5l18cBOyrx5zlFdUYlj1JSJ15vZBMZAsuff1vQJJzLeJwhztO4F9k3GxPPsh0PeRkqQyvcw40WcI06fyopJzjdqwZAWF0PKVXjhirRA9aMG71EhdXpxsPZB3zwpWCpADL1uCbv4ytLLCwIS4JmQyRZCdAqmfnKZAI7ggzByDEjcpyZBTN0PdZBgHrV03JeWvIFqDNRVPd8Soco34zHYWQ323w3PN3FXVvBTGTL"; 
+export const WhatsAppMessage = async (to, name, work, startTime, endTime, place) => {
+  const accessToken = "EAATMiZA8lgvIBO2LaJGrINvz4xlNrD88ipC7Jk3iA1xMKb4FjpWUyYVbc1tAux1D2TSdvC4rT5lWb5HcXQhR1Gqbar6IY15lDpdGzJz01fjbcplbj9ZAoIattUYOqwKNnYfASycQJrv0nU9B16WZAxa6B4lbpaSZAR2RuUjDpOD110eXCAPmcxrTNQOQs0j88gZDZD"; 
+
+
+  let dress = "";
+  if (["odc", "odcservice"].includes(work)) {
+    dress = "White Shirt, Black Pant, Formal Black Shoes";
+  } else if (work === "barodc") {
+    dress = "Black Shirt, Black Pant, Formal Black Shoes";
+  } else if (["decorationhelpingwork", "pamphlet", "distribution"].includes(work)) {
+    dress = "Normal Dress";
+  } else if (["catering", "driverwork", "promoters"].includes(work)) {
+    dress = "White Shirt, Black Pant, Formal Black Shoes";
+  } else if (["refree", "umpire"].includes(work)) {
+    dress = "T-shirt, Black Lower, Sports Whistle";
+  } else {
+    dress = "To be informed";
+  }
+
+
 
   const data = {
     messaging_product: "whatsapp",
@@ -14,10 +32,12 @@ export const WhatsAppMessage = async (to, work, startTime, endTime, place) => {
         {
           type: "body",
           parameters: [
+            { type: "text", text: name },
             { type: "text", text: work },
             { type: "text", text: startTime },
             { type: "text", text: endTime },
-            { type: "text", text: place }
+            { type: "text", text: place },
+            { type: "text", text: dress }
           ]
         }
       ]
@@ -26,7 +46,7 @@ export const WhatsAppMessage = async (to, work, startTime, endTime, place) => {
 
   try {
     const res = await axios.post(
-      "https://graph.facebook.com/v19.0/591274674073198/messages",
+      "https://graph.facebook.com/v22.0/549847038222953/messages",
       data,
       {
         headers: {
@@ -41,5 +61,4 @@ export const WhatsAppMessage = async (to, work, startTime, endTime, place) => {
     return { success: false, error: err.response?.data || err.message };
   }
 };
-
 
