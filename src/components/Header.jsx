@@ -110,7 +110,7 @@ function Header() {
                 const uploadedPhotoUrl = photo && typeof photo === "string" && photo.startsWith("http") ? photo : await handleFileUpload(photo);
                 const uploadedDLUrl = driving_license && typeof driving_license === "string" && driving_license.startsWith("http") ? driving_license : (driving_license ? await handleFileUpload(driving_license) : null);
 
-                if (!uploadedPhotoUrl || !uploadedAadharUrl) {
+                if (!uploadedPhotoUrl) {
                     Swal.fire("Error", "File upload failed", "error");
                     return;
                 }
