@@ -21,7 +21,8 @@ function Admin() {
     const [showSearch, setShowSearch] = useState(false);
     const [error, setError] = useState(null);
     const [selectedImage, setSelectedImage] = useState(null);
-    
+    const [genderSortOrder, setGenderSortOrder] = useState("maleFirst");
+
 
     const navigate = useNavigate();
 
@@ -236,6 +237,19 @@ const handleRemoveEmployee = (applyId) => {
     
 };
 
+const sortEmployeesByGender = (employees) => {
+    return [...employees].sort((a, b) => {
+      const genderA = a.gender?.S || '';
+      const genderB = b.gender?.S || '';
+  
+      if (genderSortOrder === "maleFirst") {
+        return genderA === "Male" && genderB !== "Male" ? -1 : 1;
+      } else {
+        return genderA === "Female" && genderB !== "Female" ? -1 : 1;
+      }
+    });
+  };
+  
 
 
 // -------------------------------------end---------------------------------------------------------------------
@@ -342,7 +356,13 @@ const handleRemoveEmployee = (applyId) => {
                             onChange={handleSearch}
                         />)}
                         </th>
-                        <th className="aldrich-regular border-r-2 border-black">Gender<img src={filter}  className='w-8' alt="" /></th>
+                        <th className="aldrich-regular border-r-2 border-black">Gender<img src={filter} 
+                         onClick={() => {
+                            setGenderSortOrder(prev => (prev === "maleFirst" ? "femaleFirst" : "maleFirst"));
+                            const sorted = sortEmployeesByGender(employees_data);
+                            setEmployeesData(sorted);
+                          }}
+                        className='w-8'   alt="Sort by Gender" /></th>
                         <th className="aldrich-regular border-r-2 border-black">Work details</th>
                         <th className="aldrich-regular border-r-2 border-black">Experience of Work</th>
                         <th className="aldrich-regular border-r-2 border-black">Photo</th>

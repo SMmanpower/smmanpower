@@ -32,7 +32,6 @@ function Header() {
                     throw new Error("No file selected for upload");
                 }
         
-                console.log("Uploading File:", file);
         
                 const response = await fetch(
                     "https://vdtwit6wib.execute-api.ap-south-1.amazonaws.com/prod/Sm_serviceBooking",
@@ -45,14 +44,12 @@ function Header() {
                         }),
                     }
                 );
-                // console.log("Sending File Upload Request:", { fileName: file.name, fileType: file.type });
 
                 if (!response.ok) {
                     throw new Error(`Failed to get pre-signed URL: ${response.statusText}`);
                 }
         
                 const data = await response.json();
-                // console.log("Pre-signed URL Response:", data);
         
                 if (!data.uploadURL || !data.fileUrl) {
                     throw new Error("Invalid pre-signed URL response");
@@ -68,7 +65,6 @@ function Header() {
                     throw new Error(`Failed to upload file: ${uploadResponse.statusText}`);
                 }
         
-                // console.log("File successfully uploaded to S3:", data.fileUrl);
                 return data.fileUrl; 
             } catch (error) {
                 console.error("Error uploading file:", error);
@@ -134,7 +130,6 @@ function Header() {
                     { headers: { "Content-Type": "application/json" } }
                 );
         
-                // console.log("Server Response:", ApplicationResponse);
                 
               if (ApplicationResponse?.status === 200 || ApplicationResponse?.status === 201) {
                 Swal.fire({
@@ -156,7 +151,6 @@ function Header() {
                   setExperience("");
                   setUPINumber("");
                   setPhoto(null);
-                  setAadharProof(null);
                   setDL_proof(null);
                   setTermsAccepted(false);
                 if (photoInputRef.current) photoInputRef.current.value = "";
