@@ -27,7 +27,7 @@ export const WhatsAppMessage = async (to, name, work, startTime, endTime, place)
     type: "template",
     template: {
       name: "hello_world", 
-      language: { code: "en" },
+      language: { code: "en_US" },
       components: [
         {
           type: "body",
