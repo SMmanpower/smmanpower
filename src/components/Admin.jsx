@@ -118,7 +118,7 @@ function Admin() {
         }
         
         setSelectedBooking(booking);
-        setFilterLevel(1);
+        setFilterLevel(1); 
     
         await fetchEmployees(booking.work?.S);
     };
@@ -195,7 +195,7 @@ function Admin() {
         const messageRes = await WhatsAppMessage(toPhoneNumber, name, work, startTime, endTime, place);
       
         if (messageRes.success) {
-          alert("Message sent ✅");
+         Swal.fire("Message sent ✅", "", "success");
       
           const bookingId = booking.booking_id?.N;
           if (bookingId) {
@@ -237,6 +237,8 @@ const handleRemoveEmployee = (applyId) => {
     
 };
 
+// -----------------------------------------------Gender Filter---------------------------------------------------------
+
 const sortEmployeesByGender = (employees) => {
     return [...employees].sort((a, b) => {
       const genderA = a.gender?.S || '';
@@ -260,7 +262,7 @@ const sortEmployeesByGender = (employees) => {
                     <h2 className="text-center text-5xl">SM Manpower</h2>
                     <div className="">
                         <p className="aldrich-regular text-4xl text-center text-primary justify-center">
-                            Welcome admin
+ ,                           Welcome admin
                         </p>
                         <div className="w-full flex justify-end gap-5">
                             <button className="btn h-12  bg-primary iceberg-regular xl:text-2xl" onClick={handleLogout}>Logout
@@ -344,14 +346,14 @@ const sortEmployeesByGender = (employees) => {
                     <tr>
                         <th className="aldrich-regular border-r-2 border-black">Name</th>
                         <th className="aldrich-regular border-r-2 border-black">Contact no</th>
-                        <th className="aldrich-regular border-r-2 border-black flex items-center justify-center flex-wrap">Address
+                        <th className="aldrich-regular border-r-2 border-black grid grid-cols-2 items-center justify-center flex-wrap">Address
                         <img src={filter}  onClick={handleApplyFilter} className='w-8 order-last' alt="" /> 
                         {showSearch && (
                         <input 
                             type="text"
                             name="search"
                             placeholder="Search your Talent"
-                            className="border-none outline-none"
+                            className="border-none outline-none order-last text-lg col-span-2 px-5"
                             value={searchQuery}
                             onChange={handleSearch}
                         />)}
