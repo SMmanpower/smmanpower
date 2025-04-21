@@ -195,7 +195,7 @@ function Admin() {
         const messageRes = await WhatsAppMessage(toPhoneNumber, name, work, startTime, endTime, place);
       
         if (messageRes.success) {
-         Swal.fire("Message sent ✅", "", "success");
+         Swal.fire("Message sent ", "", "success");
       
           const bookingId = booking.booking_id?.N;
           if (bookingId) {
