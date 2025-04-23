@@ -118,7 +118,7 @@ function WorkerTable() {
             ["Address:", worker.address?.S || "N/A"],
             ["Work Type:", worker.work?.S || "N/A"],
             ["Experience:", worker.experience?.S || "N/A"],
-            ["Age:", worker.age?.S || "N/A"],
+            ["Age:", worker.age?.N || "N/A"],
             ["UPI ID:", worker.upi_number?.S || "N/A"],
         ];
     
@@ -148,15 +148,12 @@ function WorkerTable() {
         };
     
         const photoUrl = worker.photo?.S || null;
-        const aadharUrl = worker.aadhar_proof?.S || null;
         const drivingLicenseUrl = worker.driving_license?.S || null;
     
         console.log("Photo URL:", photoUrl);
-        console.log("Aadhar URL:", aadharUrl);
         console.log("Driving License URL:", drivingLicenseUrl);
     
         const photoBase64 = await convertImageToBase64(photoUrl);
-        const aadharBase64 = await convertImageToBase64(aadharUrl);
         const drivingLicenseBase64 = await convertImageToBase64(drivingLicenseUrl);
     
         if (photoBase64) {
@@ -164,11 +161,7 @@ function WorkerTable() {
             yOffset += 60;
         }
     
-        if (aadharBase64) {
-            doc.addImage(aadharBase64, "JPEG", 80, yOffset + 10, 50, 50);
-            yOffset += 60;
-        }
-    
+        
         if (drivingLicenseBase64) {
             doc.addImage(drivingLicenseBase64, "JPEG", 140, yOffset + 10, 50, 50);
             yOffset += 60;
@@ -253,7 +246,7 @@ function WorkerTable() {
                                         <td className="aldrich-regular text-lg text-center border-r-2 border-black text-primary">{worker.address?.S}</td>
                                         <td className="aldrich-regular text-lg text-center border-r-2 border-black text-primary">{worker.work?.S}</td>
                                         <td className="aldrich-regular text-lg text-center border-r-2 border-black text-primary">{worker.experience?.S}</td>
-                                        <td className="aldrich-regular text-lg text-center border-r-2 border-black text-primary">{worker.age?.S}</td>
+                                        <td className="aldrich-regular text-lg text-center border-r-2 border-black text-primary">{worker.age?.N}</td>
                                         <td className="aldrich-regular text-lg text-center border-r-2 border-black text-primary">
                                             <img src={worker.photo_url?.S|| photo} alt="" className="w-16 h-16 rounded" onClick={() => handleImageClick(worker.photo_url?.S)} /></td>
                                         <td className="aldrich-regular text-lg text-center border-r-2 border-black text-primary">{worker.upi_number?.S}</td>

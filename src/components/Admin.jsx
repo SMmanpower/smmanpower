@@ -93,6 +93,20 @@ function Admin() {
         employee.address?.S.toLowerCase().includes(searchQuery) ||
         employee.contact_number?.S.includes(searchQuery)
     );
+// ------------------------------------------formate date ----------------------------------------------------
+    const formatDate = (jsonTime) => {
+        const date = new Date(jsonTime);
+        return date.toLocaleString('en-IN', {
+          day: 'numeric',
+          month: 'short',
+          year: 'numeric',
+          hour: 'numeric',
+          minute: '2-digit',
+          hour12: true,
+        });
+      };
+      
+
     // --------------------------------address filter------------------------------------------------------------------
 
     const handleApplyFilter = () => {
@@ -311,8 +325,8 @@ const sortEmployeesByGender = (employees) => {
                         <td className="aldrich-regular text-lg text-center border-r-2 border-black text-primary">{booking.employees_required_male?.S}</td>
                         <td className="aldrich-regular text-lg text-center border-r-2 border-black text-primary">{booking.employees_required_female?.S}</td>
                         <td className="aldrich-regular text-lg text-center border-r-2 border-black text-primary">{booking.salary?.S}</td>
-                        <td className="aldrich-regular text-lg text-center border-r-2 border-black text-primary">{booking.start_date?.S}</td>
-                        <td className="aldrich-regular text-lg text-center border-r-2 border-black text-primary">{booking.end_date?.S}</td>
+                        <td className="aldrich-regular text-lg text-center border-r-2 border-black text-primary">{formatDate(booking.start_date?.S)}</td>
+                        <td className="aldrich-regular text-lg text-center border-r-2 border-black text-primary">{formatDate(booking.end_date?.S)}</td>
                         <td className="aldrich-regular text-lg text-center border-r-2 border-black text-primary">
                         <img src={booking.proof_url?.S} className="w-16 h-16 rounded"  alt="" onClick={() => handleImageClick(booking.proof_url?.S)}  ></img></td>
                         <td className="flex items-center justify-center p-1 xl:gap-2.5 border-black">

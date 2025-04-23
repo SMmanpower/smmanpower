@@ -202,11 +202,28 @@ function ApplyForm() {
                         </p>
                         <input type="text" className="input sm:input-box"  value={address} onChange={(e) => setAddress(e.target.value)}  required  />
                     </div>
-                    <div className="box text-left">
-                        <p className="text-sm sm:text-2xl aldrich-regular">Enter your work type
-                            <span className='  text-red-600'>*</span>
-                        </p>
-                        <input type="text" className="input sm:input-box"  value={work} onChange={(e) => setWorkType(e.target.value)}  required  />
+                
+                    <div className="box text-left ">
+              <p className="text-sm sm:text-2xl aldrich-regular">
+                Enter your Work Details <span className=' text-red-600'>*</span>
+              </p>
+              <select
+                className="input sm:input-box"
+                value={work}
+                onChange={(e) => setWorkDetail(e.target.value)}
+                required
+              >
+                <option value="">-- Select Work Type --</option>
+                <option value="catering">Catering</option>
+                <option value="odcservice">ODC Service</option>
+                <option value="barodc">Bar ODC</option>
+                <option value="decorationhelpingwork">Decoration Helping Work</option>
+                <option value="pamphlet">Pamphlet</option>
+                <option value="driverwork">Driver Work</option>
+                <option value="promoters">Promoters</option>
+                <option value="distributionrefree">Distribution Refree</option>
+                <option value="umpire">Umpire</option>
+              </select>
                     </div>
                     <div className="box text-left">
                         <p className="text-sm sm:text-2xl aldrich-regular"> Experience of Work 

@@ -182,9 +182,28 @@ function BookingForm() {
             </div>
             
             <div className="box text-left w-11/12 sm:w-4/5 h-fit">
-                <p className="text-sm sm:text-2xl aldrich-regular">Enter your Work Details <span className=' text-red-600'>*</span></p>
-                <input type="text" className="input sm:input-box"  value={work} onChange={(e) => setWorkDetail(e.target.value)} required/>
+              <p className="text-sm sm:text-2xl aldrich-regular">
+                Enter your Work Details <span className=' text-red-600'>*</span>
+              </p>
+              <select
+                className="input sm:input-box"
+                value={work}
+                onChange={(e) => setWorkDetail(e.target.value)}
+                required
+              >
+                <option value="">-- Select Work Type --</option>
+                <option value="catering">Catering</option>
+                <option value="odcservice">ODC Service</option>
+                <option value="barodc">Bar ODC</option>
+                <option value="decorationhelpingwork">Decoration Helping Work</option>
+                <option value="pamphlet">Pamphlet</option>
+                <option value="driverwork">Driver Work</option>
+                <option value="promoters">Promoters</option>
+                <option value="distributionrefree">Distribution Refree</option>
+                <option value="umpire">Umpire</option>
+              </select>
             </div>
+
             <div className="box text-left w-11/12 sm:w-4/5 h-fit">
                 <p className="text-sm sm:text-2xl aldrich-regular">Place of the Event <span className=' text-red-600'>*</span></p>
                 <input type="text" className="input sm:input-box" value={place_of_event} onChange={(e) => setWorkPlace(e.target.value)}  required/>
