@@ -262,7 +262,7 @@ const sortEmployeesByGender = (employees) => {
                     <h2 className="text-center text-5xl">SM Manpower</h2>
                     <div className="">
                         <p className="aldrich-regular text-4xl text-center text-primary justify-center">
- ,                           Welcome admin
+                            Welcome admin
                         </p>
                         <div className="w-full flex justify-end gap-5">
                             <button className="btn h-12  bg-primary iceberg-regular xl:text-2xl" onClick={handleLogout}>Logout
