@@ -210,7 +210,7 @@ function ApplyForm() {
               <select
                 className="input sm:input-box"
                 value={work}
-                onChange={(e) => setWorkDetail(e.target.value)}
+                onChange={(e) => setWorkType(e.target.value)}
                 required
               >
                 <option value="">-- Select Work Type --</option>
