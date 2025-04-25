@@ -24,7 +24,7 @@ function Footer() {
             <div className="box sm:w-1/3 sm:p-4 sm:border-r-4 border-black">
                 <p className="aldrich-regular text-2xl text-center sm:text-3xl sm:text-left w-60 sm:w-300 m-auto sm:mt-1.5">Email</p>
                 <li className='w-60 sm:w-300 m-auto list-none '>
-                    <a href="mailto:manpowerservicessm@gmail.com" className="inter text-sm sm:text-xl w-200 sm:text-left text-center m-auto">manpowerservicessm@gmail.com</a>
+                    <a href="mailto:manpowerservicessm@gmail.com" className="inter text-wrap text-sm sm:text-xl w-200 sm:text-left text-center m-auto">manpowerservicessm @gmail.com</a>
                 </li>
                 <p className="aldrich-regular text-2xl sm:text-3xl text-center sm:text-left w-60 sm:w-300 m-auto sm:mt-1.5">Phone No</p>
                 <li className="w-60 sm:w-300 m-auto list-none sm:text-left text-center">

@@ -223,7 +223,8 @@ function ApplyForm() {
                 <option value="promoters">Promoters</option>
                 <option value="distributionrefree">Distribution Refree</option>
                 <option value="umpire">Umpire</option>
-              </select>
+                <option value="other"><input type="text" placeholder='Others' className=' w-full h-auto border-' /></option>
+                         </select>
                     </div>
                     <div className="box text-left">
                         <p className="text-sm sm:text-2xl aldrich-regular"> Experience of Work 

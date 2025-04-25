@@ -215,9 +215,9 @@ function WorkerTable() {
                             <tr>
                                 <th className="aldrich-regular border-r-2 border-black">Name</th>
                                 <th className="aldrich-regular border-r-2 border-black">Contact no</th>
-                                <th className="aldrich-regular border-r-2 border-black">Address</th>
-                                <th className="aldrich-regular border-r-2 border-black">Work type</th>
-                                <th className="aldrich-regular border-r-2 border-black">Experience</th>
+                                <th className="aldrich-regular border-r-2 border-black w-min text-wrap">Address</th>
+                                <th className="aldrich-regular border-r-2 border-black ">Work type</th>
+                                <th className="aldrich-regular hidden sm:visible border-r-2 border-black">Experience</th>
                                 <th className="aldrich-regular border-r-2 border-black">Age</th>
                                 <th className="aldrich-regular border-r-2 border-black">Photo</th>
                                 <th className="aldrich-regular border-r-2 border-black">UPI ID</th>
@@ -245,7 +245,7 @@ function WorkerTable() {
                                         <td className="aldrich-regular text-lg text-center border-r-2 border-black text-primary">{worker.contact_number?.S}</td>
                                         <td className="aldrich-regular text-lg text-center border-r-2 border-black text-primary">{worker.address?.S}</td>
                                         <td className="aldrich-regular text-lg text-center border-r-2 border-black text-primary">{worker.work?.S}</td>
-                                        <td className="aldrich-regular text-lg text-center border-r-2 border-black text-primary">{worker.experience?.S}</td>
+                                        <td className="aldrich-regular text-lg text-center border-r-2 border-black text-primary hidden sm:visible">{worker.experience?.S}</td>
                                         <td className="aldrich-regular text-lg text-center border-r-2 border-black text-primary">{worker.age?.N}</td>
                                         <td className="aldrich-regular text-lg text-center border-r-2 border-black text-primary">
                                             <img src={worker.photo_url?.S|| photo} alt="" className="w-16 h-16 rounded" onClick={() => handleImageClick(worker.photo_url?.S)} /></td>
