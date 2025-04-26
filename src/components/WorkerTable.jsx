@@ -180,7 +180,7 @@ function WorkerTable() {
     
     return (
         <>
-            <section className="w-full">
+            <section className="w-auto">
                 <header className="w-full xl:p-5 m-auto">
                     <h2 className="text-center text-5xl">SM Manpower</h2>
                     <div>

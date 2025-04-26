@@ -266,6 +266,49 @@ const sortEmployeesByGender = (employees) => {
     });
   };
   
+// -------------------------------------------------------------send bulk messager -------------------------
+
+const handleSendBulkMessages = async (booking) => {
+  if (employees_data.length === 0) {
+    Swal.fire("No employees found!", "", "warning");
+    return;
+  }
+
+  let successCount = 0;
+  let failCount = 0;
+
+  for (const employee of employees_data) {
+    const raw = employee.contact_number?.S || employee.contact_number;
+    if (!raw) continue;
+
+    const phone = raw.toString().replace(/\D/g, "");
+    const toPhoneNumber = `91${phone}`;
+    const name = employee.name?.S || "N/A";
+    const work = booking.work?.S || "Not specified";
+    const startTime = formatDate(booking.start_date?.S || "N/A");
+    const endTime = formatDate(booking.end_date?.S || "N/A");
+    const place = booking.place_of_event?.S || "N/A";
+
+    const messageRes = await WhatsAppMessage(toPhoneNumber, name, work, startTime, endTime, place);
+
+    if (messageRes.success) {
+      successCount++;
+    } else {
+      failCount++;
+      console.error("Failed to send message to", toPhoneNumber, messageRes.error);
+    }
+  }
+
+  Swal.fire(`Messages Sent: ${successCount}\nFailed: ${failCount}`, "", "info");
+
+  const bookingId = booking.booking_id?.N;
+  if (bookingId) {
+    const updateRes = await updateBookingStatus(bookingId);
+    if (updateRes.success) {
+      console.log("Booking status updated to 'Work Assigned'");
+    }
+  }
+};
 
 
 // -------------------------------------end---------------------------------------------------------------------
@@ -383,6 +426,11 @@ const sortEmployeesByGender = (employees) => {
                         <th className="aldrich-regular border-r-2 border-black">Experience of Work</th>
                         <th className="aldrich-regular border-r-2 border-black">Photo</th>
                         <th className="aldrich-regular border-r-2 border-black flex items-center justify-center ">Assume employee
+                            <button 
+                                onClick={() => handleSendBulkMessages(selectedBooking)} 
+                                className=" text-white p-2 rounded">
+                                <img src={assumed} alt="" className='w-10' />
+                            </button>
                             <button 
                                 onClick={() => setSelectedBooking(null)} 
                                 className=" text-white p-2 rounded">

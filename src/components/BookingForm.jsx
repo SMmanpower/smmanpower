@@ -18,6 +18,8 @@ function BookingForm() {
     const [end_date, setEndDate] = useState("");
     const [termsAccepted, setTermsAccepted] = useState(false);
     const [uploadedFileUrl, setUploadedFileUrl] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
+
     const fileInputRef = useRef(null);
 
     const handleFileChange = async (event) => {
@@ -28,6 +30,41 @@ function BookingForm() {
               setUploadedFileUrl(url);
           }
       }
+  };
+
+  const sendWhatsAppMessage = async (userName, phoneNumber) => {
+    const token = "EAAUSZAO6ZB5WUBO2aioz2563UQTArdlUAt0EvYGKdJwicHrv8sX9H7vlR0OnGTtl7yYVUVsN2LmRnXn1snkRCemZApmeS47tapxynbww8i63y3jVFM7aFPksnwZAMvZAodHTC4UE2uaAhlTz5LpSN7K5ZBtQvf2IYUcimn1D6ykLOUZBRuQEUQ6A4aOTj4T3TyyWAZDZD";  
+    const phone_id = "652786447910319";         
+  
+    const data = {
+      messaging_product: "whatsapp",
+      to: `91${phoneNumber}`, 
+      type: "template",
+      template: {
+        name: "booking_confirmation", 
+        language: { code: "en_US" },
+        components: [
+          {
+            type: "body",
+            parameters: [
+              { type: "text", text: userName },
+            ]
+          }
+        ]
+      }
+    };
+  
+    try {
+      await axios.post(`https://graph.facebook.com/v19.0/${phone_id}/messages`, data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+      console.log("WhatsApp message sent successfully!");
+    } catch (error) {
+      console.error("Failed to send WhatsApp message:", error);
+    }
   };
   
 
@@ -80,29 +117,27 @@ function BookingForm() {
     
     const handleSubmit = async (event) => {
       event.preventDefault();
+      setIsLoading(true);
 
-      const now = new Date();
+     try{
       const startDateTime = new Date(start_date);
       const endDateTime = new Date(end_date);
       
-      const minStartDateTime = new Date(now.getTime() + 5 * 60 * 60 * 1000);
-      
-      if (startDateTime < minStartDateTime) {
-        Swal.fire("Error", "Event start time must be at least 5 hours after the current time.", "error");
+      const now = new Date();
+      const minStartTime = new Date(now.getTime() + 5 * 60 * 60 * 1000); 
+  
+      if (startDateTime < minStartTime) {
+        Swal.fire("Error", "Start time must be at least 5 hours later than current time.", "error");
+        setIsLoading(false);
         return;
       }
-      
-      if (startDateTime.toDateString() === endDateTime.toDateString()) {
-        if (endDateTime <= startDateTime) {
-          Swal.fire(
-            "Error",
-            "When the start and end date are the same, the end time must be after the start time.",
-            "error"
-          );
-          return;
-        }
-      } else if (endDateTime < startDateTime) {
-        Swal.fire("Error", "End date must be after the start date.", "error");
+  
+      const diffInseconds = endDateTime - startDateTime;
+      const diffInHours = diffInseconds / (1000 * 60 * 60);
+  
+      if (diffInHours < 5) {
+        Swal.fire("Error", "End time must be at least 5 hours after start time.", "error");
+        setIsLoading(false);
         return;
       }
       
@@ -117,11 +152,13 @@ function BookingForm() {
           Swal.fire("Error", "File upload failed", "error");
           return;
         }
-    
+         
+        const workToSubmit = work === "other" ? customInput : work;
+
         const formData = {
           name,
           contact_number,
-          work,
+          work : workToSubmit,
           place_of_event,
           salary,
           employees_required_male,
@@ -142,8 +179,9 @@ function BookingForm() {
         );
       
   if (bookingResponse.status === 200 || bookingResponse.status === 201) {
-        Swal.fire("Your Booking Was Sent Successfully", "", "success").then(
-          () => {
+        Swal.fire("Your Booking Was Sent Successfully", "", "success").then(async () => {
+            await sendWhatsAppMessage(name, contact_number);
+            
             setName("");
             setWorkDetail("");
             setContactNo("");
@@ -165,8 +203,13 @@ function BookingForm() {
           `Booking failed: ${bookingResponse.data.message || bookingResponse.data}`,
           "error"
         );
+      }}catch (error) {
+        console.error(error);
+        Swal.fire("Error", error.message || "An error occurred", "error");
+      } finally {
+        setIsLoading(false);
       }
-   
+    
   };
 
   return (
@@ -265,8 +308,20 @@ function BookingForm() {
                 3. We will not be held responsible for any disputes or complications that may occur between you and the employees. <br />
                 4.Advance payment is required prior to commencement of work.
                 </p>
-                <button type="submit" className="btn iceberg-regular h-10 sm:h-auto bg-primary mx-auto my-5 text-xl sm:text-4xl">
-                    Book now
+                <button type="submit" 
+                 disabled={isLoading}
+                 className={`btn iceberg-regular h-10 sm:h-auto bg-primary mx-auto my-5 text-xl sm:text-4xl ${
+                   isLoading ? 'bg-gray-400 cursor-not-allowed' : 'bg-primary-600 hover:bg-primary-700'
+                 }`}>
+                    {isLoading ? (
+                      <>
+                        <span className="loader mr-2"></span>
+                        Booking...
+                      </>
+                    ) : (
+                      "Book now"
+                    )}
+                    
                     <img src={icon} alt="" className='h-9 sm:h-12 ' />
                 </button>
             </div>

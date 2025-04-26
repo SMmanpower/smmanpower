@@ -19,7 +19,9 @@ function ApplyForm() {
     const [driving_license,setDL_proof] = useState(null);
     const [photo,setPhoto] = useState(null);  
     const [termsAccepted, setTermsAccepted] = useState(false);
-        const fileInputRef = useRef(null);
+    const [isLoading, setIsLoading] = useState(false);
+
+    const fileInputRef = useRef(null);
     
     const handleFileUpload = async (file) => {
         try {
@@ -91,6 +93,7 @@ function ApplyForm() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        setIsLoading(true);
     
         if (!termsAccepted) {
             Swal.fire("Error", "Please accept the Terms and Conditions", "error");
@@ -157,6 +160,8 @@ function ApplyForm() {
         } catch (error) {
             console.error("Error submitting form:", error);
             Swal.fire("Error", "An error occurred while submitting the form.", "error");
+        }finally{
+            setIsLoading(false);
         }
       };
   return (
@@ -272,8 +277,20 @@ function ApplyForm() {
                         3.we will not be held responsible for any disputes or complications that may occur between you and the event organizers. <br />
                         4.Please ensure you arrived on time and are properly attired<br />
                         </p>
-                        <button type="submit" className="btn h-10 sm:h-auto iceberg-regular bg-primary mx-auto my-5 text-xl sm:text-4xl">
-                            Apply  now
+                        <button type="submit"  disabled={isLoading}
+                 className={`btn iceberg-regular h-10 sm:h-auto bg-primary mx-auto my-5 text-xl sm:text-4xl ${
+                   isLoading ? 'bg-gray-400 cursor-not-allowed' : 'bg-primary-600 hover:bg-primary-700'
+                 }`}>
+                    {isLoading ? (
+                      <>
+                        <span className="loader mr-2"></span>
+                        Applying...
+                      </>
+                    ) : (
+                      "Apply now"
+                    )}
+                    
+                            
                             <img src={icon} alt="" className='h-9 sm:h-12' />
                         </button>
                     </div>
