@@ -3,6 +3,10 @@ import icon from '../assets/Circled_Right.png'
 import axios from "axios";
 import Swal from 'sweetalert2';
 function BookingForm() {
+  
+  const [customInput, setCustomInput] = useState('');
+
+
     const [name, setName] = useState("");
     const [contact_number, setContactNo] = useState("");
     const [work, setWorkDetail] = useState("");
@@ -201,7 +205,20 @@ function BookingForm() {
                 <option value="promoters">Promoters</option>
                 <option value="distributionrefree">Distribution Refree</option>
                 <option value="umpire">Umpire</option>
+                <option value="other">Others</option>
               </select>
+              {work === 'other' && (
+        <div>
+          <input
+            type="text"
+            id="customOption"
+            className='input sm:input-box'
+            placeholder='Others'
+            value={customInput}
+            onChange={(e) => setCustomInput(e.target.value)}
+          />
+        </div>
+      )}
             </div>
 
             <div className="box text-left w-11/12 sm:w-4/5 h-fit">

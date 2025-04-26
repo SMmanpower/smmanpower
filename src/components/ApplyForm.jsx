@@ -5,6 +5,7 @@ import icon from '../assets/Circled_Right.png'
 
 
 function ApplyForm() {
+    const [customInput, setCustomInput] = useState('');
     
     // -----------------BACK END ----------//
     const [name,setName] = useState("");
@@ -207,12 +208,12 @@ function ApplyForm() {
               <p className="text-sm sm:text-2xl aldrich-regular">
                 Enter your Work Details <span className=' text-red-600'>*</span>
               </p>
-              <select
+            <select
                 className="input sm:input-box"
                 value={work}
                 onChange={(e) => setWorkType(e.target.value)}
                 required
-              >
+            >
                 <option value="">-- Select Work Type --</option>
                 <option value="catering">Catering</option>
                 <option value="odcservice">ODC Service</option>
@@ -223,8 +224,20 @@ function ApplyForm() {
                 <option value="promoters">Promoters</option>
                 <option value="distributionrefree">Distribution Refree</option>
                 <option value="umpire">Umpire</option>
-                <option value="other"><input type="text" placeholder='Others' className=' w-full h-auto border-' /></option>
-                         </select>
+                <option value="other">Other</option>
+            </select>
+            {work === 'other' && (
+        <div>
+          <input
+            type="text"
+            id="customOption"
+            className='input sm:input-box'
+            placeholder='Others'
+            value={customInput}
+            onChange={(e) => setCustomInput(e.target.value)}
+          />
+        </div>
+      )}
                     </div>
                     <div className="box text-left">
                         <p className="text-sm sm:text-2xl aldrich-regular"> Experience of Work 

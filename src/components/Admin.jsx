@@ -202,8 +202,8 @@ function Admin() {
         const toPhoneNumber = `91${phone}`;
         const name = apply.name?.S || "N/A";
         const work = booking.work?.S || "Not specified";
-        const startTime =FormateDate(booking.start_date?.S || "N/A");
-        const endTime = FormateDate(booking.end_date?.S || "N/A");
+        const startTime =formatDate(booking.start_date?.S || "N/A");
+        const endTime = formatDate(booking.end_date?.S || "N/A");
         const place = booking.place_of_event?.S || "N/A";
       
         const messageRes = await WhatsAppMessage(toPhoneNumber, name, work, startTime, endTime, place);
@@ -223,7 +223,7 @@ function Admin() {
             console.warn("Booking ID is missing, cannot update status.");
           }
         } else {
-          alert("❌ Failed to send WhatsApp message.");
+          alert("Failed to send WhatsApp message.");
           console.error(messageRes.error);
         }
       };
