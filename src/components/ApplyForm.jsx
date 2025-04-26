@@ -174,7 +174,7 @@ function ApplyForm() {
                         <p className="text-sm sm:text-2xl aldrich-regular">Contact no
                             <span className='  text-red-600'>*</span>
                         </p>
-                        <input type="number" className="input sm:input-box"   value={contact_number} onChange={(e) => setContactNo(e.target.value)}  required />
+                        <input type="number" className="input sm:input-box"   value={contact_number} onChange={(e) => setContactNo(e.target.value.slice(0, 10))}  required />
                     </div>
                     <div className="box text-left ">
                         <p className="text-sm sm:text-2xl aldrich-regular">Enter your Age
@@ -248,7 +248,7 @@ function ApplyForm() {
                     <div className="box text-left">
                         <p className="text-sm sm:text-2xl aldrich-regular">Enter your UPI Phone no
                             <span className='  text-red-600'>*</span> </p>
-                        <input type="number" className="input sm:input-box"   value={upi_number} onChange={(e) => setUPINumber(e.target.value)}  required />
+                        <input type="number" className="input sm:input-box"   value={upi_number} onChange={(e) => setUPINumber(e.target.value.slice(0, 10))}  required />
                     </div>
                     <div className="box text-left">
                         <p className="text-sm sm:text-2xl aldrich-regular">Upload your Full size photo
