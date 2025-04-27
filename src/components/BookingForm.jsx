@@ -297,7 +297,7 @@ function BookingForm() {
                 <p className="text-sm lg:text-2xl aldrich-regular">Upload The Company Proof <span className='  text-red-600'>*</span></p>
                 <input ref={fileInputRef} type='file'  onChange={handleFileChange} accept="image/*" name="proof" className=" file-input lg:file-input-box  rounded-lg bg-whit border-2  border-primary lg:rounded-xl file:p-1 lg:file:h-12 file:border-0 file:bg-slate-900 file:text-white file:right-0 file:float-end lg:file:px-2 lg:file:py-0  file:m-0"  required />
             </div>
-            <div className="box row-span-3 w-11/12 m-auto  sm: mt-2 sm:w-4/5 text-left">
+            <div className="box w-11/12 m-auto  sm: mt-2 sm:w-4/5 text-left">
                 <label htmlFor="terms&conditions" className='aldrich-regular sm:leading-5 sm:w-full sm:mt-2  text-base sm:text-xl flex items-stretch gap-2.5 m-auto '>
                     <input type="checkbox" name="termsandcondition" id="" className='sm:h-5 sm:w-5' checked={termsAccepted} onChange={(e) => setTermsAccepted(e.target.checked)} required/>
                     Term & Conditions
