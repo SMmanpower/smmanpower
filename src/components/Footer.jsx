@@ -61,13 +61,13 @@ function Footer() {
                     <a href="http://">
                         <img src={whatsapp} alt="" className="h-10 sm:h-12" />
                     </a>
-                    <a href="http://">
+                    <a href="https://www.instagram.com/sm_manpower_services?utm_source=qr&igsh=cTIwa3RhcTdiaW1y">
                         <img src={instagram} alt="" className="h-10 sm:h-12" />
                     </a>
-                    <a href="http://">
+                    <a href="">
                         <img src={facebook} alt="" className="h-10 sm:h-12" />
                     </a>
-                    <a href="http://">
+                    <a href="https://x.com/SM_Manpower?t=6cRJS0uTGyUMpWkeF-8nzw&s=08">
                         <img src={x} alt="" className="h-10 sm:h-12" />
                     </a>
                 </div>
