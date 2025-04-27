@@ -302,7 +302,7 @@ function BookingForm() {
                     <input type="checkbox" name="termsandcondition" id="" className='sm:h-5 sm:w-5' checked={termsAccepted} onChange={(e) => setTermsAccepted(e.target.checked)} required/>
                     Term & Conditions
                 </label>
-                <p className="inter terms sm:w- 4/5 sm:mt-2 text-justify">
+                <p className="inter terms sm:w-4/5 sm:mt-2 text-justify">
                 1. Payment is expected within three working days. Failure to pay may result in legal proceedings. <br />
                 2. We'll send over the employees but you'll need to handle the coordination and  supervision. <br />
                 3. We will not be held responsible for any disputes or complications that may occur between you and the employees. <br />
