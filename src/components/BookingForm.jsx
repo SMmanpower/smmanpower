@@ -218,7 +218,7 @@ function BookingForm() {
         <h2 className="aldrich-regular text-3xl sm:text-5xl text-center sm:mb-4">
             Booking
         </h2>
-        <form action="" onSubmit={handleSubmit} className="w-85 h-fit sm:pl-5 sm:h-auto sm:w-auto grid grid-cols-1 grid-rows-10 sm:grid-cols-2 sm:grid-rows-6 grid-flow-col border-2 border-black rounded-2xl sm:rounded-3xl m-auto  sm:gap-0 items-end justify-center place-items-center">
+        <form action="" onSubmit={handleSubmit} className="w-85 h-fit sm:pl-5 sm:h-auto sm:w-auto grid grid-cols-1 grid-rows-11 sm:grid-cols-2 sm:grid-rows-6 grid-flow-col border-2 border-black rounded-2xl sm:rounded-3xl m-auto  sm:gap-0 items-end justify-center place-items-center">
             <div className="box w-11/12 sm:w-4/5 h-fit text-left">
                 <p className="text-sm sm:text-2xl aldrich-regular">Enter your name <span className=' text-red-600'>*</span></p>
                 <input type="text" className="input sm:input-box" value={name} onChange={(e) => setName(e.target.value)}  required/>
