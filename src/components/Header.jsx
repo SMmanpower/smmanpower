@@ -28,7 +28,7 @@ function Header() {
                 Apply Talents
                 <img src={icon} alt="" />
             </button>
-            <a href="tel:+91 936341661" className="w-12 h-12">
+            <a href="tel:+91 9363641661" className="w-12 h-12">
                 <img src={phone} alt="" />
             </a>
            </div>
