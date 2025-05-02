@@ -220,6 +220,7 @@ function BookingForm() {
                 <option value="pamphlet">Pamphlet</option>
                 <option value="driverwork">Driver Work</option>
                 <option value="promoters">Promoters</option>
+                <option value="Bouncers">Bouncers</option>
                 <option value="distributionrefree">Distribution Refree</option>
                 <option value="umpire">Umpire</option>
                 <option value="other">Others</option>
