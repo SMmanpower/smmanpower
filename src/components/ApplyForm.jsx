@@ -225,6 +225,7 @@ function ApplyForm() {
                 <option value="barodc">Bar ODC</option>
                 <option value="decorationhelpingwork">Decoration Helping Work</option>
                 <option value="pamphlet">Pamphlet</option>
+                <option value="Bouncers">Bouncers</option>
                 <option value="driverwork">Driver Work</option>
                 <option value="promoters">Promoters</option>
                 <option value="distributionrefree">Distribution Refree</option>
