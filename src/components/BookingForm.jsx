@@ -70,7 +70,6 @@ function BookingForm() {
 
     const handleFileUpload = async (file) => {
       try {
-        // console.log("Uploading File:", file);
     
         const response = await fetch(
           "https://vdtwit6wib.execute-api.ap-south-1.amazonaws.com/prod/Sm_serviceBooking",
@@ -89,7 +88,6 @@ function BookingForm() {
         }
     
         const data = await response.json();
-        // console.log("Pre-signed URL Response:", data);
     
         if (!data.uploadURL || !data.fileUrl) {
           throw new Error("Invalid pre-signed URL response");
@@ -105,7 +103,6 @@ function BookingForm() {
           throw new Error(`Failed to upload file: ${uploadResponse.statusText}`);
         }
     
-        // console.log("File successfully uploaded to S3:", data.fileUrl);
     
         return data.fileUrl;  
       } catch (error) {
@@ -120,34 +117,12 @@ function BookingForm() {
       setIsLoading(true);
 
      try{
-      const startDateTime = new Date(start_date);
-      const endDateTime = new Date(end_date);
-      
-      const now = new Date();
-      const minStartTime = new Date(now.getTime() + 5 * 60 * 60 * 1000); 
-  
-      if (startDateTime < minStartTime) {
-        Swal.fire("Error", "Start time must be at least 5 hours later than current time.", "error");
-        setIsLoading(false);
-        return;
-      }
-  
-      const diffInseconds = endDateTime - startDateTime;
-      const diffInHours = diffInseconds / (1000 * 60 * 60);
-  
-      if (diffInHours < 5) {
-        Swal.fire("Error", "End time must be at least 5 hours after start time.", "error");
-        setIsLoading(false);
-        return;
-      }
-      
       
       if (!termsAccepted) {
         Swal.fire("Error", "Please accept the Terms and Conditions", "error");
         return;
       }
       
-      // console.log("Selected File:", file);    
         if (!uploadedFileUrl) {
           Swal.fire("Error", "File upload failed", "error");
           return;
@@ -168,7 +143,6 @@ function BookingForm() {
           proof_url: uploadedFileUrl,  
         };
     
-        // console.log("Form Data Before Submit:", formData);
     
         const bookingResponse = await axios.post(
           "https://vdtwit6wib.execute-api.ap-south-1.amazonaws.com/prod/SM_booking_details",
