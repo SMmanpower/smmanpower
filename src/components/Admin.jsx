@@ -330,7 +330,7 @@ const handleSendBulkMessages = async (booking) => {
                             </button>
                         </div>
                         <p className="aldrich-regular text-4xl justify-self-center">
-                            Costomer Booking details
+                            Customer Booking details
                         </p>
                     </div>
                 </header>
