@@ -26,8 +26,8 @@ export const WhatsAppMessage = async (to, name, work, startTime, endTime, place)
     to: to,
     type: "template",
     template: {
-      name: "work_assignment_notification", 
-      language: { code: "en" },
+      name: "assginment_notification", 
+      language: { code: "en_US" },
       components: [
         {
           type: "body",
@@ -37,7 +37,8 @@ export const WhatsAppMessage = async (to, name, work, startTime, endTime, place)
             { type: "text", text: startTime },
             { type: "text", text: endTime },
             { type: "text", text: place },
-            { type: "text", text: dress }
+            { type: "text", text: dress },
+            { type: "text", text: "01" }
           ]
         }
       ]
